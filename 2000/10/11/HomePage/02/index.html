@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>HBB RENDERER ENGINE | 坏包包</title>
+    <meta name="author" content="坏包包" />
+    <meta name="description" content="坏包包的个人博客" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/Icon.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+
+
+    
+<link
+    rel="stylesheet"
+    href="/css/prism.css"
+/>
+<script src="/js/lib/prism.js"></script>
+
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2> LOADING </h2>
+                    <p>...加载中...</p>
+                    <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
+                    <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>坏包包</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/categories/Unreal">
+            <i class="fa-solid fa-Unreal fa-fw"></i>
+            <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/Others">
+            <i class="fa-solid fa-Others fa-fw"></i>
+            <span>&ensp;Others</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-Categories fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;坏包包</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Unreal">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Unreal fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Others">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Others fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Others</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Categories fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <!-- 只有设置了image参数才会加载头图 -->
+    
+    
+    <div class="post-title-parent">
+        <h1 class="post-title">HBB RENDERER ENGINE</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2000/10/11
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>Vulkan API是从2021年9月开始研究了,中间重新研究了设计模式，重头写了一遍又一遍…<br>
+目前已经提交到Git hub了，地址在这：<a target="_blank" rel="noopener" href="https://github.com/SCcDaniel/HBBr">https://github.com/SCcDaniel/HBBr</a></p>
+<p>编译须知:<br>
+1.下载Vulkan SDK 1.3 ,且需要下载配套的GLM数学库(Vulkan SDK下载器里勾上glm就行了)，建议默认C盘安装，装其他盘也行，确保环境变量里有VULKAN_SDK。<br>
+2.编辑器窗口使用的是QT5.12.12，需要另行下载</p>
+<p>目前有3个配置可选：<br>
+1.Debug （Editor Debug，启动项：Editor ，依赖QT5动态库）<br>
+2.Release （Editor Release，启动项：Editor ，依赖QT5动态库）<br>
+3.ReleaseGame_GLFW （Renderer Only with GLFW，启动项：RendererCore，无额外动态库依赖）</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 坏包包
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;坏包包
+        </div>
+        <div>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
+            <br/>
+            <br/>
+            <a class="BilibliLink" href="/">返回主页</a>
+            <br/>
+            <br/>
+            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+        </div>
+        
+    </div>
+    <script>
+        // 滚动事件监听器，用于显示/隐藏返回顶部按钮
+        // window.onscroll = function() {
+        //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        //     document.getElementById('backToTop').style.display = 'block';
+        //   } else {
+        //     document.getElementById('backToTop').style.display = 'none';
+        //   }
+        // };
+       
+        // 返回顶部的函数
+        function scrollToTop() {
+          document.body.scrollTop = 0; // 对Safari
+          document.documentElement.scrollTop = 0; // 对Chrome, Firefox, IE 和 Opera
+        }
+      </script>
+</footer>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" alt="" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=n();function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t=t.concat(e)}function t(t){(a||t)&&(d=n());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,a,o,n=d[i];e=function(){d=d.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)},(t=n).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),t.removeAttribute("style"),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,100)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+</html>
