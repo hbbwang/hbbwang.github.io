@@ -28,19 +28,11 @@
 
 
 
-    
-<link
-    rel="stylesheet"
-    href="/css/prism.css"
-/>
-<script src="/js/lib/prism.js"></script>
-
-
-
-
 <script src="/js/lib/preview.js"></script>
 
 
+
+<script src="/js/lib/search.js"></script>
 
 
 
@@ -49,6 +41,14 @@
 
 
 <link rel="stylesheet" href="/css/main.css" />
+
+
+    
+<link
+    rel="stylesheet"
+    href="/css/prism.css"
+/>
+<script src="/js/lib/prism.js"></script>
 
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
@@ -82,11 +82,6 @@
         <a href="/categories/Others">
             <i class="fa-solid fa-Others fa-fw"></i>
             <span>&ensp;Others</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-Categories fa-fw"></i>
-            <span>&ensp;分类</span>
         </a>
         
     </nav>
@@ -125,15 +120,6 @@
                     </div>
                 </a>
                 
-                <a href="/categories">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-Categories fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
-                    </div>
-                </a>
-                
             </div>
         </transition>
     </nav>
@@ -143,7 +129,49 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
+            <!-- 目录卡片 -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        target.style.display = 'none';
+        button.textContent = '显示目录';
+
+        const home = document.getElementById('home-toc');
+        home.style.display = 'none';
+
+        setTimeout(()=>{
+            const home = document.getElementById('home-toc');
+            home.style.display = 'block';
+        },800);
+    });
+    
+    function onButtonClick() 
+    {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        if(target.style.display == 'none')
+        {
+            target.style.display = 'block';
+            button.textContent = '隐藏目录';
+        }
+        else
+        {
+            target.style.display = 'none';
+            button.textContent = '显示目录';
+        }
+
+    }
+</script>
+<div id="home-toc" class="toc-article">
+    <button id="toc-button" class="toc-button" onclick="onButtonClick()">显示目录</button>
+    <div id="toc-style">
+        <!-- <div class="toc-title">目录</div> -->
+        
+    </div>
+</div>
+<div class="article">
     <!-- 只有设置了image参数才会加载头图 -->
     
     <img src=Header.jpg class="post-image no-lazy" alt="" ></img>
@@ -178,35 +206,35 @@
             
             <span class="tag">
                 
-                <a href="/tags/Unreal/" style="color: #00a596">
+                <a href="/tags/Unreal/" style="color: #03a9f4">
                     Unreal
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/UnrealEngine/" style="color: #ffa2c4">
+                <a href="/tags/UnrealEngine/" style="color: #00a596">
                     UnrealEngine
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">
+                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">
                     渲染
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #00bcd4">
+                <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #ffa2c4">
                     视差
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #ff7d73">
+                <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00a596">
                     材质
                 </a>
             </span>
@@ -216,58 +244,47 @@
     </div>
     
     <div class="content" v-pre>
-        <p>视差计算一直都被我认为是难度比较高的计算，但是实际研究过后，其实还是比较简单的，相信经过这篇文章的简单介绍，各位会有个比较入门的认识。</p>
-<p>首先什么是视差贴图，下面这个就是视差贴图：<br>
-<img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/视差材质的原理与实现/clipboardpng32.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=300 loading="lazy"><br>
-当然这并不标准，正常的视差贴图应该是一张纹理的高度图，这是我用BaseColor转的，并且加强了对比度，也是为了让最终效果更加的明显。</p>
-<p>那么接下来解释下视差的原理，请看图：</p>
-<p>首先我们假设一个场景，场景内有有一个面片A，</p>
-<p>然后这个面片A采样了一张视差贴图(单纯的采样，暂时不作视差计算)，而渲染出来的灰度(高度)B<br>
-<img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/视差材质的原理与实现/clipboard-png-33-768x372.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=500 loading="lazy"><br>
-接下来我们进行多次的视差偏移，假设我们以某个高度偏移了2次，这时候我们得到了3层高度：<br>
-<img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/视差材质的原理与实现/clipboard-png-34.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=500 loading="lazy"><br>
-然后我们因为我们的贴图渲染时层层覆盖的关系，所以我们得讨巧下：使用上一次的深度，取反，假如比下一次要低，就继续往下覆盖</p>
-<p>去改变我们的计算方法，那么这三条曲线就会变成这样：</p>
-<p>B和B1的红叉并不是去掉的意思，而是在【红点】处被【截断】。<br>
-<img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/视差材质的原理与实现/clipboard-png-35.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=500 loading="lazy"><br>
-所以这样就能得出我们的计算过程了，放代码。</p>
-<p>先看下这个最简单的，没有经过任何处理的，基于切线空间（贴图空间）的【视差代码公式】，没有它也不会有多种多样的视差变化：</p>
-<p>相机世界空间坐标转切线空间</p>
-<pre  ><code class="language-c" >TangentView.xyz = TransformWorldToTangent(WorldView.xyz);
-ParallaxOffset.xy = TangentView.xy / TangentView.z；</code></pre>
-<p>实际计算过程如下：</p>
-<pre class="line-numbers"><code class="language-c" >half  noiseEnd = 0;
-half count  = min(64,ParallaxStep);
-//实测5次以下也够用
-half2 _ParallaxOffset =(TangentView/(TangentView.z + TangentViewForwardMul)); //视差公式
-for( int i =0 ; i < count; i++)
-&#123;
-    //每一次循环都增强视差的深度，并且获取上一次结果，取反，混合判断是否会被覆盖
-    uv += _ParallaxOffset * ParallaxStrength*0.01 *(1-noiseEnd);
-    //再次采样
-    noiseEnd = tParallaxMap.SampleBias(sParallaxMapSampler,uv.xy,-2).r;
-    //最后这是一个优化手段，一旦发现不会被覆盖我们可以选择跳出循环了，不用再浪费时间计算了，阈值可以再低一点
-    if( noiseEnd >=0.999)
-        break;
-&#125;</code></pre>
-<p>最后使用得到的最终uv去采样我们的贴图，输出颜色（法线、粗糙度同理）<br>
-[c]<br>
-half3 BaseColor = tBaseMap.SampleBias(sBaseSampler,uv.xy,cBaseMapBias).rgb;<br>
-[]<br>
-以下是效果截图：</p>
-<p>半透明渲染<br>
-<img src="/images/loading3.gif" data-original="3-gif (1).gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=400 /><br>
-地砖渲染，包含了法线，效果还是非常棒的<br>
-<img src="/images/loading3.gif" data-original="4-gif (1).gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=400 /></p>
+        <p>视差计算一直都被我认为是难度比较高的计算，但是实际研究过后，其实还是比较简单的，相信经过这篇文章的简单介绍，各位会有个比较入门的认识。<br><br>首先什么是视差贴图，下面这个就是视差贴图：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboardpng32.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="500" ></div><br>当然这并不标准，正常的视差贴图应该是一张纹理的高度图，这是我用BaseColor转的，并且加强了对比度，也是为了让最终效果更加的明显。<br><br>那么接下来解释下视差的原理，请看图：<br><br>首先我们假设一个场景，场景内有有一个面片A，<br><br>然后这个面片A采样了一张视差贴图(单纯的采样，暂时不作视差计算)，而渲染出来的灰度(高度)B<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboard-png-33-768x372.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="600" ></div><br>接下来我们进行多次的视差偏移，假设我们以某个高度偏移了2次，这时候我们得到了3层高度：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboard-png-34.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="600" ></div><br>然后我们因为我们的贴图渲染时层层覆盖的关系，所以我们得讨巧下：使用上一次的深度，取反，假如比下一次要低，就继续往下覆盖<br><br>去改变我们的计算方法，那么这三条曲线就会变成这样：<br><br>B和B1的红叉并不是去掉的意思，而是在【红点】处被【截断】。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboard-png-35.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="600" ></div><br>所以这样就能得出我们的计算过程了，放代码。<br><br>先看下这个最简单的，没有经过任何处理的，基于切线空间（贴图空间）的【视差代码公式】，没有它也不会有多种多样的视差变化：<br>相机世界空间坐标转切线空间<br>[c]<br>TangentView.xyz &#x3D; TransformWorldToTangent(WorldView.xyz);<br>ParallaxOffset.xy &#x3D; TangentView.xy &#x2F; TangentView.z；<br>[&#x2F;]<br>实际计算过程如下：<br>[line-numbers,c]<br>half  noiseEnd &#x3D; 0;<br>half count  &#x3D; min(64,ParallaxStep);<br>&#x2F;&#x2F;实测5次以下也够用<br>half2 _ParallaxOffset &#x3D;(TangentView&#x2F;(TangentView.z + TangentViewForwardMul)); &#x2F;&#x2F;视差公式<br>for( int i &#x3D;0 ; i &lt; count; i++)<br>{<br>    &#x2F;&#x2F;每一次循环都增强视差的深度，并且获取上一次结果，取反，混合判断是否会被覆盖<br>    uv +&#x3D; _ParallaxOffset * ParallaxStrength*0.01 *(1-noiseEnd);<br>    &#x2F;&#x2F;再次采样<br>    noiseEnd &#x3D; tParallaxMap.SampleBias(sParallaxMapSampler,uv.xy,-2).r;<br>    &#x2F;&#x2F;最后这是一个优化手段，一旦发现不会被覆盖我们可以选择跳出循环了，不用再浪费时间计算了，阈值可以再低一点<br>    if( noiseEnd &gt;&#x3D;0.999)<br>        break;<br>}<br>[&#x2F;]<br>最后使用得到的最终uv去采样我们的贴图，输出颜色（法线、粗糙度同理）<br>[c]<br>half3 BaseColor &#x3D; tBaseMap.SampleBias(sBaseSampler,uv.xy,cBaseMapBias).rgb;<br>[&#x2F;]<br>以下是效果截图：<br>半透明渲染<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3-gif (1).gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="400" ></div><br>地砖渲染，包含了法线，效果还是非常棒的<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4-gif (1).gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="400" ></div><br></p>
 
     </div>
     
     
     
     
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
     
     
     
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const OFFSET_HEIGHT = 100; // 文章调整的时候避开顶上的菜单栏
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+            const href = link.getAttribute('href');
+            const decodedHref = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(decodedHref);
+            console.log(decodedHref);
+            if (target) {
+                event.preventDefault();
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: targetPosition - OFFSET_HEIGHT, behavior: 'smooth' });
+            }
+
+            const toc_style = document.getElementById('toc-style');
+            const toc_button = document.getElementById('toc-button');  
+            toc_style.style.display = 'none';
+            toc_button.textContent = '显示目录';
+
+            });
+        });
+        });
+    </script>
+
 </div>
 
             <footer id="footer">
@@ -279,15 +296,16 @@ half3 BaseColor = tBaseMap.SampleBias(sBaseSampler,uv.xy,cBaseMapBias).rgb;<br>
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
             &commat;坏包包
-        </div>
-        <div>
-            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
             <a class="BilibliLink" href="/">返回主页</a>
             <br/>
-            <br/>
             <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+            <br/>
+            本页面由Hexo生成，搭建在Github
+            <br/>
+            主题：Particlex(魔改)
         </div>
         
     </div>
@@ -320,6 +338,26 @@ half3 BaseColor = tBaseMap.SampleBias(sBaseSampler,uv.xy,cBaseMapBias).rgb;<br>
     <script src="/js/main.js"></script>
     
     
+<script
+    src="https://giscus.app/client.js"
+    data-repo="hbbwang/HbbHexoComment"
+    data-repo-id="R_kgDOMC9ptw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMC9pt84Cfv5q"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="noborder_dark"
+    data-lang="zh-CN"
+    
+    data-loading="lazy"
+    
+    crossorigin
+    async
+></script>
+
 
 
 

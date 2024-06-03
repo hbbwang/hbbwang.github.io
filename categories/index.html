@@ -28,23 +28,23 @@
 
 
 
+<script src="/js/lib/preview.js"></script>
+
+
+
+<script src="/js/lib/search.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
     
 <link
     rel="stylesheet"
     href="/css/prism.css"
 />
 <script src="/js/lib/prism.js"></script>
-
-
-
-
-<script src="/js/lib/preview.js"></script>
-
-
-
-
-
-<link rel="stylesheet" href="/css/main.css" />
 
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
@@ -78,11 +78,6 @@
         <a href="/categories/Others">
             <i class="fa-solid fa-Others fa-fw"></i>
             <span>&ensp;Others</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-Categories fa-fw"></i>
-            <span>&ensp;分类</span>
         </a>
         
     </nav>
@@ -121,15 +116,6 @@
                     </div>
                 </a>
                 
-                <a href="/categories">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-Categories fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
-                    </div>
-                </a>
-                
             </div>
         </transition>
     </nav>
@@ -139,37 +125,49 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
+            
+    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
+
+
+<div id="archives"> 
     
-    <div class="categories-tags">
+    
+    
+
+    <!-- 不需要分类了 -->
+    <!-- <span>
+        <a href="/categories/Others/" style="background: #00bcd4">
+            <span class="icon">
+                <i class="fa-solid fa-bookmark fa-fw"></i>
+            </span>
+            Others
+        </a>
+    </span> -->
+
+
+    
+    
+    
+
+    <!-- 不需要分类了 -->
+    <!-- <span>
+        <a href="/categories/Unreal/" style="background: #ff7d73">
+            <span class="icon">
+                <i class="fa-solid fa-bookmark fa-fw"></i>
+            </span>
+            Unreal
+        </a>
+    </span> -->
+
+
+    
+    
+
+    <div id="all-timeline">
         
-        
-        
-        <span>
-            <a href="/categories/Unreal/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Unreal
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/categories/Others/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Others
-            </a>
-        </span>
-        
+        </div>
         
     </div>
-    
-</div>
-
             <footer id="footer">
     <div id="footer-wrap">
         <div>
@@ -179,15 +177,16 @@
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
             &commat;坏包包
-        </div>
-        <div>
-            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
             <a class="BilibliLink" href="/">返回主页</a>
             <br/>
-            <br/>
             <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+            <br/>
+            本页面由Hexo生成，搭建在Github
+            <br/>
+            主题：Particlex(魔改)
         </div>
         
     </div>

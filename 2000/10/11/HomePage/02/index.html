@@ -28,19 +28,11 @@
 
 
 
-    
-<link
-    rel="stylesheet"
-    href="/css/prism.css"
-/>
-<script src="/js/lib/prism.js"></script>
-
-
-
-
 <script src="/js/lib/preview.js"></script>
 
 
+
+<script src="/js/lib/search.js"></script>
 
 
 
@@ -49,6 +41,14 @@
 
 
 <link rel="stylesheet" href="/css/main.css" />
+
+
+    
+<link
+    rel="stylesheet"
+    href="/css/prism.css"
+/>
+<script src="/js/lib/prism.js"></script>
 
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
@@ -82,11 +82,6 @@
         <a href="/categories/Others">
             <i class="fa-solid fa-Others fa-fw"></i>
             <span>&ensp;Others</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-Categories fa-fw"></i>
-            <span>&ensp;分类</span>
         </a>
         
     </nav>
@@ -125,15 +120,6 @@
                     </div>
                 </a>
                 
-                <a href="/categories">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-Categories fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
-                    </div>
-                </a>
-                
             </div>
         </transition>
     </nav>
@@ -143,7 +129,49 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
+            <!-- 目录卡片 -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        target.style.display = 'none';
+        button.textContent = '显示目录';
+
+        const home = document.getElementById('home-toc');
+        home.style.display = 'none';
+
+        setTimeout(()=>{
+            const home = document.getElementById('home-toc');
+            home.style.display = 'block';
+        },800);
+    });
+    
+    function onButtonClick() 
+    {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        if(target.style.display == 'none')
+        {
+            target.style.display = 'block';
+            button.textContent = '隐藏目录';
+        }
+        else
+        {
+            target.style.display = 'none';
+            button.textContent = '显示目录';
+        }
+
+    }
+</script>
+<div id="home-toc" class="toc-article">
+    <button id="toc-button" class="toc-button" onclick="onButtonClick()">显示目录</button>
+    <div id="toc-style">
+        <!-- <div class="toc-title">目录</div> -->
+        
+    </div>
+</div>
+<div class="article">
     <!-- 只有设置了image参数才会加载头图 -->
     
     
@@ -162,24 +190,47 @@
     </div>
     
     <div class="content" v-pre>
-        <p>Vulkan API是从2021年9月开始研究了,中间重新研究了设计模式，重头写了一遍又一遍…<br>
-目前已经提交到Git hub了，地址在这：<a target="_blank" rel="noopener" href="https://github.com/SCcDaniel/HBBr">https://github.com/SCcDaniel/HBBr</a></p>
-<p>编译须知:<br>
-1.下载Vulkan SDK 1.3 ,且需要下载配套的GLM数学库(Vulkan SDK下载器里勾上glm就行了)，建议默认C盘安装，装其他盘也行，确保环境变量里有VULKAN_SDK。<br>
-2.编辑器窗口使用的是QT5.12.12，需要另行下载</p>
-<p>目前有3个配置可选：<br>
-1.Debug （Editor Debug，启动项：Editor ，依赖QT5动态库）<br>
-2.Release （Editor Release，启动项：Editor ，依赖QT5动态库）<br>
-3.ReleaseGame_GLFW （Renderer Only with GLFW，启动项：RendererCore，无额外动态库依赖）</p>
+        <p>Vulkan API是从2021年9月开始研究了,中间重新研究了设计模式，重头写了一遍又一遍…<br>目前已经提交到Git hub了，地址在这：<a target="_blank" rel="noopener" href="https://github.com/SCcDaniel/HBBr">https://github.com/SCcDaniel/HBBr</a><br><br>编译须知:<br>1.下载Vulkan SDK 1.3 ,且需要下载配套的GLM数学库(Vulkan SDK下载器里勾上glm就行了)，建议默认C盘安装，装其他盘也行，确保环境变量里有VULKAN_SDK。<br>2.编辑器窗口使用的是QT5.12.12，需要另行下载<br><br>目前有3个配置可选：<br>1.Debug （Editor Debug，启动项：Editor ，依赖QT5动态库）<br>2.Release （Editor Release，启动项：Editor ，依赖QT5动态库）<br>3.ReleaseGame_GLFW （Renderer Only with GLFW，启动项：RendererCore，无额外动态库依赖）<br></p>
 
     </div>
     
     
     
     
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
     
     
     
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const OFFSET_HEIGHT = 100; // 文章调整的时候避开顶上的菜单栏
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+            const href = link.getAttribute('href');
+            const decodedHref = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(decodedHref);
+            console.log(decodedHref);
+            if (target) {
+                event.preventDefault();
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: targetPosition - OFFSET_HEIGHT, behavior: 'smooth' });
+            }
+
+            const toc_style = document.getElementById('toc-style');
+            const toc_button = document.getElementById('toc-button');  
+            toc_style.style.display = 'none';
+            toc_button.textContent = '显示目录';
+
+            });
+        });
+        });
+    </script>
+
 </div>
 
             <footer id="footer">
@@ -191,15 +242,16 @@
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
             &commat;坏包包
-        </div>
-        <div>
-            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
             <a class="BilibliLink" href="/">返回主页</a>
             <br/>
-            <br/>
             <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+            <br/>
+            本页面由Hexo生成，搭建在Github
+            <br/>
+            主题：Particlex(魔改)
         </div>
         
     </div>
@@ -232,6 +284,26 @@
     <script src="/js/main.js"></script>
     
     
+<script
+    src="https://giscus.app/client.js"
+    data-repo="hbbwang/HbbHexoComment"
+    data-repo-id="R_kgDOMC9ptw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMC9pt84Cfv5q"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="noborder_dark"
+    data-lang="zh-CN"
+    
+    data-loading="lazy"
+    
+    crossorigin
+    async
+></script>
+
 
 
 
