@@ -290,12 +290,12 @@
         
         <span class="tag">
             
-            <a href="/tags/GitHub/" style="color: #03a9f4">GitHub</a>
+            <a href="/tags/GitHub/" style="color: #ffa2c4">GitHub</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Hexo/" style="color: #00a596">Hexo</a>
+            <a href="/tags/Hexo/" style="color: #03a9f4">Hexo</a>
         </span>
            
     </div> -->
@@ -354,12 +354,12 @@
         
         <span class="tag">
             
-            <a href="/tags/GitHub/" style="color: #ff7d73">GitHub</a>
+            <a href="/tags/GitHub/" style="color: #ffa2c4">GitHub</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Hexo/" style="color: #ffa2c4">Hexo</a>
+            <a href="/tags/Hexo/" style="color: #03a9f4">Hexo</a>
         </span>
            
     </div> -->
@@ -418,42 +418,42 @@
         
         <span class="tag">
             
-            <a href="/tags/Unreal/" style="color: #00bcd4">Unreal</a>
+            <a href="/tags/Unreal/" style="color: #03a9f4">Unreal</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/UnrealEngine/" style="color: #00a596">UnrealEngine</a>
+            <a href="/tags/UnrealEngine/" style="color: #00bcd4">UnrealEngine</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #00bcd4">手游</a>
+            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #ffa2c4">手游</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="color: #00a596">移动平台</a>
+            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="color: #00bcd4">移动平台</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #ff7d73">性能</a>
+            <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #03a9f4">性能</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Adreno/" style="color: #03a9f4">Adreno</a>
+            <a href="/tags/Adreno/" style="color: #00a596">Adreno</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Mali/" style="color: #00a596">Mali</a>
+            <a href="/tags/Mali/" style="color: #00bcd4">Mali</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #00bcd4">离线编译器</a>
+            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #ff7d73">离线编译器</a>
         </span>
            
     </div> -->
@@ -605,7 +605,7 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
     return false;
 }
 #endif
-</code></pre>效果：<br>使用起来非常简单<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>局部节点的输出必须一 一对应，作为输出节点可以不需要连接Input：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>当出现了不存在的局部节点的时候就会报错：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>因为keyword的判断是写在Compile函数里的，所以如果复制了一个新的局部节点，需要点击一次编译按钮，让材质编辑器跑一次Compile函数才能正常运行，当然可以加在其他地方，各位感兴趣的可以自行试试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="参数显示问题" >参数显示问题</h1><br>如果你已经做完上面一步了，节点也正式开始使用了，你就会发现一个问题，材质球里面创建了动态参数：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>但是材质实例里无法显示没有连接到Output的参数！！<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>材质实例编辑器就设定就是获取已经连接到Output的节点参数，所以这里我们需要修改一下引擎编辑器的源码<br>找到 MaterialEditorUtilities.cpp 这个源文件<br>找到这个函数：<br><span style="color:rgb(200,255,160);" >void FMaterialEditorUtilities::GetVisibleMaterialParameters</span><br>我们在这里再补充遍历材质球里的所有节点进行获取：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样就可以获取到连接到每一个节点上的动态参数了，<br>但是这里我其实推荐是把这个我们自定义的节点写入到引擎源码中，而不是写入到项目或者插件中，这样我们可以单独的为这个节点类型进行判断了，而不是所有节点。<br><br>看看结果如何，可以看到参数出来了：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>蓝图控制参数变化也能正常运行：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br>
+</code></pre>效果：<br>使用起来非常简单<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>局部节点的输出必须一 一对应，作为输出节点可以不需要连接Input：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>当出现了不存在的局部节点的时候就会报错：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>因为keyword的判断是写在Compile函数里的，所以如果复制了一个新的局部节点，需要点击一次编译按钮，让材质编辑器跑一次Compile函数才能正常运行，当然可以加在其他地方，各位感兴趣的可以自行试试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="参数显示问题" >参数显示问题</h1><br>如果你已经做完上面一步了，节点也正式开始使用了，你就会发现一个问题，材质球里面创建了动态参数：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>但是材质实例里无法显示没有连接到Output的参数！！<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>材质实例编辑器就设定就是获取已经连接到Output的节点参数，所以这里我们需要修改一下引擎编辑器的源码<br>找到 MaterialEditorUtilities.cpp 这个源文件<br>找到这个函数：<br><span style="color:rgb(200,255,160);" >void FMaterialEditorUtilities::GetVisibleMaterialParameters</span><br>我们在这里再补充遍历材质球里的所有节点进行获取：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样就可以获取到连接到每一个节点上的动态参数了，<br>但是这里我其实推荐是把这个我们自定义的节点写入到引擎源码中，而不是写入到项目或者插件中，这样我们可以单独的为这个节点类型进行判断了，而不是所有节点。<br><br>看看结果如何，可以看到参数出来了：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>蓝图控制参数变化也能正常运行：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br>
             
         </div>    
     </div> -->
@@ -620,12 +620,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/Unreal/" style="color: #ffa2c4">Unreal</a>
+            <a href="/tags/Unreal/" style="color: #00bcd4">Unreal</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/UnrealEngine/" style="color: #ff7d73">UnrealEngine</a>
+            <a href="/tags/UnrealEngine/" style="color: #00a596">UnrealEngine</a>
         </span>
         
         <span class="tag">
@@ -635,12 +635,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #03a9f4">自定义</a>
+            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00a596">自定义</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #00bcd4">材质节点，编辑器</a>
+            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #03a9f4">材质节点，编辑器</a>
         </span>
            
     </div> -->
@@ -701,12 +701,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/Unreal/" style="color: #ff7d73">Unreal</a>
+            <a href="/tags/Unreal/" style="color: #ffa2c4">Unreal</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/UnrealEngine/" style="color: #00bcd4">UnrealEngine</a>
+            <a href="/tags/UnrealEngine/" style="color: #03a9f4">UnrealEngine</a>
         </span>
         
         <span class="tag">
@@ -716,93 +716,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #00a596">打包</a>
+            <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #ffa2c4">打包</a>
         </span>
            
     </div> -->
 
     <!-- <a href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/">
-        <h2 class="post-title">UE5.01 Custom Shading Model</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Unreal
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/6/14
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="C++部分" >C++部分</h1><br><h2 id="1.EngineType.h" >1.EngineType.h</h2><br>添加 材质的ShadingModel枚举，这里加入之后，材质编辑器的下拉菜单也会新增对应选择，必须要在NUM之前添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="2.HLSL MaterialTranslator.cpp 和MaterialHLSLEmitter.cpp" >2.HLSL MaterialTranslator.cpp 和MaterialHLSLEmitter.cpp</h2><br>找到GetMaterialEnvironment，往Shader里添加宏定义<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="3.ShaderMaterial.h" >3.ShaderMaterial.h</h2><br>结构体 FShaderMaterialPropertyDefines，添加我们的宏<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="4.ShaderGenerationUtil.cpp" >4.ShaderGenerationUtil.cpp</h2><br>在ApplyFetchEnvironment里，添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>该操作是判断当前shading model是否被选择，选择就会再次设为1，没被选中的就会设为0<br>并且继续往下，找到DetermineUsedMaterialSlots<br>往里面添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>次操作是为了写入GBuffer，不写这段就无法在Shader正常获取GBuffer，<br>第二句话是 是否写入CustomData<br><h2 id="5.ShaderMaterialDerivedHelpers.cpp" >5.ShaderMaterialDerivedHelpers.cpp</h2><br>往CalculateDerivedMaterialParameters的Dst.WRITE_CUSTOMDATA_TO_GBUFFER里添加我们的宏（如果需要使用CustomData的话就要加）。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这一块区域本身在UE4里是定义在BasePassCommon.ush里的，到的UE5就移动到C++里面了，使用上面的FETCH进行动态判断宏是否需要开启。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>可以看到，在ush里，这个宏虽然有被声明，但是底下的实现被注释掉了，证实了已经不需要再在shader里添加了。<br><h2 id="6.Material.cpp" >6.Material.cpp</h2><br>我们虽然上面开启了CustomData的接口，但是此时材质编辑器的CustomData接口默认是灰色的，没办法输入，需要在此处开启接口输入。<br>找到IsPropertyActive_Internal这个函数，<br>这里是调整材质编辑器控制的位置，<br>比如我们在延迟贴画的模式下，开启半透明的时候，哪些接口可以被开启之类的。<br>然后在底下，加入我们的shadingModel<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="7.MaterialShared.cpp" >7.MaterialShared.cpp</h2><br>找到GetAttributeOverrideForMaterial，在这里可以给材质编辑器节点改个名字（如果有必要的话），例如：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样，C++部分我们就完成了。接下来是shader部分。<br><h1 id="Shader部分" >Shader部分</h1><br><h2 id="1.ShadingCommon.usf" >1.ShadingCommon.usf</h2><br>在相同的位置添加我们的shadingModel<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>再往下，GetShadingModelColor里添加我们的颜色，这样在编辑器里DebugShadingModelColor的时候就会显示我们设置的颜色<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="11.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="2.ShadingModelsMaterial.usf" >2.ShadingModelsMaterial.usf</h2><br>在这里添加我们的shadingModel的GBuffer参数获取。<br>值得注意的是，我们从材质编辑器里输入进来的CustomData0和CustomData1都只是一个half，而GBuffer里的CustomData是个float4，这里我们只做一下测试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="12.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="3.在DeferredShadingCommon.usf里面还有个坑" >3.在DeferredShadingCommon.usf里面还有个坑</h2><br>就是如果我们确定了要使用GBuffer的CustomData，我们就需要在HasCustomGBufferData这个函数里面，加入我们自己的Shading model id，不然我们从GBuffer里面读出来的永远都是0，包括上面的这个IsSubsurfaceModel，如果要开启subsurface，也要往里面加。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="13.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="4.最后 ShadingModels.usf" >4.最后 ShadingModels.usf</h2><br>在ShadingModels.usf里加入我们的shading Model分支，就能实现不同的效果了<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="14.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="结果" >结果</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="15.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #ff7d73">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #00bcd4">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UE5/" style="color: #00a596">UE5</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #03a9f4">自定义</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/ShadingModel/" style="color: #ffa2c4">ShadingModel</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/" class="go-post">阅读全文</a> -->
     
 </div>
 
@@ -859,32 +778,113 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/Unreal/" style="color: #03a9f4">Unreal</a>
+            <a href="/tags/Unreal/" style="color: #00a596">Unreal</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/UnrealEngine/" style="color: #ff7d73">UnrealEngine</a>
+            <a href="/tags/UnrealEngine/" style="color: #03a9f4">UnrealEngine</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #00bcd4">视差</a>
+            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #ff7d73">视差</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #ff7d73">材质</a>
+            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00a596">材质</a>
         </span>
            
     </div> -->
 
     <!-- <a href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="go-post">阅读全文</a> -->
+    
+</div>
+
+<div class="post">
+
+    <div class="post-image-parent">
+    
+        <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+    
+    </div>
+
+
+    <a class="post-title-a" href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/">
+        <h2 class="post-title">UE5.01 Custom Shading Model</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/Unreal/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Unreal
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/6/14
+        </span>
+        
+        
+    </div>
+
+<!-- 文章内容显示 -->
+    <!-- <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="C++部分" >C++部分</h1><br><h2 id="1.EngineType.h" >1.EngineType.h</h2><br>添加 材质的ShadingModel枚举，这里加入之后，材质编辑器的下拉菜单也会新增对应选择，必须要在NUM之前添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="2.HLSL MaterialTranslator.cpp 和MaterialHLSLEmitter.cpp" >2.HLSL MaterialTranslator.cpp 和MaterialHLSLEmitter.cpp</h2><br>找到GetMaterialEnvironment，往Shader里添加宏定义<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="3.ShaderMaterial.h" >3.ShaderMaterial.h</h2><br>结构体 FShaderMaterialPropertyDefines，添加我们的宏<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="4.ShaderGenerationUtil.cpp" >4.ShaderGenerationUtil.cpp</h2><br>在ApplyFetchEnvironment里，添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>该操作是判断当前shading model是否被选择，选择就会再次设为1，没被选中的就会设为0<br>并且继续往下，找到DetermineUsedMaterialSlots<br>往里面添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>次操作是为了写入GBuffer，不写这段就无法在Shader正常获取GBuffer，<br>第二句话是 是否写入CustomData<br><h2 id="5.ShaderMaterialDerivedHelpers.cpp" >5.ShaderMaterialDerivedHelpers.cpp</h2><br>往CalculateDerivedMaterialParameters的Dst.WRITE_CUSTOMDATA_TO_GBUFFER里添加我们的宏（如果需要使用CustomData的话就要加）。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这一块区域本身在UE4里是定义在BasePassCommon.ush里的，到的UE5就移动到C++里面了，使用上面的FETCH进行动态判断宏是否需要开启。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>可以看到，在ush里，这个宏虽然有被声明，但是底下的实现被注释掉了，证实了已经不需要再在shader里添加了。<br><h2 id="6.Material.cpp" >6.Material.cpp</h2><br>我们虽然上面开启了CustomData的接口，但是此时材质编辑器的CustomData接口默认是灰色的，没办法输入，需要在此处开启接口输入。<br>找到IsPropertyActive_Internal这个函数，<br>这里是调整材质编辑器控制的位置，<br>比如我们在延迟贴画的模式下，开启半透明的时候，哪些接口可以被开启之类的。<br>然后在底下，加入我们的shadingModel<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="7.MaterialShared.cpp" >7.MaterialShared.cpp</h2><br>找到GetAttributeOverrideForMaterial，在这里可以给材质编辑器节点改个名字（如果有必要的话），例如：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样，C++部分我们就完成了。接下来是shader部分。<br><h1 id="Shader部分" >Shader部分</h1><br><h2 id="1.ShadingCommon.usf" >1.ShadingCommon.usf</h2><br>在相同的位置添加我们的shadingModel<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>再往下，GetShadingModelColor里添加我们的颜色，这样在编辑器里DebugShadingModelColor的时候就会显示我们设置的颜色<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="11.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="2.ShadingModelsMaterial.usf" >2.ShadingModelsMaterial.usf</h2><br>在这里添加我们的shadingModel的GBuffer参数获取。<br>值得注意的是，我们从材质编辑器里输入进来的CustomData0和CustomData1都只是一个half，而GBuffer里的CustomData是个float4，这里我们只做一下测试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="12.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="3.在DeferredShadingCommon.usf里面还有个坑" >3.在DeferredShadingCommon.usf里面还有个坑</h2><br>就是如果我们确定了要使用GBuffer的CustomData，我们就需要在HasCustomGBufferData这个函数里面，加入我们自己的Shading model id，不然我们从GBuffer里面读出来的永远都是0，包括上面的这个IsSubsurfaceModel，如果要开启subsurface，也要往里面加。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="13.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="4.最后 ShadingModels.usf" >4.最后 ShadingModels.usf</h2><br>在ShadingModels.usf里加入我们的shading Model分支，就能实现不同的效果了<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="14.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="结果" >结果</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="15.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
+            
+        </div>    
+    </div> -->
+<!-- 文章的Tags显示 -->
+    <!-- <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Unreal/" style="color: #00a596">Unreal</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/UnrealEngine/" style="color: #00bcd4">UnrealEngine</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/UE5/" style="color: #ffa2c4">UE5</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00a596">自定义</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/ShadingModel/" style="color: #ff7d73">ShadingModel</a>
+        </span>
+           
+    </div> -->
+
+    <!-- <a href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/" class="go-post">阅读全文</a> -->
     
 </div>
 
@@ -941,27 +941,27 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/Unreal/" style="color: #ff7d73">Unreal</a>
+            <a href="/tags/Unreal/" style="color: #ffa2c4">Unreal</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/UnrealEngine/" style="color: #00bcd4">UnrealEngine</a>
+            <a href="/tags/UnrealEngine/" style="color: #00a596">UnrealEngine</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #03a9f4">阴影</a>
+            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #ffa2c4">阴影</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #ff7d73">动态阴影</a>
+            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #00bcd4">动态阴影</a>
         </span>
            
     </div> -->
@@ -1007,7 +1007,193 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
     <!-- <div class="description">
         <div class="content" v-pre>
             
-            <p>做这个文档的起因是，网上搜索到的教程的版本都比较旧，基本上都是4.24以前的，然后UE4似乎从4.25之后，对底层代码做了不少改动，导致网上的做法都不可行了，所以做这个文档记录一下。<br><br>还有我不敢保证更新的版本支持这个写法，比如UE5。<br><br>该方法是独立于渲染管线之外的，继承于FGlobalShader，如果想集成到Mesh renderpass 里，想根据渲染顺序读取模型数据之类的的话就不行了（不过一般ComputeShader也不会走管线计算）<br><br><h1 id="首先第一步，新建一个模块（Module）" >首先第一步，新建一个模块（Module）</h1><br>为什么要新建Module？<br><br>因为我们ComputeShader需要继承FGlobalShader，而继承了FGlobalShader类，必须要在引擎之前加载，不然会导致错误，加载失败，所以我们不能把Compute shader写在引擎的逻辑代码上，必须通过Module，使其提前加载。<br><br>创建了Module之后，在项目的.uproject文件上修改即可<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>如果这样还是报错的话，就把模块的位置放到上面试试（亲测可行）<br><br>如果实在不行的话，那就只能和网上说一样新建一个Plugins，然后再在里面生成一个module了。<br><br>新建模块可以在商城里面找到一个免费的插件<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这个免费插件可以帮助我们一键生产模块，自动添加cs和uproject配置，很方便，非常推荐。<br><br>这里我新建了一个模块叫ComputeShaderTest<br><br><h1 id="第二步，编写Compute Shader（TestCS.usf）" >第二步，编写Compute Shader（TestCS.usf）</h1><br>编写测试用的ComputeShader，这里我们直接输出一个绿色。<br><br>TestCS.usf<br>[c,line-numbers]<br>#include “&#x2F;Engine&#x2F;Private&#x2F;Common.ush”<br>RWTexture2D<float4> _texture_out;<br>uint Index;<br><span style="" ></span><br>void CSMain(uint3 id :SV_DispatchThreadID)<br>{<br>   _texture_out[id.xy] &#x3D; float4(0.0,1.0, 0.0, 1.0);<br>}<br>[&#x2F;]<br>文件放在了项目的根目录的Shaders文件夹内<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>引擎可不会这么聪明找到我们的shader在哪里，所以我们需要添加shader的搜索目录，在模块加载的时候添加，也就是shader编译之前。<br><br>ComputeShaderTest.cpp<br>[c,line-numbers]<br>void FComputeShaderTest::StartupModule()<br>{<br>	UE_LOG(<br>        ComputeShaderTest, Warning, <br>        TEXT(“ComputeShaderTest module has been loaded”)<br>        );<br><br>	AddShaderSourceDirectoryMapping(<br>        TEXT(“&#x2F;Shaders”),<br>        FPaths::GetPath(FPaths::GetProjectFilePath())+”&#x2F;Shaders”<br>        );<br>}<br>[&#x2F;]<br><h1 id="第三步，编写我们的ComputeShader类" >第三步，编写我们的ComputeShader类</h1><br>理论上来说，我们的ComputeShader类，写在哪里都无所谓，所以这里我为了方便，直接和新建的蓝图Actor类写到了一起了。<br><br>在UE4里，在我新建的模块里，新建一个继承自Actor的类，这里我起名叫ComputeShaderTestActor。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>在写之前我们还需要在 ComputeShaderTest.build.cs（） 里引入两个渲染模块：<br><br>RenderCore 和 RHI<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="1024" ></div><br>首先是.h文件<br>ComputeShaderTestActor.h<br>[c,line-numbers]<br>#include “GlobalShader.h”<br>class COMPUTESHADERTEST_API FTestComputeShader :public FGlobalShader<br>{<br>private:<br>   &#x2F;&#x2F;声明全局Shader类型，和 DECLARE_GLOBAL_SHADER 是同一个内容，二选一<br>   DECLARE_SHADER_TYPE(FTestComputeShader,Global);<br>   &#x2F;&#x2F;———————————— 下面这段可有可无，去掉好像也没影响…<br>   BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )<br>      SHADER_PARAMETER_UAV(RWTexture2D<float4>, _texture_out)<br>   END_SHADER_PARAMETER_STRUCT()<br>   &#x2F;&#x2F;————————————<br>   LAYOUT_FIELD(FRWShaderParameter, OutputSurface); &#x2F;&#x2F;<br>   <br>public:<br>   FTestComputeShader() {}<br>   FTestComputeShader(const ShaderMetaType::CompiledShaderInitializerType&amp; Initializer)<br>      : FGlobalShader(Initializer)<br>   {<br>      OutputSurface.Bind(Initializer.ParameterMap, TEXT(“_texture_out”));<br>   }<br>}<br>[&#x2F;]<br>至于class后面的这个DLL 导出宏（COMPUTESHADERTEST_API），这个感觉最好加一下，不过不加也没什么问题，就是不知道会不会影响到打包？<br><br>然后我们需要在public里加入几个方法：<br><br>ComputeShaderTestActor.h<br>[c,line-numbers]<br>&#x2F;&#x2F;Compute shader 执行方法<br>static void ExecComputeShader_RenderThread(UTextureRenderTarget2D* RenderTarget, FRHICommandListImmediate&amp; RHICmdList, ERHIFeatureLevel::Type FeatureLevel ); <br><br>static bool ShouldCache(EShaderPlatform Platform)<br>{<br>   &#x2F;&#x2F;return IsFeatureLevelSupported(Platform, ERHIFeatureLevel::SM5);<br>   return true;<br>}<br><br>static void ModifyCompilationEnvironment(const FGlobalShaderPermutationParameters&amp; Parameters, FShaderCompilerEnvironment&amp; OutEnvironment )<br>{<br>   FGlobalShader::ModifyCompilationEnvironment(Parameters, OutEnvironment);<br>}<br><br>void BindBuffers(FRHICommandList&amp; RHICmdList, FUnorderedAccessViewRHIRef OutputSurfaceUAV, FRHITexture* Texture) <br>{ <br>   FRHIComputeShader* pShaderRHI &#x3D; RHICmdList.GetBoundComputeShader();<br>   check(OutputSurface.IsBound());<br>   RHICmdList.SetUAVParameter(pShaderRHI,OutputSurface.GetUAVIndex(),OutputSurfaceUAV);<br>}<br><br>void UnbindBuffers(FRHICommandList&amp; RHICmdList) <br>{ <br>   FRHIComputeShader* pShaderRHI &#x3D; RHICmdList.GetBoundComputeShader();<br>   RHICmdList.SetUAVParameter(pShaderRHI,OutputSurface.GetUAVIndex(),FUnorderedAccessViewRHIRef());<br>}<br>[&#x2F;]<br>稍微解释下：<br><br>UseComputeShader_RenderThread   <br>    是执行我们ComputeShader的方法，它将会在渲染序列进行。<br>ShouldCache                                    <br>    告诉引擎我们这个shader是否需要生产shader cache<br><br>ModifyCompilationEnvironment      <br>    根据某些判断可以修改shader的环境，一般指的是宏的声明和修改（变体），因此每一次shader编译都会跑到这个函数。具体可以上网搜一下，这里我们并不需要用到。<br>BindBuffers                                       <br>    这个方法是我们自定义的，用于在渲染序列中进行参数的绑定。<br>UnbindBuffers                                  <br>    执行完之后需要解除对资源的绑定，才能在CPU对资源进行操作。<br><br>接下来是.cpp文件<br>首先要加入实例化shader的宏，没有它shader编译就不会执行<br><br>ComputeShaderTestActor.cpp<br>[c,line-numbers]<br>IMPLEMENT_GLOBAL_SHADER(FTestComputeShader, “&#x2F;Shaders&#x2F;TestCS.usf”, “CSMain”, SF_Compute);<br>[&#x2F;]<br>之后就是渲染函数的实现，不讲太多了，上面有非常详细的注释。<br><br>ComputeShaderTestActor.cpp<br>[c,line-numbers]<br>#include “Engine&#x2F;TextureRenderTarget2D.h”<br>&#x2F;&#x2F;#include “..&#x2F;Shaders&#x2F;TestCS.usf”<br>IMPLEMENT_GLOBAL_SHADER(FTestComputeShader, “&#x2F;Shaders&#x2F;TestCS.usf”, “CSMain”, SF_Compute);<br><br>void FTestComputeShader::ExecComputeShader_RenderThread( UTextureRenderTarget2D* RenderTarget, <br>    FRHICommandListImmediate&amp; RHICmdList,<br>    ERHIFeatureLevel::Type FeatureLevel  <br>)  <br>{<br>	&#x2F;&#x2F;检查是否在渲染线程<br>    check(IsInRenderingThread());<br>	check(RenderTarget!&#x3D; nullptr);<br>	&#x2F;&#x2F;从global shader获取我们的compute shader<br>	TShaderMapRef<FTestComputeShader> ComputeShader(GetGlobalShaderMap(FeatureLevel));<br>	&#x2F;&#x2F;使用之前，需要绑定Compute Shader<br>	FRHIComputeShader* cs &#x3D; ComputeShader.GetComputeShader();<br>	RHICmdList.SetComputeShader(cs);<br>	&#x2F;&#x2F;创建贴图<br>    int32 SizeX &#x3D; RenderTarget-&gt;SizeX;  <br>    int32 SizeY &#x3D; RenderTarget-&gt;SizeY;  <br>    FRHIResourceCreateInfo CreateInfo;<br>	&#x2F;&#x2F;创建UAV Texture2D，一定要注意第三个贴图格式！必须要和renderTarget一致，不然就无法copy到renderTarget上<br>    FTexture2DRHIRef Texture &#x3D; RHICreateTexture2D(SizeX, SizeY, RenderTarget-&gt;GetFormat(), 1, 1, TexCreate_ShaderResource | TexCreate_UAV, CreateInfo);<br>    &#x2F;&#x2F;创建UAV<br>    FUnorderedAccessViewRHIRef TextureUAV &#x3D; RHICreateUnorderedAccessView(Texture);  <br>	&#x2F;&#x2F;绑定UAV（Set UAV Parameter）<br>	ComputeShader-&gt;BindBuffers(RHICmdList, TextureUAV , Texture);  <br>	&#x2F;&#x2F;执行compute shader<br>    DispatchComputeShader(RHICmdList, ComputeShader, SizeX&#x2F;32, SizeY&#x2F;32, 1);<br>	&#x2F;&#x2F;计算完成之后，解除UAV的绑定，释放GPU权限，这样才能在CPU读取到数据<br>    ComputeShader-&gt;UnbindBuffers(RHICmdList);<br>	<br>	&#x2F;&#x2F;把UAV texture 复制到我们的RenderTarget上<br>	RHICmdList.CopyTexture(Texture, RenderTarget-&gt;GetRenderTargetResource()-&gt;TextureRHI, FRHICopyTextureInfo());<br>	&#x2F;&#x2F;<br>    &#x2F;<em>——————开始读取数据————–</em>&#x2F;<br>    uint32 LolStride &#x3D; 0;<br>	&#x2F;&#x2F;读出贴图数据<br>    unsigned char* TextureData &#x3D; (unsigned char*)RHICmdList.LockTexture2D(Texture, 0, EResourceLockMode::RLM_ReadOnly, LolStride, false);<br>	TArray<FColor> Bitmap;<br>	for (int32 y &#x3D; 0; y &lt; SizeY; y++)<br>	{<br>		for (int32 x &#x3D; 0; x &lt; SizeX; x++)<br>		{<br>			FColor convert;<br>			convert.R &#x3D; TextureData[(y<em>SizeX + x) * 4 + 2];&#x2F;&#x2F;R<br>			convert.G &#x3D; TextureData[(y</em>SizeX + x) * 4 + 1];&#x2F;&#x2F;G<br>			convert.B &#x3D; TextureData[(y<em>SizeX + x) * 4 + 0];&#x2F;&#x2F;B<br>			convert.A &#x3D; TextureData[(y</em>SizeX + x) * 4 + 3];&#x2F;&#x2F;A 0:全透明；255:全不透明<br>			Bitmap.Add(convert);<br>		}<br>	}<br>	&#x2F;&#x2F;停止贴图读取<br>    RHICmdList.UnlockTexture2D(Texture, 0, false);  <br>	&#x2F;<em>———————————————</em>&#x2F;<br>	&#x2F;&#x2F;确保大小正确<br>    if (Bitmap.Num() &#x3D;&#x3D; SizeX*SizeY)  <br>    {  <br>        &#x2F;&#x2F;把贴图存在引擎的截图路径<br>        IFileManager::Get().MakeDirectory(*FPaths::ScreenShotDir(), true);  <br>        const FString ScreenFileName(FPaths::ScreenShotDir() &#x2F; TEXT(“VisualizeTexture”));  <br>        uint32 width &#x3D; Bitmap.Num() &#x2F; Texture-&gt;GetSizeY();  <br>		&#x2F;&#x2F;保存成BMP<br>        FFileHelper::CreateBitmap(*ScreenFileName, Texture-&gt;GetSizeX(), Texture-&gt;GetSizeY(), Bitmap.GetData());  <br>    }  <br>}<br>[&#x2F;]<br><h1 id="第四步，把功能实现到引擎蓝图里" >第四步，把功能实现到引擎蓝图里</h1><br>.h头文件<br>回到头文件，找到我们新建的Actor类<br><br>ComputeShaderTestActor.h<br>[c,line-numbers]<br>UENUM()<br>enum class ERHIFeature :uint8<br>{<br>   ES2_REMOVED &#x3D; ERHIFeatureLevel::Type::ES2_REMOVED,<br>   ES3_1 &#x3D; ERHIFeatureLevel::Type::ES3_1,<br>   SM4_REMOVED &#x3D; ERHIFeatureLevel::Type::SM4_REMOVED,<br>   SM5 &#x3D; ERHIFeatureLevel::Type::SM5,<br>};<br><br>UCLASS()<br>class COMPUTESHADERTEST_API AComputeShaderTestActor : public AActor<br>{<br>   GENERATED_BODY()<br>public:   <br>   &#x2F;&#x2F; Sets default values for this actor’s properties<br>   AComputeShaderTestActor();<br>  <br>	UFUNCTION(BlueprintCallable)<br>	void TestComputeShader(int TextureSize &#x3D; 256 ,ERHIFeature type &#x3D; ERHIFeature::SM5);<br>  <br>protected:<br>   &#x2F;&#x2F; Called when the game starts or when spawned<br>   virtual void BeginPlay() override;<br>public:   <br>   &#x2F;&#x2F; Called every frame<br>   virtual void Tick(float DeltaTime) override;<br>};<br>[&#x2F;]<br>这里我声明了一个枚举，用来判断不同的平台，大家也可以直接在这个C++里对不同平台直接判断，就不用这么麻烦了<br><br>.cpp文件<br>ComputeShaderTestActor.cpp<br>[c,line-numbers]<br>void AComputeShaderTestActor::TestComputeShader(int TextureSize,ERHIFeature type)<br>{<br>	if(TextureSize&gt;&#x3D;1)<br>	{<br>		if(_RT !&#x3D; NULL)<br>		{<br>			_RT-&gt;ReleaseResource();<br>		}<br> 		&#x2F;&#x2F;新建一张RenderTarget，也可以从蓝图读取进来，就不需要我们手动释放内存了<br>		_RT &#x3D; NewObject<UTextureRenderTarget2D>(GetTransientPackage(),NAME_None,RF_Transient);<br>		check(_RT);<br>		_RT-&gt;RenderTargetFormat &#x3D; RTF_RGBA8;<br>		_RT-&gt;ClearColor &#x3D; FLinearColor(0,0,0,1);<br>		_RT-&gt;bAutoGenerateMips &#x3D; false;<br>		_RT-&gt;InitAutoFormat(TextureSize, TextureSize);	<br>		_RT-&gt;UpdateResourceImmediate(true);<br>		<br>		ENQUEUE_RENDER_COMMAND(TestCommand)(<br>			[this,type](FRHICommandListImmediate&amp; RHICmdList)<br>			{<br>				FTestComputeShader::ExecComputeShader_RenderThread(_RT,RHICmdList,(ERHIFeatureLevel::Type)type);<br>			});<br>	}<br>	&#x2F;&#x2F;_RT &#x3D; rt;<br>}<br>[&#x2F;]<br>使用ENQUEUE_RENDER_COMMAND，通过Lambda表达式，把方法抛到渲染序列中执行即可。<br><h1 id="最后蓝图里调用" >最后蓝图里调用</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>成功输出了一张256的纯绿色贴图了<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>RenderTarget也能正常输出：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br></p>
+            <p>做这个文档的起因是，网上搜索到的教程的版本都比较旧，基本上都是4.24以前的，然后UE4似乎从4.25之后，对底层代码做了不少改动，导致网上的做法都不可行了，所以做这个文档记录一下。<br><br>还有我不敢保证更新的版本支持这个写法，比如UE5。<br><br>该方法是独立于渲染管线之外的，继承于FGlobalShader，如果想集成到Mesh renderpass 里，想根据渲染顺序读取模型数据之类的的话就不行了（不过一般ComputeShader也不会走管线计算）<br><br><h1 id="首先第一步，新建一个模块（Module）" >首先第一步，新建一个模块（Module）</h1><br>为什么要新建Module？<br><br>因为我们ComputeShader需要继承FGlobalShader，而继承了FGlobalShader类，必须要在引擎之前加载，不然会导致错误，加载失败，所以我们不能把Compute shader写在引擎的逻辑代码上，必须通过Module，使其提前加载。<br><br>创建了Module之后，在项目的.uproject文件上修改即可<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>如果这样还是报错的话，就把模块的位置放到上面试试（亲测可行）<br><br>如果实在不行的话，那就只能和网上说一样新建一个Plugins，然后再在里面生成一个module了。<br><br>新建模块可以在商城里面找到一个免费的插件<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这个免费插件可以帮助我们一键生产模块，自动添加cs和uproject配置，很方便，非常推荐。<br><br>这里我新建了一个模块叫ComputeShaderTest<br><br><h1 id="第二步，编写Compute Shader（TestCS.usf）" >第二步，编写Compute Shader（TestCS.usf）</h1><br>编写测试用的ComputeShader，这里我们直接输出一个绿色。<br><br>TestCS.usf<br><pre class="line-numbers"><code class="language-c">#include "/Engine/Private/Common.ush"
+RWTexture2D<float4> _texture_out;
+uint Index;
+<span style="" ></span>
+void CSMain(uint3 id :SV_DispatchThreadID)
+{
+   _texture_out[id.xy] = float4(0.0,1.0, 0.0, 1.0);
+}
+</code></pre>文件放在了项目的根目录的Shaders文件夹内<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>引擎可不会这么聪明找到我们的shader在哪里，所以我们需要添加shader的搜索目录，在模块加载的时候添加，也就是shader编译之前。<br><br>ComputeShaderTest.cpp<br><pre class="line-numbers"><code class="language-c">void FComputeShaderTest::StartupModule()
+{
+	UE_LOG(
+        ComputeShaderTest, Warning, 
+        TEXT("ComputeShaderTest module has been loaded")
+        );
+
+	AddShaderSourceDirectoryMapping(
+        TEXT("/Shaders"),
+        FPaths::GetPath(FPaths::GetProjectFilePath())+"/Shaders"
+        );
+}
+</code></pre><h1 id="第三步，编写我们的ComputeShader类" >第三步，编写我们的ComputeShader类</h1><br>理论上来说，我们的ComputeShader类，写在哪里都无所谓，所以这里我为了方便，直接和新建的蓝图Actor类写到了一起了。<br><br>在UE4里，在我新建的模块里，新建一个继承自Actor的类，这里我起名叫ComputeShaderTestActor。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>在写之前我们还需要在 ComputeShaderTest.build.cs（） 里引入两个渲染模块：<br><br>RenderCore 和 RHI<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="1024" ></div><br>首先是.h文件<br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">#include "GlobalShader.h"
+class COMPUTESHADERTEST_API FTestComputeShader :public FGlobalShader
+{
+private:
+   //声明全局Shader类型，和 DECLARE_GLOBAL_SHADER 是同一个内容，二选一
+   DECLARE_SHADER_TYPE(FTestComputeShader,Global);
+   //------------------------------------ 下面这段可有可无，去掉好像也没影响...
+   BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )
+      SHADER_PARAMETER_UAV(RWTexture2D<float4>, _texture_out)
+   END_SHADER_PARAMETER_STRUCT()
+   //------------------------------------
+   LAYOUT_FIELD(FRWShaderParameter, OutputSurface); //
+   
+public:
+   FTestComputeShader() {}
+   FTestComputeShader(const ShaderMetaType::CompiledShaderInitializerType& Initializer)
+      : FGlobalShader(Initializer)
+   {
+      OutputSurface.Bind(Initializer.ParameterMap, TEXT("_texture_out"));
+   }
+}
+</code></pre>至于class后面的这个DLL 导出宏（COMPUTESHADERTEST_API），这个感觉最好加一下，不过不加也没什么问题，就是不知道会不会影响到打包？<br><br>然后我们需要在public里加入几个方法：<br><br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">//Compute shader 执行方法
+static void ExecComputeShader_RenderThread(UTextureRenderTarget2D* RenderTarget, FRHICommandListImmediate& RHICmdList, ERHIFeatureLevel::Type FeatureLevel ); 
+
+static bool ShouldCache(EShaderPlatform Platform)
+{
+   //return IsFeatureLevelSupported(Platform, ERHIFeatureLevel::SM5);
+   return true;
+}
+
+static void ModifyCompilationEnvironment(const FGlobalShaderPermutationParameters& Parameters, FShaderCompilerEnvironment& OutEnvironment )
+{
+   FGlobalShader::ModifyCompilationEnvironment(Parameters, OutEnvironment);
+}
+
+void BindBuffers(FRHICommandList& RHICmdList, FUnorderedAccessViewRHIRef OutputSurfaceUAV, FRHITexture* Texture) 
+{ 
+   FRHIComputeShader* pShaderRHI = RHICmdList.GetBoundComputeShader();
+   check(OutputSurface.IsBound());
+   RHICmdList.SetUAVParameter(pShaderRHI,OutputSurface.GetUAVIndex(),OutputSurfaceUAV);
+}
+
+void UnbindBuffers(FRHICommandList& RHICmdList) 
+{ 
+   FRHIComputeShader* pShaderRHI = RHICmdList.GetBoundComputeShader();
+   RHICmdList.SetUAVParameter(pShaderRHI,OutputSurface.GetUAVIndex(),FUnorderedAccessViewRHIRef());
+}
+</code></pre>稍微解释下：<br><br>UseComputeShader_RenderThread   <br>    是执行我们ComputeShader的方法，它将会在渲染序列进行。<br>ShouldCache                                    <br>    告诉引擎我们这个shader是否需要生产shader cache<br><br>ModifyCompilationEnvironment      <br>    根据某些判断可以修改shader的环境，一般指的是宏的声明和修改（变体），因此每一次shader编译都会跑到这个函数。具体可以上网搜一下，这里我们并不需要用到。<br>BindBuffers                                       <br>    这个方法是我们自定义的，用于在渲染序列中进行参数的绑定。<br>UnbindBuffers                                  <br>    执行完之后需要解除对资源的绑定，才能在CPU对资源进行操作。<br><br>接下来是.cpp文件<br>首先要加入实例化shader的宏，没有它shader编译就不会执行<br><br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">IMPLEMENT_GLOBAL_SHADER(FTestComputeShader, "/Shaders/TestCS.usf", "CSMain", SF_Compute);
+</code></pre>之后就是渲染函数的实现，不讲太多了，上面有非常详细的注释。<br><br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">#include "Engine/TextureRenderTarget2D.h"
+//#include "../Shaders/TestCS.usf"
+IMPLEMENT_GLOBAL_SHADER(FTestComputeShader, "/Shaders/TestCS.usf", "CSMain", SF_Compute);
+
+void FTestComputeShader::ExecComputeShader_RenderThread( UTextureRenderTarget2D* RenderTarget, 
+    FRHICommandListImmediate& RHICmdList,
+    ERHIFeatureLevel::Type FeatureLevel  
+)  
+{
+	//检查是否在渲染线程
+    check(IsInRenderingThread());
+	check(RenderTarget!= nullptr);
+	//从global shader获取我们的compute shader
+	TShaderMapRef<FTestComputeShader> ComputeShader(GetGlobalShaderMap(FeatureLevel));
+	//使用之前，需要绑定Compute Shader
+	FRHIComputeShader* cs = ComputeShader.GetComputeShader();
+	RHICmdList.SetComputeShader(cs);
+	//创建贴图
+    int32 SizeX = RenderTarget->SizeX;  
+    int32 SizeY = RenderTarget->SizeY;  
+    FRHIResourceCreateInfo CreateInfo;
+	//创建UAV Texture2D，一定要注意第三个贴图格式！必须要和renderTarget一致，不然就无法copy到renderTarget上
+    FTexture2DRHIRef Texture = RHICreateTexture2D(SizeX, SizeY, RenderTarget->GetFormat(), 1, 1, TexCreate_ShaderResource | TexCreate_UAV, CreateInfo);
+    //创建UAV
+    FUnorderedAccessViewRHIRef TextureUAV = RHICreateUnorderedAccessView(Texture);  
+	//绑定UAV（Set UAV Parameter）
+	ComputeShader->BindBuffers(RHICmdList, TextureUAV , Texture);  
+	//执行compute shader
+    DispatchComputeShader(RHICmdList, ComputeShader, SizeX/32, SizeY/32, 1);
+	//计算完成之后，解除UAV的绑定，释放GPU权限，这样才能在CPU读取到数据
+    ComputeShader->UnbindBuffers(RHICmdList);
+	
+	//把UAV texture 复制到我们的RenderTarget上
+	RHICmdList.CopyTexture(Texture, RenderTarget->GetRenderTargetResource()->TextureRHI, FRHICopyTextureInfo());
+	//
+    /*------------------开始读取数据--------------*/
+    uint32 LolStride = 0;
+	//读出贴图数据
+    unsigned char* TextureData = (unsigned char*)RHICmdList.LockTexture2D(Texture, 0, EResourceLockMode::RLM_ReadOnly, LolStride, false);
+	TArray<FColor> Bitmap;
+	for (int32 y = 0; y < SizeY; y++)
+	{
+		for (int32 x = 0; x < SizeX; x++)
+		{
+			FColor convert;
+			convert.R = TextureData[(y*SizeX + x) * 4 + 2];//R
+			convert.G = TextureData[(y*SizeX + x) * 4 + 1];//G
+			convert.B = TextureData[(y*SizeX + x) * 4 + 0];//B
+			convert.A = TextureData[(y*SizeX + x) * 4 + 3];//A 0:全透明；255:全不透明
+			Bitmap.Add(convert);
+		}
+	}
+	//停止贴图读取
+    RHICmdList.UnlockTexture2D(Texture, 0, false);  
+	/*---------------------------------------------*/
+	//确保大小正确
+    if (Bitmap.Num() == SizeX*SizeY)  
+    {  
+        //把贴图存在引擎的截图路径
+        IFileManager::Get().MakeDirectory(*FPaths::ScreenShotDir(), true);  
+        const FString ScreenFileName(FPaths::ScreenShotDir() / TEXT("VisualizeTexture"));  
+        uint32 width = Bitmap.Num() / Texture->GetSizeY();  
+		//保存成BMP
+        FFileHelper::CreateBitmap(*ScreenFileName, Texture->GetSizeX(), Texture->GetSizeY(), Bitmap.GetData());  
+    }  
+}
+</code></pre><h1 id="第四步，把功能实现到引擎蓝图里" >第四步，把功能实现到引擎蓝图里</h1><br>.h头文件<br>回到头文件，找到我们新建的Actor类<br><br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">UENUM()
+enum class ERHIFeature :uint8
+{
+   ES2_REMOVED = ERHIFeatureLevel::Type::ES2_REMOVED,
+   ES3_1 = ERHIFeatureLevel::Type::ES3_1,
+   SM4_REMOVED = ERHIFeatureLevel::Type::SM4_REMOVED,
+   SM5 = ERHIFeatureLevel::Type::SM5,
+};
+
+UCLASS()
+class COMPUTESHADERTEST_API AComputeShaderTestActor : public AActor
+{
+   GENERATED_BODY()
+public:   
+   // Sets default values for this actor's properties
+   AComputeShaderTestActor();
+  
+	UFUNCTION(BlueprintCallable)
+	void TestComputeShader(int TextureSize = 256 ,ERHIFeature type = ERHIFeature::SM5);
+  
+protected:
+   // Called when the game starts or when spawned
+   virtual void BeginPlay() override;
+public:   
+   // Called every frame
+   virtual void Tick(float DeltaTime) override;
+};
+</code></pre>这里我声明了一个枚举，用来判断不同的平台，大家也可以直接在这个C++里对不同平台直接判断，就不用这么麻烦了<br><br>.cpp文件<br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">void AComputeShaderTestActor::TestComputeShader(int TextureSize,ERHIFeature type)
+{
+	if(TextureSize>=1)
+	{
+		if(_RT != NULL)
+		{
+			_RT->ReleaseResource();
+		}
+ 		//新建一张RenderTarget，也可以从蓝图读取进来，就不需要我们手动释放内存了
+		_RT = NewObject<UTextureRenderTarget2D>(GetTransientPackage(),NAME_None,RF_Transient);
+		check(_RT);
+		_RT->RenderTargetFormat = RTF_RGBA8;
+		_RT->ClearColor = FLinearColor(0,0,0,1);
+		_RT->bAutoGenerateMips = false;
+		_RT->InitAutoFormat(TextureSize, TextureSize);	
+		_RT->UpdateResourceImmediate(true);
+		
+		ENQUEUE_RENDER_COMMAND(TestCommand)(
+			[this,type](FRHICommandListImmediate& RHICmdList)
+			{
+				FTestComputeShader::ExecComputeShader_RenderThread(_RT,RHICmdList,(ERHIFeatureLevel::Type)type);
+			});
+	}
+	//_RT = rt;
+}
+</code></pre>使用ENQUEUE_RENDER_COMMAND，通过Lambda表达式，把方法抛到渲染序列中执行即可。<br><h1 id="最后蓝图里调用" >最后蓝图里调用</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>成功输出了一张256的纯绿色贴图了<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>RenderTarget也能正常输出：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br></p>
 
             
         </div>    
@@ -1023,12 +1209,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/Unreal/" style="color: #03a9f4">Unreal</a>
+            <a href="/tags/Unreal/" style="color: #ffa2c4">Unreal</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/UnrealEngine/" style="color: #ffa2c4">UnrealEngine</a>
+            <a href="/tags/UnrealEngine/" style="color: #00bcd4">UnrealEngine</a>
         </span>
         
         <span class="tag">
@@ -1038,7 +1224,7 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #00bcd4">计算着色器</a>
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #ffa2c4">计算着色器</a>
         </span>
            
     </div> -->
@@ -1082,7 +1268,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
     <!-- <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="测试测试，标题h1" >测试测试，标题h1</h1><br><h2 id="测试测试，标题h2" >测试测试，标题h2</h2><br><h3 id="测试测试，标题h3" >测试测试，标题h3</h3><br><h4 id="测试测试，标题h4" >测试测试，标题h4</h4><br><h5 id="测试测试，标题h5" >测试测试，标题h5</h5><br><h6 id="测试测试，标题h6" >测试测试，标题h6</h6><br>正文字体，啦啦啦啦，你好呀，我很好，唉哟不错哦，<br>战地，使命召唤，飞龙骑脸，啪啪啪。<br><h1 id="拓展写文章的功能，都是映射html的style ，css语法：" >拓展写文章的功能，都是映射html的style ，css语法：</h1><br><h2 id="颜色的字体,支持十六进制,缩写col、c" >颜色的字体,支持十六进制,缩写col、c</h2><br>例如:<br>\[color(255,0,0)]红色字体：<span style="color:rgb(255,0,0);" > 红色字体。</span><br>\[c(255,0,0)]紫色字体：<span style="color:rgb(150,50,160);" > 紫色字体。</span><br>\[c(#FFDAB9)]肤色字体：<span style="color:#FFDAB9;" > 肤色字体。</span><br>需知:标题(h)不支持变色，也不打算支持。<br>其他：<br><span style="color:rgb(255,255,0);" > 黄色字体。</span><br><span style="color:rgb(0,0,255);" > 蓝色字体：[c(0,255,0)] 绿色字体。</span><br><span style="color:rgb(150,80,90);" >其他颜色字体。</span><br><br><h2 id="字体大小设置,缩写s" >字体大小设置,缩写s</h2><br>和上面的颜色一样，通过[]设置：<br>\[size(10px)]字体大小10px：<span style="font-size: 10px;" >字体大小10px。</span><br>\[s(50px)]字体大小50px：<span style="font-size: 50px;" >字体大小50px。</span><br><br><h2 id="下划线,缩写u" >下划线,缩写u</h2><br>接着上面的，也是支持组合的，顺序随机。<br>\[underline()]下划线，不带属性也行：<span style="text-decoration: underline ;" >下划线，不带属性也行。</span><br>\[u(red dashed)]当然也可以带颜色和类型的属性：<span style="text-decoration: underline red dashed;" >当然也可以接颜色和类型的属性，这是一个红色不连续的下划线。</span><br><br><h2 id="支持组合" >支持组合</h2><br>\[c(255,255,0),s(25px)]黄色字体大小25px： <span style="color:rgb(255,255,0);font-size: 25px;" >黄色字体大小25px。</span><br>\[c(0,255,0),s(15px),u()]下划线绿色色字体大小15px： <span style="color:rgb(0,255,0);font-size: 15px;text-decoration: underline ;" >下划线绿色色字体大小15px。</span><br><br><h2 id="字体背景色,支持十六进制,缩写b、bg" >字体背景色,支持十六进制,缩写b、bg</h2><br>\[background(10,180,0)]绿色背景：<span style="background-color:rgb(10,180,0);" > 紫色背景</span><br>\[b(120,100,0)]橙色背景：<span style="background-color:rgb(120,100,0);" > 橙色背景</span><br>\[b(#FFDAB9)]肤色背景：<span style="background-color:#FFDAB9;" > 肤色背景</span><br><br><h2 id="加载图片" >加载图片</h2><br>markdown有自己加载图片的语法，但是我感觉不太好用，而且无法缩放大小，所以自己改了一个，<br>其实就是把markdown的这个拓展了一下,和obsidian一样,<br>示范：<br>!\[描述](tt.gif|50):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="50" ></div><br>!\[描述](tt.gif|100):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="100" ></div><br>!\[描述](tt.gif|150):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="150" ></div><br>!\[描述](tt.gif|200):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="200" ></div><br>!\[描述](tt.gif)  原图设置:<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br><h2 id="Hexo自带了代码处理，去掉！" >Hexo自带了代码处理，去掉！</h2><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
+            <h1 id="测试测试，标题h1" >测试测试，标题h1</h1><br><h2 id="测试测试，标题h2" >测试测试，标题h2</h2><br><h3 id="测试测试，标题h3" >测试测试，标题h3</h3><br><h4 id="测试测试，标题h4" >测试测试，标题h4</h4><br><h5 id="测试测试，标题h5" >测试测试，标题h5</h5><br><h6 id="测试测试，标题h6" >测试测试，标题h6</h6><br>正文字体，啦啦啦啦，你好呀，我很好，唉哟不错哦，<br>战地，使命召唤，飞龙骑脸，啪啪啪。<br><h1 id="代码块" >代码块</h1><br>代码块的语法和原来的差不多，也是使用 ``` ，不过默认没有行号，需要指定，也可以指定语言，不过插件只包含了C like，css和js这些常见的，没有太多其他语法支持。<br>```必须顶格，前面不能有其他任何字符
+例子：<br><pre class="line-numbers"><code class="language-c">```c,line-numbers
+float a = 1.0;
+float b = a + b;
+```
+</code></pre><br><h1 id="拓展写文章的功能，都是映射html的style ，css语法：" >拓展写文章的功能，都是映射html的style ，css语法：</h1><br><h2 id="颜色的字体,支持十六进制,缩写col、c" >颜色的字体,支持十六进制,缩写col、c</h2><br>例如:<br>\[color(255,0,0)]红色字体：<span style="color:rgb(255,0,0);" > 红色字体。</span><br>\[c(255,0,0)]紫色字体：<span style="color:rgb(150,50,160);" > 紫色字体。</span><br>\[c(#FFDAB9)]肤色字体：<span style="color:#FFDAB9;" > 肤色字体。</span><br>需知:标题(h)不支持变色，也不打算支持。<br>其他：<br><span style="color:rgb(255,255,0);" > 黄色字体。</span><br><span style="color:rgb(0,0,255);" > 蓝色字体：[c(0,255,0)] 绿色字体。</span><br><span style="color:rgb(150,80,90);" >其他颜色字体。</span><br><br><h2 id="字体大小设置,缩写s" >字体大小设置,缩写s</h2><br>和上面的颜色一样，通过[]设置：<br>\[size(10px)]字体大小10px：<span style="font-size: 10px;" >字体大小10px。</span><br>\[s(50px)]字体大小50px：<span style="font-size: 50px;" >字体大小50px。</span><br><br><h2 id="下划线,缩写u" >下划线,缩写u</h2><br>接着上面的，也是支持组合的，顺序随机。<br>\[underline()]下划线，不带属性也行：<span style="text-decoration: underline ;" >下划线，不带属性也行。</span><br>\[u(red dashed)]当然也可以带颜色和类型的属性：<span style="text-decoration: underline red dashed;" >当然也可以接颜色和类型的属性，这是一个红色不连续的下划线。</span><br><br><h2 id="支持组合" >支持组合</h2><br>\[c(255,255,0),s(25px)]黄色字体大小25px： <span style="color:rgb(255,255,0);font-size: 25px;" >黄色字体大小25px。</span><br>\[c(0,255,0),s(15px),u()]下划线绿色色字体大小15px： <span style="color:rgb(0,255,0);font-size: 15px;text-decoration: underline ;" >下划线绿色色字体大小15px。</span><br><br><h2 id="字体背景色,支持十六进制,缩写b、bg" >字体背景色,支持十六进制,缩写b、bg</h2><br>\[background(10,180,0)]绿色背景：<span style="background-color:rgb(10,180,0);" > 紫色背景</span><br>\[b(120,100,0)]橙色背景：<span style="background-color:rgb(120,100,0);" > 橙色背景</span><br>\[b(#FFDAB9)]肤色背景：<span style="background-color:#FFDAB9;" > 肤色背景</span><br><br><h2 id="加载图片" >加载图片</h2><br>markdown有自己加载图片的语法，但是我感觉不太好用，而且无法缩放大小，所以自己改了一个，<br>其实就是把markdown的这个拓展了一下,和obsidian一样,<br>示范：<br>!\[描述](tt.gif|50):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="50" ></div><br>!\[描述](tt.gif|100):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="100" ></div><br>!\[描述](tt.gif|150):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="150" ></div><br>!\[描述](tt.gif|200):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="200" ></div><br>!\[描述](tt.gif)  原图设置:<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br><h2 id="Hexo自带了代码处理，去掉！" >Hexo自带了代码处理，去掉！</h2><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
             
         </div>    
     </div> -->
@@ -1097,12 +1288,12 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
         
         <span class="tag">
             
-            <a href="/tags/GitHub/" style="color: #ff7d73">GitHub</a>
+            <a href="/tags/GitHub/" style="color: #00a596">GitHub</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Hexo/" style="color: #00a596">Hexo</a>
+            <a href="/tags/Hexo/" style="color: #ffa2c4">Hexo</a>
         </span>
            
     </div> -->

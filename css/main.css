@@ -1,5 +1,9 @@
 :root 
 {
+    /* 默认字体 */
+    --main-font-family: 'ZenMaruGothic-Regular';
+    /* 代码字体 */
+    --code-font-family: 'Ubuntu Mono';
     /* 首页文章小卡片的大小 */
     --postCardWidth: 10vw;
     --postCardHeight: 200px;
@@ -7,8 +11,6 @@
     --article-content-font-size: 18px;
     /* 代码字体大小 */
     --article-content-code-font-size: 14px;
-    /* 标题和h的字体 */
-    --title-h-font-family: 'ZenMaruGothic-Regular';
     /* 最大的边框颜色 */
     --home-grid-border-color: 1px solid rgb(57, 54, 53);
     /* 首页文章字体大小 */
@@ -18,6 +20,7 @@
     /* 首页中间栏的分割线 */
     --home-page-border-color:1px solid rgb(125, 131, 143);
 }
+
 
 @font-face {
     font-family: 'ZenMaruGothic-Regular';
@@ -29,7 +32,7 @@
 /* 默认字体 */
 * 
 {
-    font-family: 'ZenMaruGothic-Regular';
+    font-family: var(--main-font-family);
 }
 /* 标题用的字体 */
 h1,
@@ -38,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--title-h-font-family);
+    font-family: var(--main-font-family);
     text-shadow: 2px  2px  rgba(0, 0, 0, 0.75);
     font-weight: bold;
     word-break: keep-all;
@@ -1204,13 +1207,6 @@ pre {
     margin: 20px 0;
     overflow:auto;
     white-space: pre;
-}
-pre,
-code,
-.hljs,
-.input,
-.language {
-    font-family: 'ZenMaruGothic-Regular';
 }
 table:not(.hljs-ln) td:nth-child(even) {
     background: rgba(30,30,30,0.75);

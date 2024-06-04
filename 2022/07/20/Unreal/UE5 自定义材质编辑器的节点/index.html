@@ -206,28 +206,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/Unreal/" style="color: #00bcd4">
+                <a href="/tags/Unreal/" style="color: #ff7d73">
                     Unreal
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/UnrealEngine/" style="color: #03a9f4">
+                <a href="/tags/UnrealEngine/" style="color: #00a596">
                     UnrealEngine
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/UE5/" style="color: #ff7d73">
+                <a href="/tags/UE5/" style="color: #ffa2c4">
                     UE5
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00a596">
+                <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #03a9f4">
                     自定义
                 </a>
             </span>
@@ -350,7 +350,7 @@ bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
     return false;
 }
 #endif
-</code></pre>效果：<br>使用起来非常简单<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>局部节点的输出必须一 一对应，作为输出节点可以不需要连接Input：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>当出现了不存在的局部节点的时候就会报错：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>因为keyword的判断是写在Compile函数里的，所以如果复制了一个新的局部节点，需要点击一次编译按钮，让材质编辑器跑一次Compile函数才能正常运行，当然可以加在其他地方，各位感兴趣的可以自行试试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="参数显示问题" >参数显示问题</h1><br>如果你已经做完上面一步了，节点也正式开始使用了，你就会发现一个问题，材质球里面创建了动态参数：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>但是材质实例里无法显示没有连接到Output的参数！！<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>材质实例编辑器就设定就是获取已经连接到Output的节点参数，所以这里我们需要修改一下引擎编辑器的源码<br>找到 MaterialEditorUtilities.cpp 这个源文件<br>找到这个函数：<br><span style="color:rgb(200,255,160);" >void FMaterialEditorUtilities::GetVisibleMaterialParameters</span><br>我们在这里再补充遍历材质球里的所有节点进行获取：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样就可以获取到连接到每一个节点上的动态参数了，<br>但是这里我其实推荐是把这个我们自定义的节点写入到引擎源码中，而不是写入到项目或者插件中，这样我们可以单独的为这个节点类型进行判断了，而不是所有节点。<br><br>看看结果如何，可以看到参数出来了：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>蓝图控制参数变化也能正常运行：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br>
+</code></pre>效果：<br>使用起来非常简单<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>局部节点的输出必须一 一对应，作为输出节点可以不需要连接Input：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>当出现了不存在的局部节点的时候就会报错：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>因为keyword的判断是写在Compile函数里的，所以如果复制了一个新的局部节点，需要点击一次编译按钮，让材质编辑器跑一次Compile函数才能正常运行，当然可以加在其他地方，各位感兴趣的可以自行试试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="参数显示问题" >参数显示问题</h1><br>如果你已经做完上面一步了，节点也正式开始使用了，你就会发现一个问题，材质球里面创建了动态参数：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>但是材质实例里无法显示没有连接到Output的参数！！<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>材质实例编辑器就设定就是获取已经连接到Output的节点参数，所以这里我们需要修改一下引擎编辑器的源码<br>找到 MaterialEditorUtilities.cpp 这个源文件<br>找到这个函数：<br><span style="color:rgb(200,255,160);" >void FMaterialEditorUtilities::GetVisibleMaterialParameters</span><br>我们在这里再补充遍历材质球里的所有节点进行获取：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样就可以获取到连接到每一个节点上的动态参数了，<br>但是这里我其实推荐是把这个我们自定义的节点写入到引擎源码中，而不是写入到项目或者插件中，这样我们可以单独的为这个节点类型进行判断了，而不是所有节点。<br><br>看看结果如何，可以看到参数出来了：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>蓝图控制参数变化也能正常运行：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br>
     </div>
     
     

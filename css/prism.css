@@ -16,11 +16,13 @@ pre[class*=language-].line-numbers>code,
     line-height:1.5em;
 }
 
-/* pre[class*=language-],
-pre[class*=language-] span
+pre[class*=language-],
+code[class*=language-],
+pre[class*=language-] span,
+.line-numbers .line-numbers-rows
 {
-    font-family: "宋体",'Andale Mono','Ubuntu Mono';
-} */
+    font-family: var(--code-font-family),'Andale Mono','Ubuntu Mono';
+}
 
 .line-numbers .line-numbers-rows
 {
@@ -145,7 +147,6 @@ pre[class*=language-].line-numbers>code
 }
 .line-numbers .line-numbers-rows
 {
-    font-family: "宋体",'Andale Mono','Ubuntu Mono';
     position:absolute;
     pointer-events:none;
     left:-2.2em;
