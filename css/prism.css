@@ -32,7 +32,7 @@ pre[class*=language-] span,
 code[class*=language-],
 pre[class*=language-]
 {
-    color:#e7e7e5;
+    color:rgb(204,204,204);
     background:0 0;
     text-shadow:0 1px rgba(0,0,0,.3);
     text-align:left;
@@ -55,6 +55,7 @@ pre[class*=language-]
     overflow:auto;
     border-radius:.3em;
 }
+
 :not(pre)>code[class*=language-],
 pre[class*=language-]
 {
@@ -75,7 +76,7 @@ pre[class*=language-]
 }
 .token.punctuation
 {
-    color:#f8f8f2;
+    color:rgb(204,204,204);
 }
 .token.namespace
 {
@@ -87,12 +88,12 @@ pre[class*=language-]
 .token.symbol,
 .token.tag
 {
-    color:#d87291;
+    color:rgb(197,134,192);
 }
 .token.boolean,
 .token.number
 {
-    color:#ae81ff;
+    color:rgb(191,206,168);
 }
 .token.attr-name,
 .token.builtin,
@@ -101,28 +102,39 @@ pre[class*=language-]
 .token.selector,
 .token.string
 {
-    color:#a6e22e;
+    color:rgb(206,145,120);
 }
-.language-css 
-.token.string,
+.language-css .token.string,
 .style .token.string,
 .token.entity,
 .token.operator,
 .token.url,
 .token.variable
 {
-    color:#f8f8f2;
+    color:rgb(204,204,204);
 }
 .token.atrule,
 .token.attr-value,
-.token.class-name,
 .token.function
 {
-    color:#cc9765;
+    color:rgb(220,220,170);
+}
+.token.class-name
+{
+    color:rgb(78,201,171);
 }
 .token.keyword
 {
     color:#669fef;
+}
+.token .directive
+{
+    color:rgb(197,134,192);
+}
+.macro .expression,
+.token .macro-name
+{
+    color:rgb(86,156,214);
 }
 .token.important,
 .token.regex
@@ -143,7 +155,7 @@ pre[class*=language-].line-numbers>code
 {
     position:relative;
     white-space:inherit;
-    left:-1em;
+    /* left:-.6em; */
 }
 .line-numbers .line-numbers-rows
 {
@@ -151,7 +163,6 @@ pre[class*=language-].line-numbers>code
     pointer-events:none;
     left:-2.2em;
     letter-spacing:-1px;
-    border-right:1px solid #999;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -165,11 +176,29 @@ pre[class*=language-].line-numbers>code
 .line-numbers-rows>span:before
 {
     content:counter(linenumber);
-    color:#999;
+    color:rgb(108,118,129);
     display:block;
     padding-right:.8em;
     text-align:right;
 }
+
+/*整体代码往右移一点*/
+code[class*=language-]
+{
+    left: 1em;
+}
+/*行号就往左回来一些*/
+.line-numbers-rows>span
+{
+    margin-left: -1em;
+    text-align: center;
+}
+.line-numbers .line-numbers-rows
+{
+    padding-right:.4em;
+    border-right:1px solid rgba(130,130,130,0.2);
+}
+
 div.code-toolbar
 {
     position:relative;
