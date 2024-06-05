@@ -46,6 +46,8 @@
 />
 <script src="/js/lib/prism.js"></script>
 
+
+<script src="/js/lib/function_library.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -65,9 +67,9 @@
             <span>坏包包</span>
         </a>
         
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
+        <a href="/archives/">
+            <i class="fa-solid fa-All fa-fw"></i>
+            <span>&ensp;所有文章</span>
         </a>
         
         <a href="/categories/Unreal">
@@ -89,12 +91,12 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
-                <a href="/">
+                <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-house fa-fw"></i>
+                            <i class="fa-solid fa-All fa-fw"></i>
                         </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">所有文章</div>
                     </div>
                 </a>
                 
@@ -143,7 +145,7 @@
         
         
         <span>
-            <a href="/tags/Hexo/" style="background: #00bcd4">
+            <a href="/tags/Hexo/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -167,7 +169,7 @@
         
         
         <span>
-            <a href="/tags/UnrealEngine/" style="background: #ffa2c4">
+            <a href="/tags/UnrealEngine/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -178,40 +180,7 @@
         
         
         <span>
-            <a href="/tags/UE5/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                UE5
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                自定义
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                材质节点，编辑器
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%AE%89%E5%8D%93/" style="background: #00a596">
+            <a href="/tags/%E5%AE%89%E5%8D%93/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -233,18 +202,7 @@
         
         
         <span>
-            <a href="/tags/ShadingModel/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                ShadingModel
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/Compute-Shader/" style="background: #ff7d73">
+            <a href="/tags/Compute-Shader/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -255,7 +213,7 @@
         
         
         <span>
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="background: #00bcd4">
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -266,7 +224,51 @@
         
         
         <span>
-            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="background: #03a9f4">
+            <a href="/tags/UE5/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                UE5
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                自定义
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                材质节点，编辑器
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/ShadingModel/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                ShadingModel
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -277,7 +279,7 @@
         
         
         <span>
-            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="background: #ffa2c4">
+            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -288,7 +290,7 @@
         
         
         <span>
-            <a href="/tags/%E6%80%A7%E8%83%BD/" style="background: #03a9f4">
+            <a href="/tags/%E6%80%A7%E8%83%BD/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -299,7 +301,7 @@
         
         
         <span>
-            <a href="/tags/Adreno/" style="background: #00a596">
+            <a href="/tags/Adreno/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -321,7 +323,7 @@
         
         
         <span>
-            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="background: #ffa2c4">
+            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -332,7 +334,7 @@
         
         
         <span>
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="background: #ff7d73">
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -343,7 +345,7 @@
         
         
         <span>
-            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="background: #00bcd4">
+            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -354,7 +356,7 @@
         
         
         <span>
-            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="background: #ffa2c4">
+            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -365,7 +367,7 @@
         
         
         <span>
-            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="background: #ff7d73">
+            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -414,21 +416,21 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Unreal/" style="color: #ff7d73">
+                        <a href="/tags/Unreal/" style="color: #ffa2c4">
                             Unreal
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #ffa2c4">
+                        <a href="/tags/UnrealEngine/" style="color: #ff7d73">
                             UnrealEngine
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #00bcd4">
+                        <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #00a596">
                             手游
                         </a>
                     </span>
@@ -449,7 +451,7 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Adreno/" style="color: #00a596">
+                        <a href="/tags/Adreno/" style="color: #ffa2c4">
                             Adreno
                         </a>
                     </span>
@@ -501,14 +503,14 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Unreal/" style="color: #00bcd4">
+                        <a href="/tags/Unreal/" style="color: #ffa2c4">
                             Unreal
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #ffa2c4">
+                        <a href="/tags/UnrealEngine/" style="color: #ff7d73">
                             UnrealEngine
                         </a>
                     </span>
@@ -522,14 +524,14 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #03a9f4">
+                        <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #ff7d73">
                             自定义
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #ff7d73">
+                        <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #03a9f4">
                             材质节点，编辑器
                         </a>
                     </span>
@@ -567,28 +569,28 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Unreal/" style="color: #03a9f4">
+                        <a href="/tags/Unreal/" style="color: #ffa2c4">
                             Unreal
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #00a596">
+                        <a href="/tags/UnrealEngine/" style="color: #00bcd4">
                             UnrealEngine
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E5%AE%89%E5%8D%93/" style="color: #03a9f4">
+                        <a href="/tags/%E5%AE%89%E5%8D%93/" style="color: #00a596">
                             安卓
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #ffa2c4">
+                        <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #00bcd4">
                             打包
                         </a>
                     </span>
@@ -626,35 +628,35 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Unreal/" style="color: #00bcd4">
+                        <a href="/tags/Unreal/" style="color: #00a596">
                             Unreal
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #00a596">
+                        <a href="/tags/UnrealEngine/" style="color: #ff7d73">
                             UnrealEngine
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UE5/" style="color: #ff7d73">
+                        <a href="/tags/UE5/" style="color: #00bcd4">
                             UE5
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #03a9f4">
+                        <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00a596">
                             自定义
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/ShadingModel/" style="color: #00a596">
+                        <a href="/tags/ShadingModel/" style="color: #ffa2c4">
                             ShadingModel
                         </a>
                     </span>
@@ -699,28 +701,28 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #ffa2c4">
+                        <a href="/tags/UnrealEngine/" style="color: #00a596">
                             UnrealEngine
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">
+                        <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">
                             渲染
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #ff7d73">
+                        <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #ffa2c4">
                             视差
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00a596">
+                        <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #03a9f4">
                             材质
                         </a>
                     </span>
@@ -765,7 +767,7 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #00a596">
+                        <a href="/tags/UnrealEngine/" style="color: #03a9f4">
                             UnrealEngine
                         </a>
                     </span>
@@ -779,14 +781,14 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #00a596">
+                        <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #03a9f4">
                             阴影
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #03a9f4">
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #00a596">
                             动态阴影
                         </a>
                     </span>
@@ -824,28 +826,28 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Unreal/" style="color: #ffa2c4">
+                        <a href="/tags/Unreal/" style="color: #03a9f4">
                             Unreal
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #00a596">
+                        <a href="/tags/UnrealEngine/" style="color: #ff7d73">
                             UnrealEngine
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/Compute-Shader/" style="color: #ff7d73">
+                        <a href="/tags/Compute-Shader/" style="color: #00a596">
                             Compute Shader
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #03a9f4">
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #ffa2c4">
                             计算着色器
                         </a>
                     </span>
@@ -883,14 +885,14 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Unreal/" style="color: #03a9f4">
+                        <a href="/tags/Unreal/" style="color: #ffa2c4">
                             Unreal
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #00bcd4">
+                        <a href="/tags/UnrealEngine/" style="color: #00a596">
                             UnrealEngine
                         </a>
                     </span>
@@ -904,14 +906,14 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #00bcd4">
+                        <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #03a9f4">
                             视差
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #03a9f4">
+                        <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #ffa2c4">
                             材质
                         </a>
                     </span>

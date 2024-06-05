@@ -14,13 +14,15 @@ mixins.search = {
                     {
                         i.style.opacity = 1;
                         i.style.visibility = "visible";
-                        i.style.marginTop = 0;
+                        i.style.display = "block";
+                        //i.style.marginTop = 0;
                     } 
                     else 
                     {
                         i.style.opacity = 0;
                         i.style.visibility = "hidden";
-                        i.style.marginTop = -i.offsetHeight + "px";
+                        i.style.display = "none";
+                        //i.style.marginTop = - i.offsetHeight + "px";
                     }
                 }
             }

@@ -48,6 +48,8 @@
 />
 <script src="/js/lib/prism.js"></script>
 
+
+<script src="/js/lib/function_library.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -67,9 +69,9 @@
             <span>坏包包</span>
         </a>
         
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
+        <a href="/archives/">
+            <i class="fa-solid fa-All fa-fw"></i>
+            <span>&ensp;所有文章</span>
         </a>
         
         <a href="/categories/Unreal">
@@ -91,12 +93,12 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
-                <a href="/">
+                <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-house fa-fw"></i>
+                            <i class="fa-solid fa-All fa-fw"></i>
                         </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">所有文章</div>
                     </div>
                 </a>
                 
@@ -188,114 +190,479 @@
 
 
 
-<!-- 首页的文章显示,每行显示3个文章卡片，一共显示18个吧 -->
+<script>  
+//最多显示6个卡片
+var num_max_posts_card = 6;
+//none就是all所有
+var current_home_post_tab_category ='?';
+function openTab(new_category) 
+{
+    if(current_home_post_tab_category == new_category)
+        return;
+    //console.log("new category posts card : " + new_category);
+    let posts_tabs = document.getElementById('posts-tabs'); 
+    for(let i = 0 ; i < posts_tabs.childNodes.length;i++)
+    {
+        posts_tabs.childNodes[i].style.transform = 'translateY(+2px)';
+    }
+    let tab_button_id = 'posts-tab-button-' + new_category;
+    let tab_button =document.getElementById(tab_button_id);
+    if(tab_button)
+    {
+        tab_button.style.transform = 'translateY(-8px)';
+    }
 
+    current_home_post_tab_category = new_category;
+    let home_post = document.getElementById('home-posts'); 
+    if(new_category == 'all')
+    {
+        //全部卡片先隐藏了
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
+        {
+            home_post.childNodes[i].style.display = 'none';
+        }
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
+        {
+            if(i >= num_max_posts_card)
+            {
+                break;
+            }
+            home_post.childNodes[i].style.display = 'block';
+        }
+    }
+    else
+    {
+        //全部卡片先隐藏了
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
+        {
+            home_post.childNodes[i].style.display = 'none';
+        }
+        //再根据分类，逐个显示
+        let post_card_count = 0 ;
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
+        {
+            if(post_card_count >= num_max_posts_card){
+                break;
+            }   
+            let categpry_child = home_post.childNodes[i].querySelector('#' + new_category);
+            //console.log( new_category + ' : ' +categpry_child );
+            if(categpry_child)
+            {
+                home_post.childNodes[i].style.display = 'block';
+                post_card_count++;
+            }
+        }
+    }
+}
+function openPostsMore()
+{
+    //all 就打开归档
+    if(current_home_post_tab_category == 'all')
+    {
+        location.href = '/archives/';
+    }
+    //其他按照类别打开
+    else
+    {
+        let category_page_path = '/categories/' + current_home_post_tab_category;
+        location.href = category_page_path;
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    openTab('all');
+});
+</script>
 
+<!-- 首页的文章显示 -->
+
+        <div class="page">
+            <div style="background-image:url(/2000/10/10/HomePage/Center/01/background.jpg);" class="home-page-background" id="home-page-background">
+                <div style ="background-color:rgba(0, 0, 0, 0.2);" class="home-page-background-Additive" ></div>
+                <div class="home-page-title-parent">
+                <h2 class="home-page-title">大家好~</h2>
+                </div>
+                <!-- 文章内容显示 -->
+                <div class="description">
+                    <div class="content" v-pre>
+                        
+                        <p>这里是坏包包的个人博客主页，各位叫我包包或者HBB都可以哦。<br></p>
+
+                        
+                    </div>    
+                </div>
             </div>
-            <div id="home-posts">
-                
+        </div>
 
-<!-- 首页的文章显示,每行显示3个文章卡片，一共显示18个吧 -->
+        <div class="page">
+            <div style="background-image:url(/2000/10/11/HomePage/Center/02/background.jpg);" class="home-page-background" id="home-page-background">
+                <div style ="background-color:rgba(5, 5, 10, 0.3);" class="home-page-background-Additive" ></div>
+                <div class="home-page-title-parent">
+                <h2 class="home-page-title">HBB RENDERER ENGINE</h2>
+                </div>
+                <!-- 文章内容显示 -->
+                <div class="description">
+                    <div class="content" v-pre>
+                        
+                        <p>Vulkan API是从2021年9月开始研究了,中间重新研究了设计模式，重头写了一遍又一遍…<br>目前已经提交到Git hub了，地址在这：<a target="_blank" rel="noopener" href="https://github.com/SCcDaniel/HBBr">https://github.com/SCcDaniel/HBBr</a><br><br>编译须知:<br>1.下载Vulkan SDK 1.3 ,且需要下载配套的GLM数学库(Vulkan SDK下载器里勾上glm就行了)，建议默认C盘安装，装其他盘也行，确保环境变量里有VULKAN_SDK。<br>2.编辑器窗口使用的是QT5.12.12，需要另行下载<br><br>目前有3个配置可选：<br>1.Debug （Editor Debug，启动项：Editor ，依赖QT5动态库）<br>2.Release （Editor Release，启动项：Editor ，依赖QT5动态库）<br>3.ReleaseGame_GLFW （Renderer Only with GLFW，启动项：RendererCore，无额外动态库依赖）<br></p>
 
-<div class="post">
+                        
+                    </div>    
+                </div>
+            </div>
+        </div>
 
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/Header.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/">
-        <h2 class="post-title">让我们在我们的场景中更进一步的学习如何设置静态光照的变量</h2>
-    </a>
-    <div class="category-and-date">
+<div id="home-posts-tabs">
+    <div id="posts-tabs">
+        <button id='posts-tab-button-all' class="posts-tab-button" onclick="openTab('all')">所有</button>
         
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Unreal
+        <button id='posts-tab-button-Others' class="posts-tab-button" onclick="openTab('Others')">Others</button>
+        
+        <button id='posts-tab-button-Unreal' class="posts-tab-button" onclick="openTab('Unreal')">Unreal</button>
+        
+    </div>
+    <div id="home-posts">
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2024/05/28/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/">
+                <h2 class="post-title">JavaScript 正则表达式</h2>
             </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2018/8/30
-        </span>
-        
-        
+            <div class="category-and-date">
+                
+                <span class="category" id="Others">
+                    <a href="/categories/Others/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Others
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2024/5/28
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2024/05/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/GitHub%20+%20Hexo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+                <h2 class="post-title">GitHub + Hexo 搭建个人博客</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Others">
+                    <a href="/categories/Others/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Others
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2024/5/23
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2024/01/15/Unreal/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%A7%E8%83%BD%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%BB%8D/">
+                <h2 class="post-title">移动端性能指令介绍</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2024/1/15
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/">
+                <h2 class="post-title">UE5 自定义材质编辑器的节点</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/7/20
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/">
+                <h2 class="post-title">UE 4.26 安卓打包配置 详细流程分享</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/16
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                <h2 class="post-title">视差材质的原理与实现</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/14
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/">
+                <h2 class="post-title">UE5.01 Custom Shading Model</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/14
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/">
+                <h2 class="post-title">自定义ShadowMap(英文)</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/11
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/">
+                <h2 class="post-title">UE4.26-UE4.27 Compute shader的实现过程</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/4/24
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2021/01/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/Test/">
+                <h2 class="post-title">Markdown测试文章</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Others">
+                    <a href="/categories/Others/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Others
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2021/1/23
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/Header.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/">
+                <h2 class="post-title">让我们在我们的场景中更进一步的学习如何设置静态光照的变量</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2018/8/30
+                </span>
+                
+                
+            </div>
+        </div>        
+
     </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <p style="font-size:0.75em; color:rgb(120,110,50)" ><br>（本文被修改于2018年8月31日，使用的4.20版本的虚幻引擎，因文档保存不当，图片清晰度有问题，见谅）<br></p><br><p style="font-size:1em;" ><br>大家好，这里是ScDaniel，我先简单说明下，我并不是在UE4社区里特别突出或者聪明的一个人，包括我那难看的英语。所以如果这篇文件有什么错误或者甚至英语上的错误请告诉我，我会尽快的修复。<br></p><br><p style="font-size:1em;" ><br>直接进入主题，这是第一步，我先把我们最常用的在世界设置里的照明设置的描述放出来，以供参考，一些我们不经常用得到得，我将会跳过。这些参数都存在于场景的世界设置中的lightmass里。<br></p><br>—————————————————————————————————————<br></br></br><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Static Lighting Level Scale（静态照明等级比例）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>被用于计算照明的参考大小,并不是计算的真实大小（应该是说它并不会真正影响到我们的光照分辨率，虽然看起来它像是发生了类似变化），它最小可以设置为0.001，但我不推荐大家这么做，原因可以自己去尝试下。它的值越小，采样的精度就越高，就是说越小越好，但是随之而来的是会翻倍的增加场景构建时间。在一些大场景中 ,把它设置到2-4之间应该就挺好的（精度太高，阴影边缘也会显得僵硬，个人觉得并不是非常适合户外场景）所以对于小场景或者室内,设置在0.1-1之间就好了。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Num Indirect Lighting Bounces（间接照明的反弹次数）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>顾名思义，就是设置间接光照的反射次数，次数越高就越好，你甚至可以设置到100次，当然这么做会增加场景构建时间，不过最明显的是构建的一开始，你会发现它在0%-5%之间会有明显的变慢，后面就会越来越快。与它相对应的是Directional Light（平行光）的Indirect lighting intensity（间接照明强度）。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Num Sky Lighting Bounces（天空照明反弹次数）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>这个和上面的间接照明反弹次数类似，只是它服务于sky light（天光actor），我们可以在sky light的光照属性面板下找到和上面一样的indirect lighting intensity变量，记得要把sky light的cast shadow的勾打上，效果才会比较明显。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Indirect Lighting Quality（间接照明质量）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>如果这个值越大，那么间接光照产生的很多问题，例如噪点，或者类似污渍一样的色块，都可能会被解决。当然也是越大，构建速度越慢。如果间接光没有太大问题不建议调整这个值，一般情况下看不出很大区别（正常情况下）。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Indirect Lighting smoothness（间接照明光滑度）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>（补充：它虽然名字上有个“间接”，但是事实上它可以平滑掉整个静态投影。）这个值如果调大了，可以平滑被烘焙出来的静态间接光照。它也是越大，构建速度越慢，要注意的是它不一定要被使用，和上面的质量一样，假如没什么问题，或者效果已经达到理想状态，不建议调节，调小了可能会出现噪点和污渍，过大了可能会把静态光构建出来的细节给销毁掉。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Environment Color（环境颜色）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>准确的说我觉得应该叫静态环境颜色，因为这个值是用来改变整体环境颜色的，并且它是不可动态改变的，它对构建时间的影响不大，默认是黑色，就是没有颜色（透明），并不是说真的环境颜色给的黑色。可以理解成没有开cast shadow的静态sky light，但是效果上比它更具考究。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Environment Intensity（环境强度）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>这个应该叫环境颜色强度，是上面环境颜色的强度控制，它对构建时间的影响不大，这两个值调好了将会带来不一样的渲染效果！<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Diffuse Boost（漫反射Boost？）:<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>我不知道怎么翻译这个boost比较好，但是我看到它有一个“宣扬”的意思，我觉得这个挺贴切的。我个人觉得它应该叫漫反射扩散。这个 值调大了，可以之间影响到漫反射对周围环境的影响。对构建影响不是特别的大，因为它事实上并不是强行扩大漫反射，而是在原来计算好的（间接光）的范围下加强模型材质颜色的这个效果，最终这个值只会被限制在1.0，它不会说出现曝光情况。这个值也是调好了将会带来不一样的渲染效果！<br></p><br>—————————————————————————————————————<br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>好了接下来我创建了一个非常简单的地图，并且保证了它们的光照分辨率是正常的大小。我用默认的值构建第一次。<br></p><br><img src="/images/loading3.gif" data-original="wpseea6-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>如果你的阴影出现了奇怪的现象例如污渍或者歪歪扭扭的，你应该去检查一下光照贴图的分辨率是否是足够的。如果模型是自己制作的，那么你还要去检查你的第二套UV是否是正确没有问题的。接下来，我将把上面描述过的参数做一次演示参考。有必要的话我会加以解释。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Static Lighting Level Scale<br></p><br><img src="/images/loading3.gif" data-original="wpseea7-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Num Indirect Lighting Bounces<br></p><br><img src="/images/loading3.gif" data-original="wpseeb8-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Num Sky Lighting Bounces<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>户外效果:<br></p><br><img src="/images/loading3.gif" data-original="wpseeb9-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>室内效果:<br></p><br><img src="/images/loading3.gif" data-original="wpseeba-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Indirect Lighting Quality<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>我上面也说过不建议过多修改这个值，除非我们需要获得某些其他效果，或者更好的效果。事实上它经常给我们带来一些不容易被发现的效果，我觉得它更多应该用来解决毛病而不是用来提升效果。<br></p><br><img src="/images/loading3.gif" data-original="wpseebb-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Indirect Lighting Smoothness<br></p><br><img src="/images/loading3.gif" data-original="wpseecc-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>这两个参数不一定要进行修改，如果非要使用我觉得应该多花花时间调节它们，来看看区别。（最低值0.25），但是它们带来的构建时间上的差异是不容忽视的。<br></p><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Environment Color And Environment Intensity<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>不要在意这个构建时间，可能因为那一天我在看杭州网易的72小时游戏制作比赛直播导致的……..（啊哈哈）它事实上不会有很大影响<br></p><br><img src="/images/loading3.gif" data-original="wpseecd-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:1em; color:rgb(255,220,100);" ><br>Diffuse Boost<br></p><br><p style="font-size:0.9em; color:rgb(220,220,220);" ><br>下面的截图显而易见的看出它们的区别了<br></p><br><p style="font-size:0.8em; color:rgb(220,220,220);" ><br>( 哦还有的是这个恐龙模型是我网上找的免费下载的，但是因为我太懒了，它的第二套UV有点问题，我又不想改所以使用了动态光照。不过不影响我们查看效果)<br></p><br><img src="/images/loading3.gif" data-original="wpseece-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><img src="/images/loading3.gif" data-original="wpseecf-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><p style="font-size:0.8em; color:rgb(220,220,220);" ><br>好了到此为止我已经把我想要分享的都说完了，在这个章节结束之前我把这个场景最终构建的效果参数参考放出来一下。（如果看过YouTube上的官方构建参数参考视频的话，请参考它的标准大小，搜索static lighting build之类的字样可以搜索到，它讲的很详细，还讲解到我们可以修改配置文件来提升构建效果，因为可能有点复杂我就不说了，有兴趣可以去看看）<br></p><br><img src="/images/loading3.gif" data-original="wpseedf-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><img src="/images/loading3.gif" data-original="wpseee0-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><img src="/images/loading3.gif" data-original="wpseee1-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><img src="/images/loading3.gif" data-original="wpseee2-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><img src="/images/loading3.gif" data-original="wpseef3-tmp-jpeg.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width=800 loading="lazy"/><br><br><br><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #00a596">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #03a9f4">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00bcd4">渲染</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #03a9f4">视差</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00bcd4">材质</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/" class="go-post">阅读全文</a> -->
-    
+    <button class="posts-tab-button posts-tab-button-more" onclick="openPostsMore()"> ... 更多 ... </button>
 </div>
+
 
 
             </div>
-            <!-- 页数,不需要 -->
-            <!-- <div class="page-current">
-    
-    <a class="page-num" href="/">
-        <i class="fa-solid fa-caret-left fa-fw"></i>
-    </a>
-    <a class="page-num" href="/">1</a>
-    <span class="page-omit">...</span>
-    
-    <span class="current">2</span>
-    
-    
-    
-    
-</div>
- -->
+            <!-- posts改到md里面进行设计 -->
         </div>
         <div id="home-grid-right">
             <p style="text-align: center;top: 20%;">这一块还没设计好~</p>

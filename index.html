@@ -48,6 +48,8 @@
 />
 <script src="/js/lib/prism.js"></script>
 
+
+<script src="/js/lib/function_library.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -67,9 +69,9 @@
             <span>坏包包</span>
         </a>
         
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
+        <a href="/archives/">
+            <i class="fa-solid fa-All fa-fw"></i>
+            <span>&ensp;所有文章</span>
         </a>
         
         <a href="/categories/Unreal">
@@ -91,12 +93,12 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
-                <a href="/">
+                <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-house fa-fw"></i>
+                            <i class="fa-solid fa-All fa-fw"></i>
                         </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">所有文章</div>
                     </div>
                 </a>
                 
@@ -188,1140 +190,479 @@
 
 
 
-<!-- 首页的文章显示,每行显示3个文章卡片，一共显示18个吧 -->
-
-<div class="page">
-    <div style="background-image:url(/2000/10/10/HomePage/01/background.jpg);" class="home-page-background" id="home-page-background">
-        <div style ="background-color:rgba(0, 0, 0, 0.2);" class="home-page-background-Additive" ></div>
-        <!-- <a class="home-page-title-a" href="/2000/10/10/HomePage/01/">
-            <h2 class="home-page-title">大家好~</h2>
-        </a> -->
-        <div class="home-page-title-parent">
-        <h2 class="home-page-title">大家好~</h2>
-        </div>
-        <!-- 文章内容显示 -->
-        <div class="description">
-            <div class="content" v-pre>
-                
-                <p>这里是坏包包的个人博客主页，各位叫我包包或者HBB都可以哦。<br></p>
-
-                
-            </div>    
-        </div>
-    </div>
-</div>
-
-<div class="page">
-    <div style="background-image:url(/2000/10/11/HomePage/02/background.jpg);" class="home-page-background" id="home-page-background">
-        <div style ="background-color:rgba(5, 5, 10, 0.3);" class="home-page-background-Additive" ></div>
-        <!-- <a class="home-page-title-a" href="/2000/10/11/HomePage/02/">
-            <h2 class="home-page-title">HBB RENDERER ENGINE</h2>
-        </a> -->
-        <div class="home-page-title-parent">
-        <h2 class="home-page-title">HBB RENDERER ENGINE</h2>
-        </div>
-        <!-- 文章内容显示 -->
-        <div class="description">
-            <div class="content" v-pre>
-                
-                <p>Vulkan API是从2021年9月开始研究了,中间重新研究了设计模式，重头写了一遍又一遍…<br>目前已经提交到Git hub了，地址在这：<a target="_blank" rel="noopener" href="https://github.com/SCcDaniel/HBBr">https://github.com/SCcDaniel/HBBr</a><br><br>编译须知:<br>1.下载Vulkan SDK 1.3 ,且需要下载配套的GLM数学库(Vulkan SDK下载器里勾上glm就行了)，建议默认C盘安装，装其他盘也行，确保环境变量里有VULKAN_SDK。<br>2.编辑器窗口使用的是QT5.12.12，需要另行下载<br><br>目前有3个配置可选：<br>1.Debug （Editor Debug，启动项：Editor ，依赖QT5动态库）<br>2.Release （Editor Release，启动项：Editor ，依赖QT5动态库）<br>3.ReleaseGame_GLFW （Renderer Only with GLFW，启动项：RendererCore，无额外动态库依赖）<br></p>
-
-                
-            </div>    
-        </div>
-    </div>
-</div>
-
-
-            </div>
-            <div id="home-posts">
-                
-
-<!-- 首页的文章显示,每行显示3个文章卡片，一共显示18个吧 -->
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2024/05/28/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/">
-        <h2 class="post-title">JavaScript 正则表达式</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Others/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Others
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/28
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <p><br><h1 id="学习、验证正则表达式的推荐网站：" >学习、验证正则表达式的推荐网站：</h1><br><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a><br><br><h1 id="常用说明" >常用说明</h1><br><h2 id="a?" >a?</h2><br>代表出现没有或者1次。<br><h2 id="a*" >a*</h2><br>代表a出现0次,或者多次<br><h2 id="a+" >a+</h2><br>代表a出现1次以上<br><h2 id="." >.</h2><br>指任意字符，但是不包括换行符<br><h2 id="^a" >^a</h2><br>排除字符a<br><h2 id="a{b}" >a{b}</h2><br>代表a需要出现b次才能匹配<br><h2 id="a{b,c}" >a{b,c}</h2><br>代表a需要出现b-c次这个范围内，才能匹配<br><h2 id="a{b,}" >a{b,}</h2><br>代表a需要出现b次以上，才能匹配<br><h2 id="[ab]" >[ab]</h2><br>[]的作用是集合,用于匹配多个相同的类型，例如 &#x2F;[ab]+&#x2F; 就代表ab或者a或者b需要连续出现1次以上。<br><h2 id="(ab)" >(ab)</h2><br>ab为一个组(Group),在代码中可以对匹配的值(Match)和各个组(Group)进行拓展操作<br><h2 id="a (cat|dog)" >a (cat|dog)</h2><br>匹配 a cat a dog ,cat或者dog前面必须带一个a <br><h2 id="a cat|dog" >a cat|dog</h2><br>匹配 a cat 或者 dog<br><h2 id="[a-zA-Z0-9]" >[a-zA-Z0-9]</h2><br>匹配 a-z、A-Z的字符和0-9的数字<br><br><h1 id="元字符" >元字符</h1><br><h2 id="\d " >\d </h2><br>数字字符 \d+ 匹配一个以上的数字<br><h2 id="\D " >\D </h2><br>非数字字符<br><h2 id="\w " >\w </h2><br>单词字符 单词 数字 下划线即英文字符<br><h2 id="\W " >\W </h2><br>非单词字符<br><h2 id="\s " >\s </h2><br>空白符 包含空格和换行符<br><h2 id="\S " >\S </h2><br>非空白字符<br><h2 id="\b " >\b </h2><br>单词的边界 单词的开头或结尾 单词与符号之前的边界<br><h2 id="\B " >\B </h2><br>非单词的边界 符号与符号 单词与单词的边界<br><br><h1 id="特殊判断用法" >特殊判断用法</h1><br>注意:括号是固定格式,不能少<br><h2 id="(?=pattern)" >(?&#x3D;pattern)</h2><br>正向先行断言，表示匹配位置后面必须紧跟着满足 pattern 的字符串，但不包括这个字符串在匹配结果中。<br><h2 id="(?!pattern)" >(?!pattern)</h2><br>负向先行断言，表示匹配位置后面不能紧跟着满足 pattern 的字符串，也不包括这个字符串在匹配结果中。<br><h2 id="(?<=pattern)" >(?&lt;&#x3D;pattern)</h2><br>正向后行断言，表示匹配位置前面必须是满足 pattern 的字符串，但不包括这个字符串在匹配结果中。<br><h2 id="(?<!pattern)" >(?&lt;!pattern)</h2><br>负向后行断言，表示匹配位置前面不能是满足 pattern 的字符串，也不包括这个字符串在匹配结果中。<br><h2 id="(?:pattern)" >(?:pattern)</h2><br>非捕获型分组，表示将 pattern 包含在一个分组中，但不把这个分组的匹配结果保存到分组编号中。这个分组通常用于表示可选的或重复的子表达式，或者是限制量词的作用范围，而不需要把它们的匹配结果单独提取出来。<br><br><br></p>
-
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/GitHub/" style="color: #03a9f4">GitHub</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Hexo/" style="color: #00bcd4">Hexo</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2024/05/28/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2024/05/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/GitHub%20+%20Hexo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-        <h2 class="post-title">GitHub + Hexo 搭建个人博客</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Others/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Others
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/23
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="流程大概是：" >流程大概是：</h1><br>1.本地编写博客，编辑网页等。<br>2.完事了上传到GitHub就好了。<br><br><h1 id="详细流程：" >详细流程：</h1><br>1.本地电脑，先找个空文件夹，方便储存本地博客。<br><br>2.安装nodejs，直接去官网下载windows x64的二进制免安装文件，很方便。下载路径一起放到文件夹里方便些。下载完之后，自行添加nodejs的路径到环境变量。<br><br>3.下载安装hexo，它需要通过nmp命令进行安装，nodejs安装完会自带这个功能，所以直接打开cmd，调命令就好了：<br>npm install hexo-cli -g<br><br>4.下载安装Git<br><br>5.在新目录，右键打开git命令行，创建一个hexo默认网页模板：<br>hexo init <网页或者目录的名字><br>cd <网页或者目录的名字><br><br>6.绑定github账户和ssh key<br> 配置全局用户名：git config --global user.name '<github用户名>'<br> 配置全局用户邮箱：git config --global user.email '<github邮箱地址>'<br>生成sshkey（通过ssh key会一直绑定这个账号不需要密码了）：ssh-keygen -t rsa -C '<github邮箱地址>'<br><br>一路回车，不需要设置密码。<br>生成完了之后，去到生成路径里，找到 id_rsa.pub ，打开，复制里面的ssh key，然后进入你的github账号设置(Settings - SSH and GPG Keys)里，把新的ssh Key添加进去就行了。<br><br>最后测试一下，如果告知成功通过身份认证就成功了：<br>ssh -T git@github.com<br><br>7.下载安装hexo开发者包：<br>npm install hexo-deployer-git --save<br><br>8.配置一下项目<br>在根目录下有个_config.yml打开，最下面:<br>deploy:<br>  type: git<br>  repository: git@github.com:hbbwang/hbbwang.github.io.git<br>  branch: main<br><br>9.上面的命令执行完就可以开始编辑了<br>创建新文章(在./source/\_posts里,推荐使用obsidian作为编辑工具)：<br>hexo new '新文章'<br>本地测试网页：hexo server<br>编辑好之后生成静态网页文件：hexo g<br>上传到github：hexo d<br><br><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/GitHub/" style="color: #00a596">GitHub</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Hexo/" style="color: #ffa2c4">Hexo</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2024/05/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/GitHub%20+%20Hexo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2024/01/15/Unreal/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%A7%E8%83%BD%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%BB%8D/">
-        <h2 class="post-title">移动端性能指令介绍</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Unreal
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/1/15
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="高通的离线编译器Adreno Offline Compiler" >高通的离线编译器Adreno Offline Compiler</h1><br>UE5好像此检测工具的插件：<br>https://developer.oculus.com/documentation/unreal/unreal-adreno-offline-compiler/<br><br>也可以去下载该工具的SDK自行合入：<br>https://developer.qualcomm.com/forums/software/adreno-gpu-sdk<br><br><h2 id="常见指标" >常见指标</h2><br><br>Complex instruction count 32bit/16bit: 这可能是指执行一些复杂的32位或16位指令需要的指令数。在GPU编程中，指令数是一个重要的性能指标，因为更多的指令通常意味着更长的执行时间和更高的功耗。<br><br>Texture read instruction count: 这是指读取纹理数据所需要的指令数。在图形渲染中，纹理读取是一项常见的操作，其性能直接影响到渲染速度。<br><br>Memory read/write instruction count: 这是指读取或写入内存所需要的指令数。在GPU编程中，内存操作通常是性能瓶颈，因此优化内存读写的指令数是提高性能的一个重要方向。<br><br>Flow control instruction count: 这是指执行流程控制（如条件判断和循环）所需要的指令数。在GPU编程中，流程控制指令通常比较昂贵，因为它们可能导致线程的分叉和合并，从而降低并行性。<br><br>Barrier and fence Instruction count: Barrier和fence是同步指令，用于控制线程之间的执行顺序。Barrier用于同步同一线程组中的线程，而fence用于同步不同线程组中的线程。这些指令的数量也是一个重要的性能指标，因为它们会阻塞线程的执行，直到所有线程都达到同步点。<br><br>Short latency sync instruction count: 这是指具有较短延迟的同步指令数量。这些指令通常用于同步相互靠近的线程，例如同一线程组中的线程。较短的延迟意味着这些指令可以在较短的时间内完成同步操作，从而减少线程等待的时间。<br><br>Long latency sync instruction count: 这是指具有较长延迟的同步指令数量。这些指令通常用于同步相互较远的线程，例如不同线程组中的线程。较长的延迟意味着这些指令需要更多的时间来完成同步操作，从而导致线程等待的时间较长。<br><br>在 GPU 编程中，同步指令的数量和类型是性能的关键指标，因为它们会影响线程的执行顺序和并行性。为了提高性能，应尽量减少同步指令的数量，特别是具有较长延迟的同步指令。在某些情况下，可以通过重新设计算法或使用不同的同步策略来实现这一目标。<br><br>Miscellaneous instruction count：指其他类型的 GPU 指令的数量，如算术、逻辑和移位指令。降低这些指令的数量可以提高 GPU 程序的性能。<br><br>Full precision register footprint per shader instance：每个着色器实例所需的完全精度寄存器数量。完全精度寄存器提供较高的精度，但可能需要更多的资源。<br><br>Half precision register footprint per shader instance：每个着色器实例所需的半精度寄存器数量。半精度寄存器的精度较低，但需要较少的资源。<br><br>Overall register footprint per shader instance：每个着色器实例所需的总寄存器数量。减少寄存器的使用可以降低资源占用，从而提高性能。<br><br>Scratch memory usage per shader instance：每个着色器实例所需的临时内存（Scratch Memory）使用量。Scratch Memory 用于存储临时数据，如局部变量和中间结果。减少 Scratch Memory 的使用可以降低内存占用，从而提高性能。<br><br>Output component count：输出组件的数量。这是指从顶点着色器到片段着色器的输出数据的数量。降低输出组件的数量可以减少数据传输，从而提高性能。<br><br>Input component count：输入组件的数量。这是指从顶点缓冲区到顶点着色器的输入数据的数量。降低输入组件的数量可以减少数据传输，从而提高性能。<br><br>ALU fiber occupancy percentage：ALU 纤程占用百分比。这是指 ALU（算术逻辑单元）在执行计算时的利用率。提高 ALU 利用率可以充分利用 GPU 资源，从而提高性能。<br><br><h1 id="Mali Offline Compiler" >Mali Offline Compiler</h1><br><h2 id="常见指标" >常见指标</h2><br>硬件：Mali-G710 r0p0，这是 Arm 的一款图形处理器。<br>架构：Valhall，这是 Arm Mali GPU 的架构。<br>驱动程序：r36p0-00rel0，这是用于 Arm Mali GPU 的驱动程序版本。<br>着色器类型：OpenGL ES Fragment，这是一种用于渲染图像的着色器类型。<br>主要着色器部分提供了关于着色器性能的详细信息：<br><br>Work registers<br>工作寄存器：32，这表示着色器使用了32个工作寄存器。<br><br>Uniform registers<br>统一寄存器：50，这表示着色器使用了50个统一寄存器。<br><br>Stack spilling<br>堆栈溢出：false，这表示着色器没有导致堆栈溢出。<br><br>16-bit arithmetic16位算术：55%，这表示着色器中55%的操作使用了16位算术。<br><br><h2 id="FMA、CVT、SFU、LS、V、T 是在着色器报告中表示不同类型指令的缩写" >FMA、CVT、SFU、LS、V、T 是在着色器报告中表示不同类型指令的缩写</h2><br>FMA<br>Arith FMA，代表浮点乘加指令。这类指令执行浮点数的乘法和加法操作，通常用于向量和矩阵计算等。<br><br>CVT<br>Arith CVT，代表转换指令。这类指令用于在不同的数据类型（如整数、浮点数等）之间进行转换。<br><br>SFU<br>Arith SFU，代表特殊功能单元指令。这类指令执行一些特殊的数学运算，如平方根、对数、三角函数等。<br><br>LS<br>Load/Store，代表加载和存储指令。这类指令用于从内存中读取数据（加载）或将数据写入内存（存储）。<br><br>V<br>Varying，代表插值指令。这类指令用于在顶点着色器和片段着色器之间进行数据插值，如颜色、纹理坐标等。<br><br>T<br>Texture，代表纹理指令。这类指令用于处理纹理数据，如采样纹理、查找纹理等。<br><br><h2 id="Total instruction cycles，Shortest path cycles，Longest path cycles" >Total instruction cycles，Shortest path cycles，Longest path cycles</h2><br>Total Instruction Cycles：<br>总指令周期数。这是执行着色器中所有指令所需的总周期数。一个周期通常是图形处理单元（GPU）执行一个操作的时间单位。总指令周期数越低，着色器的性能越好。<br><br>Shortest Path Cycles：<br>最短路径周期数。这是执行着色器中所有可能的执行路径中最短的那一个所需的周期数。在某些情况下，由于条件分支或循环等原因，着色器可能有多个可能的执行路径。最短路径周期数越低，着色器的最佳可能性能越好。<br><br>Longest Path Cycles：<br>最长路径周期数。这是执行着色器中所有可能的执行路径中最长的那一个所需的周期数。这是着色器的最坏可能性能。最长路径周期数越低，着色器的最坏可能性能越好。<br><br>这些指标可以帮助你了解着色器的性能特征，并找到可能的优化方向。例如，如果最长路径周期数远大于最短路径周期数，那么可能需要优化着色器的条件分支或循环以改善最坏情况的性能。<br><br><h2 id="着色器属性（Shader properties）部分描述了着色器的一些特征和行为" >着色器属性（Shader properties）部分描述了着色器的一些特征和行为</h2><br>Has uniform computation：<br>是否有统一计算。如果为 true，则表示着色器在运行过程中会对统一变量（uniform variables）进行计算。统一变量是在整个着色器执行过程中保持不变的变量，通常用于存储材质、灯光等信息。<br><br>Has side-effects：<br>是否有副作用。如果为 false，则表示着色器没有副作用。副作用是指着色器在执行过程中可能对其它数据或状态产生影响的行为，例如修改全局变量或写入缓冲区。<br><br>Modifies coverage：<br>是否修改覆盖率。如果为 false，则表示着色器不会改变片段的覆盖率。覆盖率是指一个片段在最终图像中所占的像素比例。修改覆盖率可能会影响抗锯齿处理和透明度效果。<br><br>Uses late ZS test：<br>是否使用延迟 ZS 测试。如果为 false，则表示着色器不使用延迟的深度（Z）和模板（stencil，S）测试。延迟 ZS 测试是在片段着色器执行后进行的深度和模板测试，可以提高渲染性能，但可能会导致一些视觉效果不正确。<br><br>Uses late ZS update：<br>是否使用延迟 ZS 更新。如果为 false，则表示着色器不使用延迟的深度（Z）和模板（stencil，S）更新。延迟 ZS 更新是在片段着色器执行后更新深度和模板缓冲区，与延迟 ZS 测试类似，可以提高渲染性能，但可能会导致一些视觉效果不正确。<br><br>Reads color buffer：<br>是否读取颜色缓冲区。如果为 false，则表示着色器不会读取颜色缓冲区的数据。颜色缓冲区存储了渲染过程中的像素颜色信息。读取颜色缓冲区可能会影响渲染性能和视觉效果。<br><br>了解这些属性有助于分析着色器的行为和性能特点，并找到可能的优化方向。<br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #03a9f4">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #00a596">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #ffa2c4">手游</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="color: #03a9f4">移动平台</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #ff7d73">性能</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Adreno/" style="color: #00a596">Adreno</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Mali/" style="color: #03a9f4">Mali</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #ffa2c4">离线编译器</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2024/01/15/Unreal/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%A7%E8%83%BD%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%BB%8D/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/">
-        <h2 class="post-title">UE5 自定义材质编辑器的节点</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Unreal
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/7/20
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="基础实现部分" >基础实现部分</h1><br>代码里面有注释，直接看注释吧，我就不多解释啦。<br><br>UE5 自带Name节点，可以实现同样的效果，所以仅供学习使用。<br><br>UE4的话可以这么加，代码修改几乎一致。<br><br>H头文件：<br><pre class="line-numbers"><code class="language-cpp">#pragma once
-#include "CoreMinimal.h"
-#include "UObject/ObjectMacros.h"
-#include "MaterialExpressionIO.h"
-#include "Materials/MaterialExpression.h"
-#include "Materials/MaterialExpressionCustomOutput.h"
-#include "MaterialExpressionLocalVariable.generated.h"
-/**
- * 
- */
-UCLASS(collapsecategories, hidecategories = Object, MinimalAPI)
-class UMaterialExpressionLocalVariable : public UMaterialExpression
+<script>  
+//最多显示6个卡片
+var num_max_posts_card = 6;
+//none就是all所有
+var current_home_post_tab_category ='?';
+function openTab(new_category) 
 {
-    GENERATED_UCLASS_BODY()
-    
-    UPROPERTY(meta = (RequiredInput = "false", ToolTip = "Local Variable"))
-    FExpressionInput VarStore;
-
-    UPROPERTY(EditAnywhere, Category=MaterialExpressionLocalVariable)
-    FString VariableKeyWord;
- 
-    //保存临时Input
-    FExpressionInput VarStoreCache;
-#if WITH_EDITOR
-    //材质编辑器内,按下Apply执行
-    virtual int32 Compile(class FMaterialCompiler* Compiler, int32 OutputIndex) override;
-    //节点的名字
-    virtual void GetCaption(TArray<FString>& OutCaptions) const override;
-    //检查节点是否初始化
-    bool IsLoaclVariableWasInitialized();
-#endif
-};
-</code></pre>CPP源文件<br><pre class="line-numbers"><code class="language-cpp">#include "MaterialExpressionLocalVariable.h"
-#include "EditorSupportDelegates.h"
-#include "MaterialCompiler.h"
-#if WITH_EDITOR
-#include "MaterialGraph/MaterialGraphNode_Comment.h"
-#include "MaterialGraph/MaterialGraphNode_Composite.h"
-#endif //WITH_EDITOR
-#include "Interfaces/ITargetPlatform.h"
-#define LOCTEXT_NAMESPACE "MaterialExpression"
-
-UMaterialExpressionLocalVariable::UMaterialExpressionLocalVariable(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
-{
-#if WITH_EDITORONLY_DATA
-	struct FConstructorStatics
-	{
-		FConstructorStatics(){}
-	};
-	static FConstructorStatics ConstructorStatics;
-	bCollapsed = true;
-#endif
-	VariableKeyWord = TEXT("None");
-}
-
-#if WITH_EDITOR
-int32 UMaterialExpressionLocalVariable::Compile(FMaterialCompiler* Compiler, int32 OutputIndex)
-{
-    //是否连接了Input
-    if(!VarStore.GetTracedInput().Expression)
+    if(current_home_post_tab_category == new_category)
+        return;
+    //console.log("new category posts card : " + new_category);
+    let posts_tabs = document.getElementById('posts-tabs'); 
+    for(let i = 0 ; i < posts_tabs.childNodes.length;i++)
     {
-        //检查该局部节点是否已经初始化了
-        if(!IsLoaclVariableWasInitialized())
+        posts_tabs.childNodes[i].style.transform = 'translateY(+2px)';
+    }
+    let tab_button_id = 'posts-tab-button-' + new_category;
+    let tab_button =document.getElementById(tab_button_id);
+    if(tab_button)
+    {
+        tab_button.style.transform = 'translateY(-8px)';
+    }
+
+    current_home_post_tab_category = new_category;
+    let home_post = document.getElementById('home-posts'); 
+    if(new_category == 'all')
+    {
+        //全部卡片先隐藏了
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
         {
-            return Compiler->Errorf(TEXT("该参数还未初始化!请给一个Store值"));
+            home_post.childNodes[i].style.display = 'none';
         }
-        //已经初始化了，复制初始化的Input属性，强转成一个新的float4，这样就不会出现自动连线的问题了。
-        else
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
         {
-            return VarStoreCache.Compile(Compiler);
+            if(i >= num_max_posts_card)
+            {
+                break;
+            }
+            home_post.childNodes[i].style.display = 'block';
         }
     }
-    return INDEX_NONE;
-}
-
-void UMaterialExpressionLocalVariable::GetCaption(TArray<FString>& OutCaptions) const
-{
-    //节点的名字显示当前我们自定义的局部变量的名字
-    FString keyword = TEXT("Local Variable : ");
-    keyword.Append(VariableKeyWord);
-    OutCaptions.Add(keyword);
-}
-
-bool UMaterialExpressionLocalVariable::IsLoaclVariableWasInitialized()
-{
-    if(Material)
+    else
     {
-        //在当前材质球里面查找所有节点，获取到我们的LocalVariable节点
-        for (int32 ExpIndex = 0; ExpIndex < Material->Expressions.Num(); ExpIndex++)
+        //全部卡片先隐藏了
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
         {
-            const UMaterialExpressionLocalVariable* DynParam = Cast<UMaterialExpressionLocalVariable>(Material->Expressions[ExpIndex]);
-            //根据我们的keyword判断是否为同一个Keyword
-            if (DynParam && (DynParam != this)
-                &&VariableKeyWord.Compare(DynParam->VariableKeyWord) == 0	//检查keyword是否一致
-                && DynParam->VarStore.GetTracedInput().Expression			//检查该节点是否连接了Input，True就获取
-                )
+            home_post.childNodes[i].style.display = 'none';
+        }
+        //再根据分类，逐个显示
+        let post_card_count = 0 ;
+        for(let i = 0 ; i < home_post.childNodes.length;i++)
+        {
+            if(post_card_count >= num_max_posts_card){
+                break;
+            }   
+            let categpry_child = home_post.childNodes[i].querySelector('#' + new_category);
+            //console.log( new_category + ' : ' +categpry_child );
+            if(categpry_child)
             {
-                VarStoreCache = DynParam->VarStore;
-                return true;
+                home_post.childNodes[i].style.display = 'block';
+                post_card_count++;
             }
         }
     }
-    return false;
 }
-#endif
-</code></pre>效果：<br>使用起来非常简单<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>局部节点的输出必须一 一对应，作为输出节点可以不需要连接Input：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>当出现了不存在的局部节点的时候就会报错：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>因为keyword的判断是写在Compile函数里的，所以如果复制了一个新的局部节点，需要点击一次编译按钮，让材质编辑器跑一次Compile函数才能正常运行，当然可以加在其他地方，各位感兴趣的可以自行试试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="参数显示问题" >参数显示问题</h1><br>如果你已经做完上面一步了，节点也正式开始使用了，你就会发现一个问题，材质球里面创建了动态参数：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>但是材质实例里无法显示没有连接到Output的参数！！<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>材质实例编辑器就设定就是获取已经连接到Output的节点参数，所以这里我们需要修改一下引擎编辑器的源码<br>找到 MaterialEditorUtilities.cpp 这个源文件<br>找到这个函数：<br><span style="color:rgb(200,255,160);" >void FMaterialEditorUtilities::GetVisibleMaterialParameters</span><br>我们在这里再补充遍历材质球里的所有节点进行获取：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样就可以获取到连接到每一个节点上的动态参数了，<br>但是这里我其实推荐是把这个我们自定义的节点写入到引擎源码中，而不是写入到项目或者插件中，这样我们可以单独的为这个节点类型进行判断了，而不是所有节点。<br><br>看看结果如何，可以看到参数出来了：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>蓝图控制参数变化也能正常运行：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #00a596">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #03a9f4">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UE5/" style="color: #00bcd4">UE5</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #ff7d73">自定义</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #ffa2c4">材质节点，编辑器</a>
-        </span>
-           
-    </div> -->
+function openPostsMore()
+{
+    //all 就打开归档
+    if(current_home_post_tab_category == 'all')
+    {
+        location.href = '/archives/';
+    }
+    //其他按照类别打开
+    else
+    {
+        let category_page_path = '/categories/' + current_home_post_tab_category;
+        location.href = category_page_path;
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    openTab('all');
+});
+</script>
 
-    <!-- <a href="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/" class="go-post">阅读全文</a> -->
-    
-</div>
+<!-- 首页的文章显示 -->
 
-<div class="post">
+        <div class="page">
+            <div style="background-image:url(/2000/10/10/HomePage/Center/01/background.jpg);" class="home-page-background" id="home-page-background">
+                <div style ="background-color:rgba(0, 0, 0, 0.2);" class="home-page-background-Additive" ></div>
+                <div class="home-page-title-parent">
+                <h2 class="home-page-title">大家好~</h2>
+                </div>
+                <!-- 文章内容显示 -->
+                <div class="description">
+                    <div class="content" v-pre>
+                        
+                        <p>这里是坏包包的个人博客主页，各位叫我包包或者HBB都可以哦。<br></p>
 
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
+                        
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div style="background-image:url(/2000/10/11/HomePage/Center/02/background.jpg);" class="home-page-background" id="home-page-background">
+                <div style ="background-color:rgba(5, 5, 10, 0.3);" class="home-page-background-Additive" ></div>
+                <div class="home-page-title-parent">
+                <h2 class="home-page-title">HBB RENDERER ENGINE</h2>
+                </div>
+                <!-- 文章内容显示 -->
+                <div class="description">
+                    <div class="content" v-pre>
+                        
+                        <p>Vulkan API是从2021年9月开始研究了,中间重新研究了设计模式，重头写了一遍又一遍…<br>目前已经提交到Git hub了，地址在这：<a target="_blank" rel="noopener" href="https://github.com/SCcDaniel/HBBr">https://github.com/SCcDaniel/HBBr</a><br><br>编译须知:<br>1.下载Vulkan SDK 1.3 ,且需要下载配套的GLM数学库(Vulkan SDK下载器里勾上glm就行了)，建议默认C盘安装，装其他盘也行，确保环境变量里有VULKAN_SDK。<br>2.编辑器窗口使用的是QT5.12.12，需要另行下载<br><br>目前有3个配置可选：<br>1.Debug （Editor Debug，启动项：Editor ，依赖QT5动态库）<br>2.Release （Editor Release，启动项：Editor ，依赖QT5动态库）<br>3.ReleaseGame_GLFW （Renderer Only with GLFW，启动项：RendererCore，无额外动态库依赖）<br></p>
+
+                        
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+<div id="home-posts-tabs">
+    <div id="posts-tabs">
+        <button id='posts-tab-button-all' class="posts-tab-button" onclick="openTab('all')">所有</button>
+        
+        <button id='posts-tab-button-Others' class="posts-tab-button" onclick="openTab('Others')">Others</button>
+        
+        <button id='posts-tab-button-Unreal' class="posts-tab-button" onclick="openTab('Unreal')">Unreal</button>
+        
     </div>
+    <div id="home-posts">
 
-
-    <a class="post-title-a" href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/">
-        <h2 class="post-title">UE 4.26 安卓打包配置 详细流程分享</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Unreal
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2024/05/28/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/">
+                <h2 class="post-title">JavaScript 正则表达式</h2>
             </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/6/16
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="首先是必下的文件" >首先是必下的文件</h1><br><span style="color:rgb(150,250,160);" >android sdk </span><br>（保持最新版，最好下载Android Studio来安装） <br><span style="color:rgb(150,250,160);" >android ndk r21b  </span><br>（引擎提示建议版本为r21b – r23，推荐版本是r21b，但是这是个已经抛弃的版本，得自己找渠道下载） <br><span style="color:rgb(150,250,160);" >java dk 1.8.0_77 </span><br>（jdk似乎必须要是这个版本才行）<br>以上除了android sdk，其他的建议直接通过搜索引擎下载，从Android Studio里只能下载到最新版本，UE4.26基本只对这几个内容的版本兼容比较好，下载其他版本不好说会不会出现错误。<br>准备好这些之后，在引擎项目设置里设置好路径：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" ><h1 id="需要注意的地方是</span></p>" >需要注意的地方是</span></p></h1><br><h2 id="Android Build Tools 版本" >Android Build Tools 版本</h2><br>SDK API Level （Android Build Tools）的版本必须为30以下，因为从31开始，里面就不再自带DX工具。直接编译的话，默认的lastest会指认最新版本，然后就会报错说找不到DX工具，需要另外下载一个30版本。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>建议把其他比30更加新的版本都删掉。我本地就遇到过我明明设置了30版本，但是会被强制运行最新版的问题。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>PS：听说可以把30以后版本里面的D8.bat复制一份改名成DX.bat，和把lib文件夹里的d8.jar复制一份改名成dx.jar也能解决，也可以试试。<br>然后，BuildTool用的什么版本，引擎设置里最好也设置一下：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="打包支持设置" >打包支持设置</h2><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>建议只勾选安卓，其他的先去掉，因为这边遇到过（有可能）会莫名其妙报一个ios的错误，只留安卓就好了。<br><h1 id="关于安卓分布签署(Distribution Signing)的设置" >关于安卓分布签署(Distribution Signing)的设置</h1><br>这个建议设置一下，因为不设置的话可能会无法打包，我本地就是，不设置就无法打包，就算是通过usb部署也不成功，原因不明。<br>本地都是可以暂时申请一个临时的，具体方法网上挺多的，这是官方文档的说明。<br>https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/Android/DistributionSigning/<br>简单说明下就是<br><span style="color:rgb(150,250,160);" >1.win + R打开运行窗口，输入cmd打开控制台</span><br><br><span style="color:rgb(150,250,160);" >2.输入keytool -genkey -v -keystore ExampleKey.keystore -alias MyKey -keyalg RSA -keysize 2048 -validity 10000</span><br><br>命令不用去完全记住，不过其中值得注意的是橙色字体部分<br>1.ExampleKey.keystore 这个是后面生成的许可证文件名字，ExampleKey可以改成其他名字。<br>2.MyKey，这个是可以换成自己想要的名字。<br><br><span style="color:rgb(150,250,160);" >3.回车后，会需要输入一些列参数，其中，里面的密码是需要记住的，可以都使用同一个密码，最少六位数。其他信息的可随意填写。</span><br><br><span style="color:rgb(150,250,160);" >4.完成后，会在C:\Users\[userName] 里生成这个ExampleKey.keystore文件，把它复制到项目目录的build/android里，通过项目设置里可以直接打开</span><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br><span style="color:rgb(150,250,160);" >5.完成后，进入项目设置，设置一下就完成了</span><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Key store 填文件全名，ExampleKey.keystore。<br>Key Alias 填入上面命令行的名字，也就是MyKey。<br>Key Store Password 填入这个文件的加密密码，在cmd上设置的密码。<br>Key Password 填入这个许可密匙的密码，如果在cmd设置了一样的那就可以空着。<br>接下来要应用这个Distribution Signing：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>勾上这个For Distribution就行了，勾了之后会自动切换成Shipping的构建配置，可以手动改成其他的。<br>PS：可以把Full Rebuild去掉，这样，上一次构建完成以后，没有再进行修改过的文件引擎就不会再进行构建了，如果是做测试用的话，可以省不少时间。<br>如果打包第一次成功，之后经过各种不知手动操作，导致出现了莫名其妙的打包失败的话，可能是缓存导致的，删除save文件夹应该可以解决。<br><h1 id="把数据全部塞入Apk（不生成OBB文件）" >把数据全部塞入Apk（不生成OBB文件）</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #ff7d73">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #00a596">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%AE%89%E5%8D%93/" style="color: #ffa2c4">安卓</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #ff7d73">打包</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/">
-        <h2 class="post-title">UE5.01 Custom Shading Model</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+            <div class="category-and-date">
+                
+                <span class="category" id="Others">
+                    <a href="/categories/Others/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Others
+                    </a>
                 </span>
-                Unreal
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/6/14
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="C++部分" >C++部分</h1><br><h2 id="1.EngineType.h" >1.EngineType.h</h2><br>添加 材质的ShadingModel枚举，这里加入之后，材质编辑器的下拉菜单也会新增对应选择，必须要在NUM之前添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="2.HLSL MaterialTranslator.cpp 和MaterialHLSLEmitter.cpp" >2.HLSL MaterialTranslator.cpp 和MaterialHLSLEmitter.cpp</h2><br>找到GetMaterialEnvironment，往Shader里添加宏定义<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="3.ShaderMaterial.h" >3.ShaderMaterial.h</h2><br>结构体 FShaderMaterialPropertyDefines，添加我们的宏<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="4.ShaderGenerationUtil.cpp" >4.ShaderGenerationUtil.cpp</h2><br>在ApplyFetchEnvironment里，添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>该操作是判断当前shading model是否被选择，选择就会再次设为1，没被选中的就会设为0<br>并且继续往下，找到DetermineUsedMaterialSlots<br>往里面添加<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>次操作是为了写入GBuffer，不写这段就无法在Shader正常获取GBuffer，<br>第二句话是 是否写入CustomData<br><h2 id="5.ShaderMaterialDerivedHelpers.cpp" >5.ShaderMaterialDerivedHelpers.cpp</h2><br>往CalculateDerivedMaterialParameters的Dst.WRITE_CUSTOMDATA_TO_GBUFFER里添加我们的宏（如果需要使用CustomData的话就要加）。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这一块区域本身在UE4里是定义在BasePassCommon.ush里的，到的UE5就移动到C++里面了，使用上面的FETCH进行动态判断宏是否需要开启。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>可以看到，在ush里，这个宏虽然有被声明，但是底下的实现被注释掉了，证实了已经不需要再在shader里添加了。<br><h2 id="6.Material.cpp" >6.Material.cpp</h2><br>我们虽然上面开启了CustomData的接口，但是此时材质编辑器的CustomData接口默认是灰色的，没办法输入，需要在此处开启接口输入。<br>找到IsPropertyActive_Internal这个函数，<br>这里是调整材质编辑器控制的位置，<br>比如我们在延迟贴画的模式下，开启半透明的时候，哪些接口可以被开启之类的。<br>然后在底下，加入我们的shadingModel<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="7.MaterialShared.cpp" >7.MaterialShared.cpp</h2><br>找到GetAttributeOverrideForMaterial，在这里可以给材质编辑器节点改个名字（如果有必要的话），例如：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这样，C++部分我们就完成了。接下来是shader部分。<br><h1 id="Shader部分" >Shader部分</h1><br><h2 id="1.ShadingCommon.usf" >1.ShadingCommon.usf</h2><br>在相同的位置添加我们的shadingModel<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>再往下，GetShadingModelColor里添加我们的颜色，这样在编辑器里DebugShadingModelColor的时候就会显示我们设置的颜色<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="11.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="2.ShadingModelsMaterial.usf" >2.ShadingModelsMaterial.usf</h2><br>在这里添加我们的shadingModel的GBuffer参数获取。<br>值得注意的是，我们从材质编辑器里输入进来的CustomData0和CustomData1都只是一个half，而GBuffer里的CustomData是个float4，这里我们只做一下测试。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="12.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="3.在DeferredShadingCommon.usf里面还有个坑" >3.在DeferredShadingCommon.usf里面还有个坑</h2><br>就是如果我们确定了要使用GBuffer的CustomData，我们就需要在HasCustomGBufferData这个函数里面，加入我们自己的Shading model id，不然我们从GBuffer里面读出来的永远都是0，包括上面的这个IsSubsurfaceModel，如果要开启subsurface，也要往里面加。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="13.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h2 id="4.最后 ShadingModels.usf" >4.最后 ShadingModels.usf</h2><br>在ShadingModels.usf里加入我们的shading Model分支，就能实现不同的效果了<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="14.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><h1 id="结果" >结果</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="15.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #00bcd4">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #ffa2c4">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UE5/" style="color: #03a9f4">UE5</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00bcd4">自定义</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/ShadingModel/" style="color: #00a596">ShadingModel</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
-        <h2 class="post-title">视差材质的原理与实现</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2024/5/28
                 </span>
-                Unreal
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2024/05/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/GitHub%20+%20Hexo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+                <h2 class="post-title">GitHub + Hexo 搭建个人博客</h2>
             </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/6/14
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <p>视差计算一直都被我认为是难度比较高的计算，但是实际研究过后，其实还是比较简单的，相信经过这篇文章的简单介绍，各位会有个比较入门的认识。<br><br>首先什么是视差贴图，下面这个就是视差贴图：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboardpng32.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="500" ></div><br>当然这并不标准，正常的视差贴图应该是一张纹理的高度图，这是我用BaseColor转的，并且加强了对比度，也是为了让最终效果更加的明显。<br><br>那么接下来解释下视差的原理，请看图：<br><br>首先我们假设一个场景，场景内有有一个面片A，<br><br>然后这个面片A采样了一张视差贴图(单纯的采样，暂时不作视差计算)，而渲染出来的灰度(高度)B<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboard-png-33-768x372.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="600" ></div><br>接下来我们进行多次的视差偏移，假设我们以某个高度偏移了2次，这时候我们得到了3层高度：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboard-png-34.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="600" ></div><br>然后我们因为我们的贴图渲染时层层覆盖的关系，所以我们得讨巧下：使用上一次的深度，取反，假如比下一次要低，就继续往下覆盖<br><br>去改变我们的计算方法，那么这三条曲线就会变成这样：<br><br>B和B1的红叉并不是去掉的意思，而是在【红点】处被【截断】。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="clipboard-png-35.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="600" ></div><br>所以这样就能得出我们的计算过程了，放代码。<br><br>先看下这个最简单的，没有经过任何处理的，基于切线空间（贴图空间）的【视差代码公式】，没有它也不会有多种多样的视差变化：<br>相机世界空间坐标转切线空间<br>[c]<br>TangentView.xyz &#x3D; TransformWorldToTangent(WorldView.xyz);<br>ParallaxOffset.xy &#x3D; TangentView.xy &#x2F; TangentView.z；<br>[&#x2F;]<br>实际计算过程如下：<br>[line-numbers,c]<br>half  noiseEnd &#x3D; 0;<br>half count  &#x3D; min(64,ParallaxStep);<br>&#x2F;&#x2F;实测5次以下也够用<br>half2 _ParallaxOffset &#x3D;(TangentView&#x2F;(TangentView.z + TangentViewForwardMul)); &#x2F;&#x2F;视差公式<br>for( int i &#x3D;0 ; i &lt; count; i++)<br>{<br>    &#x2F;&#x2F;每一次循环都增强视差的深度，并且获取上一次结果，取反，混合判断是否会被覆盖<br>    uv +&#x3D; _ParallaxOffset * ParallaxStrength*0.01 *(1-noiseEnd);<br>    &#x2F;&#x2F;再次采样<br>    noiseEnd &#x3D; tParallaxMap.SampleBias(sParallaxMapSampler,uv.xy,-2).r;<br>    &#x2F;&#x2F;最后这是一个优化手段，一旦发现不会被覆盖我们可以选择跳出循环了，不用再浪费时间计算了，阈值可以再低一点<br>    if( noiseEnd &gt;&#x3D;0.999)<br>        break;<br>}<br>[&#x2F;]<br>最后使用得到的最终uv去采样我们的贴图，输出颜色（法线、粗糙度同理）<br>[c]<br>half3 BaseColor &#x3D; tBaseMap.SampleBias(sBaseSampler,uv.xy,cBaseMapBias).rgb;<br>[&#x2F;]<br>以下是效果截图：<br>半透明渲染<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3-gif (1).gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="400" ></div><br>地砖渲染，包含了法线，效果还是非常棒的<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4-gif (1).gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="400" ></div><br></p>
-
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #03a9f4">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #ff7d73">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #ffa2c4">视差</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00a596">材质</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/">
-        <h2 class="post-title">自定义ShadowMap(英文)</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+            <div class="category-and-date">
+                
+                <span class="category" id="Others">
+                    <a href="/categories/Others/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Others
+                    </a>
                 </span>
-                Unreal
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/6/11
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <p><span style="color:rgb(160,250,150);" >PS:文章是2018年写的，保存的不是很好，图片已经很模糊了，建议直接去看我的视频，一共四期：</span><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1544y177sh?spm_id_from=333.999.0.0&vd_source=ac34bbe36af835db8452b6636f002bd2">https://www.bilibili.com/video/BV1544y177sh?spm_id_from=333.999.0.0&amp;vd_source=ac34bbe36af835db8452b6636f002bd2</a><br><br>This dairy was modified on Sep. sixth 2018.<br><br>Hello everyone ,we met again.This article will tell everyone how to make the custom shadow of directional light in Unreal Engine 4.Next I did not talk about any trashy things.Let’s start to make it.<br><br>I need to say if you want to make custom shadow,you have to get some knowledge about the Matrix. There is a nice book everyone can read.Its name is 3D math primer for Graphics and Game development.This article did not talk about the Matrix knowledge for the 3D math.So if you can not understand,when you read below article, you will be giddy.<br><br>First Create the new level and delete some things about Unreal Engine default lighting.Create the other simple shape for our reference.<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Create the new material for custom shadow.And Set shading model to Unlit.<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Now we need a render target to capture the depth of the scene.It work like the tutorial in internet.I did not talk about its theory,because there are so many tutorials about it.Below URL are the tutorials of the DirectX 11 shadow map:<br><br>①(Chinese) <br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29523119/article/details/53056755">https://blog.csdn.net/qq_29523119/article/details/53056755</a><br><br>②(English)<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3AdLu0PHOnE">https://www.youtube.com/watch?v=3AdLu0PHOnE</a><br><br>③(Cantonese!?!??OMG 广州话)<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oPxY1eTrrOo">https://www.youtube.com/watch?v=oPxY1eTrrOo</a><br><br>Create render target and set <br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Create a blueprint of Actor.And Create a scene capture component 2D.Set it for the render target.The projection Type is orthographic.because we only make the directional light shadow.<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Sample the render target and watch the effect.it is the strong light in the scene.Because it is scene depth,the vertexes distance the camera.Not the from zero to one.So we should divide the distance.Create a parameter collection,and create some parameter as we will need.One position and two matrix parameters.Create a custom event in blueprint and run it on the construction script.<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="8.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="9.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="10.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="11.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="12.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="13.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="14.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Alright, now we can see the capture map was pasted the shape.But show type was wrong.So this is why we need the Matrix to transform.My matrix constructions are build in blueprint.Unreal Engine as same as many Engines are the left handed coordinate system. So the Y axis is the up vector,X axis is the right vector,Z axis is the forward vector.We can not get the camera space space and its projection space easily in blueprint.So we only make these matrixes by ourselves.There are two matrixes function in the DirectXMath source code.They can help us to transform the space.  <br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="15.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="16.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >Projection Matrix  ↓</span></p><br>However in the  projection space the zero point of the  axis system is on the left-down side.We can debug the mouse position.We can see the upleft side is the zero point.So we shoud add a minus sign at the Y axis.And here, in the projection space,the W vector is not matter,we can discard it.I only folllow the equation to make the matrix.<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="17.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >Debug the mouse position</span></p><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="18.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >(I am sorry i cant catch the arrows of the mouse.I only draw it. XD)</span></p><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="19.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="20.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >Material Editor</span></p><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="21.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >Result</span></p><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="22.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>Next we use the scene depth to contract the shadow map,and draw the shadow.<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="23.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >Shadow Acne(Bias 0.0)</span></p><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="24.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><p style="text-align:center;"><span style="" >Bias 0.001</span></p><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="25.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="26.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>If I have some things to update for this article,I will follow up.<br><br>Have fun 🙂<br><br><br></p>
-
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #ff7d73">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #ffa2c4">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #00bcd4">阴影</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #ff7d73">动态阴影</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-        <img src="/images/loading3.gif" data-original="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/">
-        <h2 class="post-title">UE4.26-UE4.27 Compute shader的实现过程</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Unreal/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2024/5/23
                 </span>
-                Unreal
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2024/01/15/Unreal/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%A7%E8%83%BD%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%BB%8D/">
+                <h2 class="post-title">移动端性能指令介绍</h2>
             </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2022/4/24
-        </span>
-        
-        
-    </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <p>做这个文档的起因是，网上搜索到的教程的版本都比较旧，基本上都是4.24以前的，然后UE4似乎从4.25之后，对底层代码做了不少改动，导致网上的做法都不可行了，所以做这个文档记录一下。<br><br>还有我不敢保证更新的版本支持这个写法，比如UE5。<br><br>该方法是独立于渲染管线之外的，继承于FGlobalShader，如果想集成到Mesh renderpass 里，想根据渲染顺序读取模型数据之类的的话就不行了（不过一般ComputeShader也不会走管线计算）<br><br><h1 id="首先第一步，新建一个模块（Module）" >首先第一步，新建一个模块（Module）</h1><br>为什么要新建Module？<br><br>因为我们ComputeShader需要继承FGlobalShader，而继承了FGlobalShader类，必须要在引擎之前加载，不然会导致错误，加载失败，所以我们不能把Compute shader写在引擎的逻辑代码上，必须通过Module，使其提前加载。<br><br>创建了Module之后，在项目的.uproject文件上修改即可<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>如果这样还是报错的话，就把模块的位置放到上面试试（亲测可行）<br><br>如果实在不行的话，那就只能和网上说一样新建一个Plugins，然后再在里面生成一个module了。<br><br>新建模块可以在商城里面找到一个免费的插件<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这个免费插件可以帮助我们一键生产模块，自动添加cs和uproject配置，很方便，非常推荐。<br><br>这里我新建了一个模块叫ComputeShaderTest<br><br><h1 id="第二步，编写Compute Shader（TestCS.usf）" >第二步，编写Compute Shader（TestCS.usf）</h1><br>编写测试用的ComputeShader，这里我们直接输出一个绿色。<br><br>TestCS.usf<br><pre class="line-numbers"><code class="language-c">#include "/Engine/Private/Common.ush"
-RWTexture2D<float4> _texture_out;
-uint Index;
-<span style="" ></span>
-void CSMain(uint3 id :SV_DispatchThreadID)
-{
-   _texture_out[id.xy] = float4(0.0,1.0, 0.0, 1.0);
-}
-</code></pre>文件放在了项目的根目录的Shaders文件夹内<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>引擎可不会这么聪明找到我们的shader在哪里，所以我们需要添加shader的搜索目录，在模块加载的时候添加，也就是shader编译之前。<br><br>ComputeShaderTest.cpp<br><pre class="line-numbers"><code class="language-c">void FComputeShaderTest::StartupModule()
-{
-	UE_LOG(
-        ComputeShaderTest, Warning, 
-        TEXT("ComputeShaderTest module has been loaded")
-        );
-
-	AddShaderSourceDirectoryMapping(
-        TEXT("/Shaders"),
-        FPaths::GetPath(FPaths::GetProjectFilePath())+"/Shaders"
-        );
-}
-</code></pre><h1 id="第三步，编写我们的ComputeShader类" >第三步，编写我们的ComputeShader类</h1><br>理论上来说，我们的ComputeShader类，写在哪里都无所谓，所以这里我为了方便，直接和新建的蓝图Actor类写到了一起了。<br><br>在UE4里，在我新建的模块里，新建一个继承自Actor的类，这里我起名叫ComputeShaderTestActor。<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="3.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>在写之前我们还需要在 ComputeShaderTest.build.cs（） 里引入两个渲染模块：<br><br>RenderCore 和 RHI<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="4.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="1024" ></div><br>首先是.h文件<br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">#include "GlobalShader.h"
-class COMPUTESHADERTEST_API FTestComputeShader :public FGlobalShader
-{
-private:
-   //声明全局Shader类型，和 DECLARE_GLOBAL_SHADER 是同一个内容，二选一
-   DECLARE_SHADER_TYPE(FTestComputeShader,Global);
-   //------------------------------------ 下面这段可有可无，去掉好像也没影响...
-   BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )
-      SHADER_PARAMETER_UAV(RWTexture2D<float4>, _texture_out)
-   END_SHADER_PARAMETER_STRUCT()
-   //------------------------------------
-   LAYOUT_FIELD(FRWShaderParameter, OutputSurface); //
-   
-public:
-   FTestComputeShader() {}
-   FTestComputeShader(const ShaderMetaType::CompiledShaderInitializerType& Initializer)
-      : FGlobalShader(Initializer)
-   {
-      OutputSurface.Bind(Initializer.ParameterMap, TEXT("_texture_out"));
-   }
-}
-</code></pre>至于class后面的这个DLL 导出宏（COMPUTESHADERTEST_API），这个感觉最好加一下，不过不加也没什么问题，就是不知道会不会影响到打包？<br><br>然后我们需要在public里加入几个方法：<br><br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">//Compute shader 执行方法
-static void ExecComputeShader_RenderThread(UTextureRenderTarget2D* RenderTarget, FRHICommandListImmediate& RHICmdList, ERHIFeatureLevel::Type FeatureLevel ); 
-
-static bool ShouldCache(EShaderPlatform Platform)
-{
-   //return IsFeatureLevelSupported(Platform, ERHIFeatureLevel::SM5);
-   return true;
-}
-
-static void ModifyCompilationEnvironment(const FGlobalShaderPermutationParameters& Parameters, FShaderCompilerEnvironment& OutEnvironment )
-{
-   FGlobalShader::ModifyCompilationEnvironment(Parameters, OutEnvironment);
-}
-
-void BindBuffers(FRHICommandList& RHICmdList, FUnorderedAccessViewRHIRef OutputSurfaceUAV, FRHITexture* Texture) 
-{ 
-   FRHIComputeShader* pShaderRHI = RHICmdList.GetBoundComputeShader();
-   check(OutputSurface.IsBound());
-   RHICmdList.SetUAVParameter(pShaderRHI,OutputSurface.GetUAVIndex(),OutputSurfaceUAV);
-}
-
-void UnbindBuffers(FRHICommandList& RHICmdList) 
-{ 
-   FRHIComputeShader* pShaderRHI = RHICmdList.GetBoundComputeShader();
-   RHICmdList.SetUAVParameter(pShaderRHI,OutputSurface.GetUAVIndex(),FUnorderedAccessViewRHIRef());
-}
-</code></pre>稍微解释下：<br><br>UseComputeShader_RenderThread   <br>    是执行我们ComputeShader的方法，它将会在渲染序列进行。<br>ShouldCache                                    <br>    告诉引擎我们这个shader是否需要生产shader cache<br><br>ModifyCompilationEnvironment      <br>    根据某些判断可以修改shader的环境，一般指的是宏的声明和修改（变体），因此每一次shader编译都会跑到这个函数。具体可以上网搜一下，这里我们并不需要用到。<br>BindBuffers                                       <br>    这个方法是我们自定义的，用于在渲染序列中进行参数的绑定。<br>UnbindBuffers                                  <br>    执行完之后需要解除对资源的绑定，才能在CPU对资源进行操作。<br><br>接下来是.cpp文件<br>首先要加入实例化shader的宏，没有它shader编译就不会执行<br><br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">IMPLEMENT_GLOBAL_SHADER(FTestComputeShader, "/Shaders/TestCS.usf", "CSMain", SF_Compute);
-</code></pre>之后就是渲染函数的实现，不讲太多了，上面有非常详细的注释。<br><br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">#include "Engine/TextureRenderTarget2D.h"
-//#include "../Shaders/TestCS.usf"
-IMPLEMENT_GLOBAL_SHADER(FTestComputeShader, "/Shaders/TestCS.usf", "CSMain", SF_Compute);
-
-void FTestComputeShader::ExecComputeShader_RenderThread( UTextureRenderTarget2D* RenderTarget, 
-    FRHICommandListImmediate& RHICmdList,
-    ERHIFeatureLevel::Type FeatureLevel  
-)  
-{
-	//检查是否在渲染线程
-    check(IsInRenderingThread());
-	check(RenderTarget!= nullptr);
-	//从global shader获取我们的compute shader
-	TShaderMapRef<FTestComputeShader> ComputeShader(GetGlobalShaderMap(FeatureLevel));
-	//使用之前，需要绑定Compute Shader
-	FRHIComputeShader* cs = ComputeShader.GetComputeShader();
-	RHICmdList.SetComputeShader(cs);
-	//创建贴图
-    int32 SizeX = RenderTarget->SizeX;  
-    int32 SizeY = RenderTarget->SizeY;  
-    FRHIResourceCreateInfo CreateInfo;
-	//创建UAV Texture2D，一定要注意第三个贴图格式！必须要和renderTarget一致，不然就无法copy到renderTarget上
-    FTexture2DRHIRef Texture = RHICreateTexture2D(SizeX, SizeY, RenderTarget->GetFormat(), 1, 1, TexCreate_ShaderResource | TexCreate_UAV, CreateInfo);
-    //创建UAV
-    FUnorderedAccessViewRHIRef TextureUAV = RHICreateUnorderedAccessView(Texture);  
-	//绑定UAV（Set UAV Parameter）
-	ComputeShader->BindBuffers(RHICmdList, TextureUAV , Texture);  
-	//执行compute shader
-    DispatchComputeShader(RHICmdList, ComputeShader, SizeX/32, SizeY/32, 1);
-	//计算完成之后，解除UAV的绑定，释放GPU权限，这样才能在CPU读取到数据
-    ComputeShader->UnbindBuffers(RHICmdList);
-	
-	//把UAV texture 复制到我们的RenderTarget上
-	RHICmdList.CopyTexture(Texture, RenderTarget->GetRenderTargetResource()->TextureRHI, FRHICopyTextureInfo());
-	//
-    /*------------------开始读取数据--------------*/
-    uint32 LolStride = 0;
-	//读出贴图数据
-    unsigned char* TextureData = (unsigned char*)RHICmdList.LockTexture2D(Texture, 0, EResourceLockMode::RLM_ReadOnly, LolStride, false);
-	TArray<FColor> Bitmap;
-	for (int32 y = 0; y < SizeY; y++)
-	{
-		for (int32 x = 0; x < SizeX; x++)
-		{
-			FColor convert;
-			convert.R = TextureData[(y*SizeX + x) * 4 + 2];//R
-			convert.G = TextureData[(y*SizeX + x) * 4 + 1];//G
-			convert.B = TextureData[(y*SizeX + x) * 4 + 0];//B
-			convert.A = TextureData[(y*SizeX + x) * 4 + 3];//A 0:全透明；255:全不透明
-			Bitmap.Add(convert);
-		}
-	}
-	//停止贴图读取
-    RHICmdList.UnlockTexture2D(Texture, 0, false);  
-	/*---------------------------------------------*/
-	//确保大小正确
-    if (Bitmap.Num() == SizeX*SizeY)  
-    {  
-        //把贴图存在引擎的截图路径
-        IFileManager::Get().MakeDirectory(*FPaths::ScreenShotDir(), true);  
-        const FString ScreenFileName(FPaths::ScreenShotDir() / TEXT("VisualizeTexture"));  
-        uint32 width = Bitmap.Num() / Texture->GetSizeY();  
-		//保存成BMP
-        FFileHelper::CreateBitmap(*ScreenFileName, Texture->GetSizeX(), Texture->GetSizeY(), Bitmap.GetData());  
-    }  
-}
-</code></pre><h1 id="第四步，把功能实现到引擎蓝图里" >第四步，把功能实现到引擎蓝图里</h1><br>.h头文件<br>回到头文件，找到我们新建的Actor类<br><br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">UENUM()
-enum class ERHIFeature :uint8
-{
-   ES2_REMOVED = ERHIFeatureLevel::Type::ES2_REMOVED,
-   ES3_1 = ERHIFeatureLevel::Type::ES3_1,
-   SM4_REMOVED = ERHIFeatureLevel::Type::SM4_REMOVED,
-   SM5 = ERHIFeatureLevel::Type::SM5,
-};
-
-UCLASS()
-class COMPUTESHADERTEST_API AComputeShaderTestActor : public AActor
-{
-   GENERATED_BODY()
-public:   
-   // Sets default values for this actor's properties
-   AComputeShaderTestActor();
-  
-	UFUNCTION(BlueprintCallable)
-	void TestComputeShader(int TextureSize = 256 ,ERHIFeature type = ERHIFeature::SM5);
-  
-protected:
-   // Called when the game starts or when spawned
-   virtual void BeginPlay() override;
-public:   
-   // Called every frame
-   virtual void Tick(float DeltaTime) override;
-};
-</code></pre>这里我声明了一个枚举，用来判断不同的平台，大家也可以直接在这个C++里对不同平台直接判断，就不用这么麻烦了<br><br>.cpp文件<br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">void AComputeShaderTestActor::TestComputeShader(int TextureSize,ERHIFeature type)
-{
-	if(TextureSize>=1)
-	{
-		if(_RT != NULL)
-		{
-			_RT->ReleaseResource();
-		}
- 		//新建一张RenderTarget，也可以从蓝图读取进来，就不需要我们手动释放内存了
-		_RT = NewObject<UTextureRenderTarget2D>(GetTransientPackage(),NAME_None,RF_Transient);
-		check(_RT);
-		_RT->RenderTargetFormat = RTF_RGBA8;
-		_RT->ClearColor = FLinearColor(0,0,0,1);
-		_RT->bAutoGenerateMips = false;
-		_RT->InitAutoFormat(TextureSize, TextureSize);	
-		_RT->UpdateResourceImmediate(true);
-		
-		ENQUEUE_RENDER_COMMAND(TestCommand)(
-			[this,type](FRHICommandListImmediate& RHICmdList)
-			{
-				FTestComputeShader::ExecComputeShader_RenderThread(_RT,RHICmdList,(ERHIFeatureLevel::Type)type);
-			});
-	}
-	//_RT = rt;
-}
-</code></pre>使用ENQUEUE_RENDER_COMMAND，通过Lambda表达式，把方法抛到渲染序列中执行即可。<br><h1 id="最后蓝图里调用" >最后蓝图里调用</h1><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="5.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>成功输出了一张256的纯绿色贴图了<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="6.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>RenderTarget也能正常输出：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="7.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br></p>
-
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unreal/" style="color: #ffa2c4">Unreal</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/UnrealEngine/" style="color: #03a9f4">UnrealEngine</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Compute-Shader/" style="color: #00bcd4">Compute Shader</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #03a9f4">计算着色器</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/" class="go-post">阅读全文</a> -->
-    
-</div>
-
-<div class="post">
-
-    <div class="post-image-parent">
-    
-    </div>
-
-
-    <a class="post-title-a" href="/2021/01/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/Test/">
-        <h2 class="post-title">Markdown测试文章</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/Others/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
                 </span>
-                Others
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2024/1/15
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/">
+                <h2 class="post-title">UE5 自定义材质编辑器的节点</h2>
             </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2021/1/23
-        </span>
-        
-        
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/7/20
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/">
+                <h2 class="post-title">UE 4.26 安卓打包配置 详细流程分享</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/16
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                <h2 class="post-title">视差材质的原理与实现</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/14
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/">
+                <h2 class="post-title">UE5.01 Custom Shading Model</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/14
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/">
+                <h2 class="post-title">自定义ShadowMap(英文)</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/11
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/04/24/Unreal/UE4.26-UE4.27%20Compute%20shader%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/">
+                <h2 class="post-title">UE4.26-UE4.27 Compute shader的实现过程</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/4/24
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2021/01/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/Test/">
+                <h2 class="post-title">Markdown测试文章</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Others">
+                    <a href="/categories/Others/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Others
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2021/1/23
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/Header.jpeg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2018/08/30/Unreal/%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%AD%E6%9B%B4%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E5%85%89%E7%85%A7%E7%9A%84%E5%8F%98%E9%87%8F/">
+                <h2 class="post-title">让我们在我们的场景中更进一步的学习如何设置静态光照的变量</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="Unreal">
+                    <a href="/categories/Unreal/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        Unreal
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2018/8/30
+                </span>
+                
+                
+            </div>
+        </div>        
+
     </div>
-
-<!-- 文章内容显示 -->
-    <!-- <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="测试测试，标题h1" >测试测试，标题h1</h1><br><h2 id="测试测试，标题h2" >测试测试，标题h2</h2><br><h3 id="测试测试，标题h3" >测试测试，标题h3</h3><br><h4 id="测试测试，标题h4" >测试测试，标题h4</h4><br><h5 id="测试测试，标题h5" >测试测试，标题h5</h5><br><h6 id="测试测试，标题h6" >测试测试，标题h6</h6><br>正文字体，啦啦啦啦，你好呀，我很好，唉哟不错哦，<br>战地，使命召唤，飞龙骑脸，啪啪啪。<br><h1 id="代码块" >代码块</h1><br>代码块的语法和原来的差不多，也是使用 ``` ，不过默认没有行号，需要指定，也可以指定语言，不过插件只包含了C like，css和js这些常见的，没有太多其他语法支持。<br>```必须顶格，前面不能有其他任何字符
-例子：<br><pre class="line-numbers"><code class="language-c">```c,line-numbers
-float a = 1.0;
-float b = a + b;
-```
-</code></pre><br><h1 id="拓展写文章的功能，都是映射html的style ，css语法：" >拓展写文章的功能，都是映射html的style ，css语法：</h1><br><h2 id="颜色的字体,支持十六进制,缩写col、c" >颜色的字体,支持十六进制,缩写col、c</h2><br>例如:<br>\[color(255,0,0)]红色字体：<span style="color:rgb(255,0,0);" > 红色字体。</span><br>\[c(255,0,0)]紫色字体：<span style="color:rgb(150,50,160);" > 紫色字体。</span><br>\[c(#FFDAB9)]肤色字体：<span style="color:#FFDAB9;" > 肤色字体。</span><br>需知:标题(h)不支持变色，也不打算支持。<br>其他：<br><span style="color:rgb(255,255,0);" > 黄色字体。</span><br><span style="color:rgb(0,0,255);" > 蓝色字体：[c(0,255,0)] 绿色字体。</span><br><span style="color:rgb(150,80,90);" >其他颜色字体。</span><br><br><h2 id="字体大小设置,缩写s" >字体大小设置,缩写s</h2><br>和上面的颜色一样，通过[]设置：<br>\[size(10px)]字体大小10px：<span style="font-size: 10px;" >字体大小10px。</span><br>\[s(50px)]字体大小50px：<span style="font-size: 50px;" >字体大小50px。</span><br><br><h2 id="下划线,缩写u" >下划线,缩写u</h2><br>接着上面的，也是支持组合的，顺序随机。<br>\[underline()]下划线，不带属性也行：<span style="text-decoration: underline ;" >下划线，不带属性也行。</span><br>\[u(red dashed)]当然也可以带颜色和类型的属性：<span style="text-decoration: underline red dashed;" >当然也可以接颜色和类型的属性，这是一个红色不连续的下划线。</span><br><br><h2 id="支持组合" >支持组合</h2><br>\[c(255,255,0),s(25px)]黄色字体大小25px： <span style="color:rgb(255,255,0);font-size: 25px;" >黄色字体大小25px。</span><br>\[c(0,255,0),s(15px),u()]下划线绿色色字体大小15px： <span style="color:rgb(0,255,0);font-size: 15px;text-decoration: underline ;" >下划线绿色色字体大小15px。</span><br><br><h2 id="字体背景色,支持十六进制,缩写b、bg" >字体背景色,支持十六进制,缩写b、bg</h2><br>\[background(10,180,0)]绿色背景：<span style="background-color:rgb(10,180,0);" > 紫色背景</span><br>\[b(120,100,0)]橙色背景：<span style="background-color:rgb(120,100,0);" > 橙色背景</span><br>\[b(#FFDAB9)]肤色背景：<span style="background-color:#FFDAB9;" > 肤色背景</span><br><br><h2 id="加载图片" >加载图片</h2><br>markdown有自己加载图片的语法，但是我感觉不太好用，而且无法缩放大小，所以自己改了一个，<br>其实就是把markdown的这个拓展了一下,和obsidian一样,<br>示范：<br>!\[描述](tt.gif|50):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="50" ></div><br>!\[描述](tt.gif|100):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="100" ></div><br>!\[描述](tt.gif|150):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="150" ></div><br>!\[描述](tt.gif|200):<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" width="200" ></div><br>!\[描述](tt.gif)  原图设置:<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="tt.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br><br><h2 id="Hexo自带了代码处理，去掉！" >Hexo自带了代码处理，去掉！</h2><br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>
-            
-        </div>    
-    </div> -->
-<!-- 文章的Tags显示 -->
-    <!-- <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/GitHub/" style="color: #00a596">GitHub</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Hexo/" style="color: #00bcd4">Hexo</a>
-        </span>
-           
-    </div> -->
-
-    <!-- <a href="/2021/01/23/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/Test/" class="go-post">阅读全文</a> -->
-    
+    <button class="posts-tab-button posts-tab-button-more" onclick="openPostsMore()"> ... 更多 ... </button>
 </div>
+
 
 
             </div>
-            <!-- 页数,不需要 -->
-            <!-- <div class="page-current">
-    
-    <span class="current">1</span>
-    
-    <a class="page-num" href="/page/2">
-        2
-    </a>
-    
-    
-    
-    
-    <a class="page-num" href="/page/2/">
-        <i class="fa-solid fa-caret-right fa-fw"></i>
-    </a>
-    
-</div>
- -->
+            <!-- posts改到md里面进行设计 -->
         </div>
         <div id="home-grid-right">
             <p style="text-align: center;top: 20%;">这一块还没设计好~</p>
