@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ QT5 自定义标题栏 | 坏包包</title>
+    <meta name="author" content="坏包包" />
+    <meta name="description" content="坏包包的个人博客" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/Icon.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+<script src="/js/lib/search.js"></script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    
+<link
+    rel="stylesheet"
+    href="/css/prism.css"
+/>
+<script src="/js/lib/prism.js"></script>
+
+
+<script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2> LOADING </h2>
+                    <p>...加载中...</p>
+                    <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
+                    <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>坏包包</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-All fa-fw"></i>
+            <span>&ensp;所有文章</span>
+        </a>
+        
+        <a href="/categories/Unreal">
+            <i class="fa-solid fa-Unreal fa-fw"></i>
+            <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
+        </a>
+        
+        <a href="/categories/Others">
+            <i class="fa-solid fa-Others fa-fw"></i>
+            <span>&ensp;Others</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;坏包包</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-All fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">所有文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Unreal">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Unreal fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Others">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Others fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Others</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <!-- 目录卡片 -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        target.style.display = 'none';
+        button.textContent = '显示目录';
+
+        const home = document.getElementById('home-toc');
+        home.style.display = 'none';
+
+        setTimeout(()=>{
+            const home = document.getElementById('home-toc');
+            home.style.display = 'block';
+        },800);
+    });
+    
+    function onButtonClick() 
+    {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        if(target.style.display == 'none')
+        {
+            target.style.display = 'block';
+            button.textContent = '隐藏目录';
+        }
+        else
+        {
+            target.style.display = 'none';
+            button.textContent = '显示目录';
+        }
+
+    }
+</script>
+<div id="home-toc" class="toc-article">
+    <button id="toc-button" class="toc-button" onclick="onButtonClick()">显示目录</button>
+    <div id="toc-style">
+        <!-- <div class="toc-title">目录</div> -->
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%96%87%E6%A1%A3%E6%98%AF%E6%9C%89%E9%85%8D%E5%A5%97%E8%A7%86%E9%A2%91%E8%AF%B4%E6%98%8E%E7%9A%84%EF%BC%9A"><span class="toc-text">首先，这个文档是有配套视频说明的：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AF%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-text">以下是代码部分：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">头文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPP%E6%BA%90%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">CPP源文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QSS%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">QSS文件：</span></a></li></ol></li></ol>
+    </div>
+</div>
+<div class="article">
+    <!-- 只有设置了image参数才会加载头图 -->
+    
+    <img src=Header.png class="post-image no-lazy" alt="" ></img>
+    
+    
+    <div class="post-title-parent">
+        <h1 class="post-title">C++ QT5 自定义标题栏</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/6/23
+        </span>
+        
+        <span class="category">
+            <a href="/categories/CplusplusCsharp/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                CplusplusCsharp
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #03a9f4">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AA%97%E5%8F%A3/" style="color: #ffa2c4">
+                    窗口
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/QT5/" style="color: #03a9f4">
+                    QT5
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00bcd4">
+                    自定义
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="首先，这个文档是有配套视频说明的：" >首先，这个文档是有配套视频说明的：</h1><br>https://www.bilibili.com/video/BV1f5411p7Dr?share_source=copy_web<br><h1 id="正文" >正文</h1><br>效果图：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>自定义标题栏（不出意外的话，代码直接复制粘贴就能用）<br>不清楚还有什么BUG，有的话自己改改吧：<br><pre class="line-numbers"><code class="language-cpp">//里面内置了部分功能函数，具体能不能用我倒是还没试过就是了...讲道理应该可以的。
+//设置标题栏下内部窗口
+SetChildWidget(QWidget* child)
+//设置标题栏高度
+SetTitleHeight(int newHeight)
+//设置标题栏的字符
+SetTitleText(QString newTitle) 
+//设置标题栏背景图标，第二个参数是状态，默认0就好
+SetTitleBackgroundImage(QString newUrl=":/QtCustomTitleBar/Resource/TiaoWen.jpg",int bkStyle=0) 
+//设置标题栏三个缩放按钮的宽度
+SetTitleBottomWidth(int newWidth)
+//设置标题栏边框大小
+SetWindowBorder(int newBorderSize)
+</code></pre>补充：动态读取外部qss文件，以“ }; ”为结尾，需要注意的是，如果还没到一整段styleSheet结束的位置，请不要在花括号后打分号，不然会判断会为结束，后面的都会作废。<br><br>函数第一个参数是QWidget的ObjectName，所以在使用这个之前得先设置ObjectName<br><pre class="line-numbers"><code class="language-cpp">QString GetWidgetStyleSheetFromFile(QString objectName,QString path="./Resource/Config/TitleStyleSheet.qss");
+
+setObjectName("CustomTitleWindow");
+SetStyleSheet(GetWidgetStyleSheetFromFile("CustomTitleWindow"));
+UpdateWidgetStyleSheet();
+</code></pre>QSS例如：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>局部多样式：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="2.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>当然也没必要和我这样一样做，直接使用QT自带的读取QSS功能一样可以，只是我没找到它如何实现动态读取的功能，最终生成出来的程序是没有QSS文件的，也就不能自由的修改QSS了，下面视频展示下动态修改主题样式的功能：<br><div  style="display: flex;justify-content: center;text-align: center;"  ><video controls loop muted src="bandicam-2022-06-24-11-17-27-697.mp4" width="500" ></video></div><br><h1 id="以下是代码部分：" >以下是代码部分：</h1><br><h2 id="头文件：" >头文件：</h2><br><pre class="line-numbers"><code class="language-cpp">#pragma once
+#include &lt;qwidget.h&gt; 
+#include &lt;qevent.h&gt;
+#include &lt;qtoolbutton.h&gt; 
+#include &lt;qlabel.h&gt; 
+#include "qpixmap.h" 
+#include "qapplication.h" 
+#include "qdesktopwidget.h" 
+#include "qstyle.h" 
+#include "qpainter.h" 
+#include "qstyleoption.h"
+#include &lt;qtimer.h&gt;
+#include &lt;qfile.h&gt;
+#include &lt;QTextStream&gt;
+class CustomTitleBar :public QWidget
+{
+    Q_OBJECT
+public:
+    CustomTitleBar(QWidget* parent = Q_NULLPTR);
+    void SetChildWidget(QWidget* child);
+    inline QWidget* GetChildWidget() const{ return p_child; }
+    //Set Title Height
+    inline void SetTitleHeight(int newHeight) 
+    { 
+        titleHeight = newHeight; 
+        UpdateTitle();
+    }
+    //Set Title String
+    inline void SetTitleText(QString newTitle) 
+    { 
+        if (p_labelTitle) 
+        { 
+            p_labelTitle-&gt;setText(newTitle); 
+            UpdateTitle(); 
+        } 
+    }
+    //Set Image
+    inline void SetTitleBackgroundImage(QString newUrl=":/QtCustomTitleBar/Resource/TiaoWen.jpg",int bkStyle=0) 
+    {
+        bkImage = QPixmap(newUrl);
+        bkUrl = newUrl;
+        bkImageState = bkStyle;
+        UpdateTitle();
+    }
+    inline void SetTitleBottomWidth(int newWidth) 
+    { 
+        if (newWidth&gt;0)
+        { 
+           titleBottonWidth = newWidth;
+            UpdateTitle();
+        } 
+    }   
+    inline void SetWindowBorder(int newBorderSize)
+    {
+        if(newBorderSize&gt;0)
+        {
+            borderSize = newBorderSize;
+            UpdateTitle();
+        }
+    }
+    void UpdateTitle();
+    //inline void SetMinimumSize(QSize newSize) { setMinimumSize(newSize); }
+    //inline void SetMinimumSize(int width,int height) { setMinimumSize(QSize(width,height)); }
+    QToolButton* GetCloseButton()const{return p_closeButton;}
+    QToolButton* GetMaxButton()const { return p_maxButton; }
+    QToolButton* GetMinButton()const { return p_minButton; }
+    QLabel* GetTitleLabel()const {return p_labelTitle;}
+    QString GetWidgetStyleSheetFromFile(QString objectName,QString path="./Resource/Config/TitleStyleSheet.qss");
+    void UpdateWidgetStyleSheet();
+private:
+    int titleHeight = 25;
+    int titleBottonWidth = 30;
+    QWidget*	p_child = NULL;			//嵌套的子窗口
+    QPoint		mousePosition;			//局部鼠标位置
+    QPoint		lastMouseGlobalPosition;//上一帧的全屏鼠标位置
+    bool		bIsMousePressed;
+
+    QToolButton*	p_minButton;	//最小化按钮
+    QToolButton*	p_maxButton;	//最大化按钮
+    QToolButton*	p_closeButton;	//关闭按钮
+    QLabel*			p_labelTitle;	//标题栏名称
+    bool			bIsMax = false;	
+    QPixmap			normalPix;		//缩小图标
+    QPixmap			maxPix;			//最大化图标
+
+    QLabel*			p_backgroundImage;	//标题栏背景图片组件
+    QString			bkUrl;				//标题栏背景图片路径
+    QPixmap			bkImage;			//标题栏背景图片
+    int				bkImageState = 0;	//状态，0为中心平铺，1为左上角平铺
+
+    /*---------窗口边框----*/
+    int		borderSize = 5;
+
+    /*---------窗口缩放----*/
+    //上
+    QRect	topHit;
+    bool	bResizeByTopHit = false;
+    //下
+    QRect	bottomHit;
+    bool	bResizeByBottomHit = false;
+    //左
+    QRect	leftHit;
+    bool	bResizeByLeftHit = false;
+    //右
+    QRect	rightHit;
+    bool	bResizeByRightHit = false;
+    //右下
+    QRect	rightBottomHit;
+    bool	bResizeByRbHit = false;
+    //右上
+    QRect	rightTopHit;
+    bool	bResizeByRtHit = false;
+    //左下
+    QRect	leftBottomHit;
+    bool	bResizeByLbHit = false;
+    //左上
+    QRect	leftTopHit;
+    bool	bResizeByLtHit = false;
+    //计时器
+    QTimer* timer;
+protected:
+    void ResetMouseBehavior();
+    virtual void mousePressEvent(QMouseEvent* event);
+    virtual void mouseReleaseEvent(QMouseEvent* event);
+    virtual void mouseDoubleClickEvent(QMouseEvent* event);
+    virtual void mouseMoveEvent(QMouseEvent* event);
+    virtual void resizeEvent(QResizeEvent* event);
+    virtual void showEvent(QShowEvent* event);
+    virtual void paintEvent(QPaintEvent* event);
+    virtual void focusOutEvent(QFocusEvent* event);
+    virtual void closeEvent(QCloseEvent* event);
+    //功能函数
+    static bool IsInside(QRect r, QPoint p)
+    {
+        if (p.x() &gt;= r.left() && p.x() &lt;= r.right() &&
+            p.y() &gt;= r.top() && p.y() &lt;= r.bottom())
+            return true;
+        else
+            return false;
+    }
+private slots:
+    void actionMin();      //最小化窗口
+    void actionMax();      //最大化窗口
+    void actionClose();    //关闭窗口
+    void customUpdate();
+};
+</code></pre><h2 id="CPP源文件：" >CPP源文件：</h2><br><pre class="line-numbers"><code class="language-cpp">#include "CustomTitleBar.h"
+#include "qmessagebox.h"
+CustomTitleBar::CustomTitleBar(QWidget* parent) :QWidget(parent)
+{
+	p_backgroundImage = new QLabel(this);//背景图片
+	p_labelTitle = new QLabel(this);//标题
+	p_minButton = new QToolButton(this);//最小化按钮
+	p_maxButton = new QToolButton(this);//最大化按钮
+	p_closeButton = new QToolButton(this); //关闭按钮
+	
+	SetTitleBackgroundImage();
+	
+	this-&gt;resize(QSize(900, 600));//初始化窗口显示大小
+
+	QDesktopWidget* desktop = QApplication::desktop();
+	this-&gt;move((desktop-&gt;screen()-&gt;width() - this-&gt;width()) / 2,
+		(desktop-&gt;screen()-&gt;height() - this-&gt;height()) / 2);//程序显示在屏幕中间
+
+	QPixmap  closePix= style()-&gt;standardPixmap(QStyle::SP_TitleBarCloseButton);
+	p_closeButton-&gt;setIcon(closePix);
+	maxPix = style()-&gt;standardPixmap(QStyle::SP_TitleBarMaxButton);
+	p_maxButton-&gt;setIcon(maxPix);
+	QPixmap minPix = style()-&gt;standardPixmap(QStyle::SP_TitleBarMinButton);
+	p_minButton-&gt;setIcon(minPix);
+	normalPix = style()-&gt;standardPixmap(QStyle::SP_TitleBarNormalButton);
+
+	p_minButton-&gt;setObjectName("TitleMinButton");
+	p_maxButton-&gt;setObjectName("TitleMaxButton");
+	p_closeButton-&gt;setObjectName("TitleCloseButton");
+
+	/******************信号与槽连接**************/
+	//最小化按钮
+	connect(p_minButton, SIGNAL(clicked(bool)), SLOT(actionMin()));
+	//最大化按钮
+	connect(p_maxButton, SIGNAL(clicked(bool)), SLOT(actionMax()));
+	//关闭按钮  
+	connect(p_closeButton,SIGNAL(clicked(bool)),SLOT(actionClose())); 
+	p_labelTitle-&gt;setText("MainWindow");
+	//setAutoFillBackground(true);
+
+	p_labelTitle-&gt;setObjectName("WindowTitleString");
+
+	//this-&gt;setAttribute(Qt::WA_TranslucentBackground);//设置窗口背景透明，如果是要做渲染器的载体，就千万别开这个，会导致画面无法渲染出来！
+	this-&gt;setWindowFlags(Qt::FramelessWindowHint); //去掉标题栏
+	setObjectName("CustomTitleWindow");	
+
+	setMinimumSize(110,50);
+
+	//创建定时器用于每帧更新
+	timer = new QTimer(this);
+	timer-&gt;setInterval(200);
+	QObject::connect(timer,SIGNAL(timeout()),this,SLOT(customUpdate()));
+	timer-&gt;start();
+
+	//使用Palette
+	//setAutoFillBackground(true);
+	//p_minButton-&gt;setAutoFillBackground(true);
+	//p_maxButton-&gt;setAutoFillBackground(true);
+	//p_closeButton-&gt;setAutoFillBackground(true);
+	//p_labelTitle-&gt;setAutoFillBackground(true);
+	//p_backgroundImage-&gt;setAutoFillBackground(true);
+	//透明标题
+	//QPalette pal = palette();
+	//pal.setColor(QPalette::Background, QColor(255, 255, 255, 0));
+	//p_labelTitle-&gt;setPalette(pal);
+
+	UpdateWidgetStyleSheet();
+	UpdateTitle();
+        //重置一下鼠标行为
+        ResetMouseBehavior();
+}
+
+void CustomTitleBar::SetChildWidget(QWidget* child)
+{
+	if (child&& p_child==NULL)
+	{
+		p_child = child;
+		p_child-&gt;setParent(this);
+		p_child-&gt;show();
+		p_child-&gt;setGeometry(borderSize, titleHeight + borderSize, this-&gt;width() - borderSize * 2, this-&gt;height() - titleHeight - borderSize * 2);
+	}
+}
+
+void CustomTitleBar::UpdateTitle()
+{
+	//更新位置和大小
+	p_backgroundImage-&gt;setGeometry(borderSize, borderSize, this-&gt;width()- borderSize*2, titleHeight);
+	p_closeButton-&gt;setGeometry(	this-&gt;width() - (titleBottonWidth)	 - borderSize, 2+ borderSize , titleBottonWidth -4, titleHeight-4 );
+	p_maxButton-&gt;setGeometry(	this-&gt;width() - (titleBottonWidth) * 2- borderSize, 2+ borderSize , titleBottonWidth -4, titleHeight-4 );
+	p_minButton-&gt;setGeometry(	this-&gt;width() - (titleBottonWidth) * 3- borderSize, 2+ borderSize , titleBottonWidth -4, titleHeight-4 );
+	p_labelTitle-&gt;move(10+ borderSize, borderSize);
+	if (p_child != NULL)
+	{
+		p_child-&gt;setGeometry(borderSize, titleHeight+ borderSize, this-&gt;width()- borderSize*2, this-&gt;height()- titleHeight - borderSize * 2);
+	}
+	//标题栏的图片样式
+	switch (bkImageState)
+	{
+	case 0:
+		break;
+	case 1:
+		p_backgroundImage-&gt;setPixmap(bkImage.scaled(this-&gt;width(), titleHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+		break;
+	case 2:
+		break;
+	}
+	//其他的一些设置
+	QFont font("Microsoft YaHei", titleHeight / 2);
+	p_labelTitle-&gt;setFont(font);
+	//更新缩放点位置
+	topHit			= QRect(borderSize, 0, this-&gt;width() - borderSize * 2, borderSize);
+	bottomHit		= QRect(borderSize, this-&gt;height() - borderSize, this-&gt;width() - borderSize * 2, borderSize);
+	leftHit			= QRect(0, borderSize, borderSize, this-&gt;height() - borderSize * 2);
+	rightHit		= QRect(this-&gt;width() - borderSize, borderSize, borderSize, this-&gt;height() - borderSize * 2);
+	rightBottomHit	= QRect(this-&gt;width() - borderSize, this-&gt;height() - borderSize, borderSize, borderSize);
+	rightTopHit		= QRect(this-&gt;width() - borderSize, 0, borderSize, borderSize);
+	leftBottomHit	= QRect(0, this-&gt;height() - borderSize, borderSize, borderSize);
+	leftTopHit		= QRect(0, 0, borderSize, borderSize);
+}
+
+QString CustomTitleBar::GetWidgetStyleSheetFromFile(QString objectName, QString path)
+{
+	QString result;
+	bool bFound=false;
+	if(!path.isEmpty())
+	{
+		QFile styleFile(path);
+		if (styleFile.open(QFile::ReadOnly | QIODevice::Text))
+		{
+			QTextStream in(&styleFile);
+			QString strLine;
+			while (!in.atEnd())
+			{
+				strLine = in.readLine();//逐行读取
+				int length = objectName.length();
+				QString objN = "#"+ objectName;
+				if (bFound ==true&&!result.isEmpty()&& strLine.contains("};", Qt::CaseSensitive))//是否到底结束位置
+				{
+					result += strLine.left(strLine.length()-1);
+					break;
+				}
+				if (bFound==false&&strcmp(strLine.left(length+1).toStdString().c_str(), objN.toStdString().c_str())==0)
+				{
+					bFound = true;
+				}
+				if (bFound)
+				{
+					result += strLine;
+				}
+			}
+		}
+		else
+		{
+			QMessageBox::information(this,"Error","Load ["+ objectName+"] style sheet file failed");
+		}
+		styleFile.close();
+	}
+	//QMessageBox::information(this, "Check", result);
+	return result;
+}
+
+void CustomTitleBar::mousePressEvent(QMouseEvent* event)
+{
+	mousePosition = event-&gt;pos();  //当鼠标单击窗体准备拖动时，初始化鼠标在窗体中的相对位置
+	if (mousePosition.y() &lt; 0)
+		return;
+
+	if (IsInside(rightBottomHit, mousePosition))
+	{
+		bResizeByRbHit = true;
+		this-&gt;setCursor(Qt::SizeFDiagCursor);
+		QCursor::setPos(this-&gt;geometry().bottomRight());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(leftBottomHit, mousePosition))
+	{
+		bResizeByLbHit = true;
+		this-&gt;setCursor(Qt::SizeBDiagCursor);
+		QCursor::setPos(this-&gt;geometry().bottomLeft());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(rightTopHit, mousePosition))
+	{
+		bResizeByRtHit = true;
+		this-&gt;setCursor(Qt::SizeBDiagCursor);
+		QCursor::setPos(this-&gt;geometry().topRight());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(leftTopHit, mousePosition))
+	{
+		bResizeByLtHit = true;
+		this-&gt;setCursor(Qt::SizeFDiagCursor);
+		QCursor::setPos(this-&gt;geometry().topLeft());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(topHit, mousePosition))
+	{
+		bResizeByTopHit = true;
+		this-&gt;setCursor(Qt::SizeVerCursor);
+		QCursor::setPos(QCursor::pos().x(), this-&gt;geometry().top());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(bottomHit, mousePosition))
+	{
+		bResizeByBottomHit = true;
+		this-&gt;setCursor(Qt::SizeVerCursor);
+		QCursor::setPos(QCursor::pos().x(), this-&gt;geometry().bottom());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(leftHit, mousePosition))
+	{
+		bResizeByLeftHit = true;
+		this-&gt;setCursor(Qt::SizeHorCursor);
+		QCursor::setPos(this-&gt;geometry().left(), QCursor::pos().y());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (IsInside(rightHit, mousePosition))
+	{
+		bResizeByRightHit = true;
+		this-&gt;setCursor(Qt::SizeHorCursor);
+		QCursor::setPos(this-&gt;geometry().right(), QCursor::pos().y());
+		lastMouseGlobalPosition = QCursor::pos();
+		return;
+	}
+	else if (mousePosition.y() &lt;= titleHeight)
+	{
+		bIsMousePressed = true;
+		return;
+	}
+
+}
+
+void CustomTitleBar::mouseReleaseEvent(QMouseEvent* event)
+{
+	ResetMouseBehavior();
+}
+
+void CustomTitleBar::ResetMouseBehavior()
+{
+        bIsMousePressed = false;
+	bResizeByRbHit = false;
+	bResizeByRtHit = false;
+	bResizeByLbHit = false;
+	bResizeByLtHit = false;
+	bResizeByTopHit = false;
+	bResizeByBottomHit = false;
+	bResizeByLeftHit = false;
+	bResizeByRightHit = false;
+	this-&gt;setCursor(Qt::ArrowCursor);
+}
+void CustomTitleBar::mouseDoubleClickEvent(QMouseEvent* event)
+{
+	if (mousePosition.y() &lt; 0)
+		return;
+	if (mousePosition.y() &gt; titleHeight)
+		return;
+	if (bIsMax)
+	{
+		this-&gt;showNormal();
+		bIsMax = false;
+		p_maxButton-&gt;setIcon(maxPix);
+	}
+	else
+	{
+		this-&gt;showMaximized();
+		bIsMax = true;
+		p_maxButton-&gt;setIcon(normalPix);
+	}
+
+}
+void CustomTitleBar::mouseMoveEvent(QMouseEvent* event)
+{
+	if (bIsMousePressed)
+	{
+		bResizeByRbHit = false;
+		bResizeByRtHit = false;
+		bResizeByLbHit = false;
+		bResizeByLtHit = false;
+		bResizeByTopHit = false;
+		bResizeByBottomHit = false;
+		bResizeByLeftHit = false;
+		bResizeByRightHit = false;
+		QPoint movePot = event-&gt;globalPos() - mousePosition;
+		move(movePot);
+
+		if (bIsMax)
+		{
+			this-&gt;showMaximized();
+			bIsMax = true;
+			p_maxButton-&gt;setIcon(normalPix);
+		}
+
+		
+	}
+	if (bResizeByRbHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x() + width(), this-&gt;geometry().y() + height());//保持定点缩放
+		QPoint newPoint = event-&gt;globalPos()- lastMouseGlobalPosition;
+		this-&gt;setGeometry(this-&gt;geometry().left(), this-&gt;geometry().top(), this-&gt;geometry().width()+ newPoint.x(), this-&gt;geometry().height()+ newPoint.y());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if (bResizeByRtHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x() + width(), this-&gt;geometry().y());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		if (this-&gt;geometry().height() - newPoint.y() &lt; minimumHeight())
+			newPoint.setY(0);
+		this-&gt;setGeometry(this-&gt;geometry().left(), this-&gt;geometry().top() + newPoint.y(), this-&gt;geometry().width() + newPoint.x(), this-&gt;geometry().height() - newPoint.y());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if(bResizeByLbHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x(), this-&gt;geometry().y() + height());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		if (this-&gt;geometry().width() - newPoint.x() &lt; minimumWidth())
+			newPoint.setX(0);
+		this-&gt;setGeometry(this-&gt;geometry().left() + newPoint.x(), this-&gt;geometry().top(), this-&gt;geometry().width() - newPoint.x(), this-&gt;geometry().height() + newPoint.y());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if (bResizeByLtHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x(), this-&gt;geometry().y());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		if (this-&gt;geometry().width() - newPoint.x() &lt; minimumWidth())
+			newPoint.setX(0);
+		if (this-&gt;geometry().height() - newPoint.y() &lt; minimumHeight())
+			newPoint.setY(0);
+		this-&gt;setGeometry(this-&gt;geometry().left() + newPoint.x(), this-&gt;geometry().top() + newPoint.y(), this-&gt;geometry().width() - newPoint.x(), this-&gt;geometry().height() - newPoint.y());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if (bResizeByTopHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x(), this-&gt;geometry().y());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		if (this-&gt;geometry().height() - newPoint.y() &lt; minimumHeight())
+			newPoint.setY(0);
+		this-&gt;setGeometry(this-&gt;geometry().left(), this-&gt;geometry().top() + newPoint.y(), this-&gt;geometry().width(), this-&gt;geometry().height() - newPoint.y());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if (bResizeByBottomHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x(), this-&gt;geometry().y() + height());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		this-&gt;setGeometry(this-&gt;geometry().left(), this-&gt;geometry().top(), this-&gt;geometry().width(), this-&gt;geometry().height() + newPoint.y());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if (bResizeByLeftHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x(), this-&gt;geometry().y());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		if (this-&gt;geometry().width() - newPoint.x() &lt; minimumWidth())
+			newPoint.setX(0);
+		this-&gt;setGeometry(this-&gt;geometry().left() + newPoint.x(), this-&gt;geometry().top(), this-&gt;geometry().width() - newPoint.x(), this-&gt;geometry().height());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+	else if (bResizeByRightHit)
+	{
+		if (width() &lt;= minimumSize().width() || height() &lt;= minimumSize().height())
+			lastMouseGlobalPosition = QPoint(this-&gt;geometry().x()+width(), this-&gt;geometry().y());
+		QPoint newPoint = event-&gt;globalPos() - lastMouseGlobalPosition;
+		this-&gt;setGeometry(this-&gt;geometry().left(), this-&gt;geometry().top(), this-&gt;geometry().width() + newPoint.x(), this-&gt;geometry().height());
+		lastMouseGlobalPosition = event-&gt;globalPos();
+	}
+}
+
+void CustomTitleBar::resizeEvent(QResizeEvent* event)
+{
+	QWidget::resizeEvent(event);
+	UpdateTitle();
+}
+void CustomTitleBar::closeEvent(QCloseEvent* event)
+{
+	if(p_child){
+           p_child-&gt;setParent(NULL);
+           p_child-&gt;close();    
+        }
+}
+void CustomTitleBar::showEvent(QShowEvent* event)
+{
+	this-&gt;setAttribute(Qt::WA_Mapped);
+	QWidget::showEvent(event);
+}
+void CustomTitleBar::paintEvent(QPaintEvent* event)
+{
+	QPainter p(this);
+	QStyleOption opt;
+	opt.init(this);
+	style()-&gt;drawPrimitive(QStyle::PE_Widget, &opt, &p, this);//使用QSS
+
+	QWidget::paintEvent(event);
+}
+
+
+void CustomTitleBar::focusOutEvent(QFocusEvent* event)
+{
+	bIsMousePressed = false;
+	bResizeByRbHit = false;
+	bResizeByRtHit = false;
+	bResizeByLbHit = false;
+	bResizeByLtHit = false;
+	bResizeByTopHit = false;
+	bResizeByBottomHit = false;
+	bResizeByLeftHit = false;
+	bResizeByRightHit = false;
+	QWidget::focusOutEvent(event);
+}
+
+void CustomTitleBar::actionMin()
+{
+	showMinimized();
+}
+
+void CustomTitleBar::actionMax()
+{
+	if (bIsMax)
+	{
+		this-&gt;showNormal();
+		bIsMax = false;
+		p_maxButton-&gt;setIcon(maxPix);
+	}
+	else
+	{
+		this-&gt;showMaximized();
+		bIsMax = true;
+		p_maxButton-&gt;setIcon(normalPix);
+	}
+}
+
+void CustomTitleBar::actionClose()
+{
+	close();    //关闭
+}
+
+void CustomTitleBar::customUpdate()
+{
+	//最好判断下是否允许切换光标，不然每帧总在切换的话会导致缩放卡顿
+	QPoint CurrentPos = mapFromGlobal(QCursor::pos());
+	if (IsInside(rightBottomHit, CurrentPos)|| bResizeByRbHit)
+	{
+		if(cursor() != Qt::SizeFDiagCursor)
+			this-&gt;setCursor(Qt::SizeFDiagCursor);
+	}
+	else if (IsInside(rightTopHit, CurrentPos)|| bResizeByRtHit)
+	{
+		if(cursor() != Qt::SizeBDiagCursor)
+			this-&gt;setCursor(Qt::SizeBDiagCursor);
+	}
+	else if (IsInside(leftBottomHit, CurrentPos)|| bResizeByLbHit)
+	{
+		if(cursor() != Qt::SizeBDiagCursor)
+			this-&gt;setCursor(Qt::SizeBDiagCursor);
+	}
+	else if (IsInside(leftTopHit, CurrentPos)|| bResizeByLtHit)
+	{
+		if(cursor() != Qt::SizeFDiagCursor)
+			this-&gt;setCursor(Qt::SizeFDiagCursor);
+	}
+	else if (IsInside(topHit, CurrentPos)|| bResizeByTopHit)
+	{
+		if(cursor() != Qt::SizeVerCursor)
+			this-&gt;setCursor(Qt::SizeVerCursor);
+	}
+	else if (IsInside(bottomHit, CurrentPos) || bResizeByBottomHit)
+	{
+		if(cursor() != Qt::SizeVerCursor)
+			this-&gt;setCursor(Qt::SizeVerCursor);
+	}
+	else if (IsInside(leftHit, CurrentPos) || bResizeByLeftHit)
+	{
+		if(cursor() != Qt::SizeHorCursor)
+			this-&gt;setCursor(Qt::SizeHorCursor);
+	}
+	else if (IsInside(rightHit, CurrentPos)|| bResizeByRightHit)
+	{
+		if(cursor() != Qt::SizeHorCursor)
+			this-&gt;setCursor(Qt::SizeHorCursor);
+	}
+	else
+	{
+		if(cursor() != Qt::ArrowCursor)
+			this-&gt;setCursor(Qt::ArrowCursor);
+	}
+}
+
+void CustomTitleBar::UpdateWidgetStyleSheet()
+{
+	//p_labelTitle-&gt;setStyleSheet("#WindowTitleString{color:rgb(200,200,200); }");
+	//p_minButton-&gt;setStyleSheet("#TitleMinButton{background-color:rgb(130,130,130);color:rgb(255,255,255);border-top-left-radius:5px;border-top-right-radius:5px; }#TitleMinButton:pressed{background-color:rgb(125,125,255);border-top-left-radius:5px;border-top-right-radius:5px;}");
+   //p_maxButton-&gt;setStyleSheet("#TitleMaxButton{background-color:rgb(130,130,130);color:rgb(255,255,255);border-top-left-radius:5px;border-top-right-radius:5px;}#TitleMaxButton:pressed{background-color:rgb(255,255,125);border-top-left-radius:5px;border-top-right-radius:5px;}");
+	//p_closeButton-&gt;setStyleSheet("#TitleCloseButton{background-color:rgb(130,130,130) ;color:rgb(255,255,255);border-top-left-radius:5px;border-top-right-radius:5px;}#TitleCloseButton:pressed{background-color:rgb(255,100,100);border-top-left-radius:5px;border-top-right-radius:5px;}");
+	//setStyleSheet("#CustomTitleWindow{background-color :rgb(25,25,25);\
+	//	border-radius:5px;\
+	//	}");
+	p_labelTitle-&gt;setStyleSheet(GetWidgetStyleSheetFromFile(p_labelTitle-&gt;objectName()));
+	p_minButton-&gt;setStyleSheet(GetWidgetStyleSheetFromFile(p_minButton-&gt;objectName()));
+	p_maxButton-&gt;setStyleSheet(GetWidgetStyleSheetFromFile(p_maxButton-&gt;objectName()));
+	p_closeButton-&gt;setStyleSheet(GetWidgetStyleSheetFromFile(p_closeButton-&gt;objectName()));
+	this-&gt;setStyleSheet(GetWidgetStyleSheetFromFile(this-&gt;objectName()));
+	//标题栏的图片样式
+	switch (bkImageState)
+	{
+	case 0:
+		p_backgroundImage-&gt;setStyleSheet("background-color:black;background-image:url(" + bkUrl + ");background-position:center;border-top-left-radius:5px;border-top-right-radius:5px; ");
+		break;
+	case 1:
+		p_backgroundImage-&gt;setStyleSheet("background-color:black;border-top-left-radius:5px;border-top-right-radius:5px; ");
+		break;
+	case 2:
+		p_backgroundImage-&gt;setStyleSheet("background-color:black;background-image:url(" + bkUrl + ");background-position:top left;border-top-left-radius:5px;border-top-right-radius:5px; ");
+		break;
+	}
+
+}
+</code></pre><h2 id="QSS文件：" >QSS文件：</h2><br>原理是以 “#ObjectName” 开始读取，直到 “}；”结束一段<br>该文件和功能是自己写的，不会被QT所包含，所以生成程序后，需要设置生成后事件，把该文件和路径一起复制到程序的目录里。<br>或者自己手动复制也行。<br><pre class="line-numbers"><code class="language-css">#WindowTitleString
+{
+    color:rgb(200,200,200);
+};
+#TitleMinButton
+{
+    background-color:rgb(130,130,130);
+    color:rgb(255,255,255);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px; 
+}
+#TitleMinButton:pressed
+{
+    background-color:rgb(125,125,255);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+};
+#TitleMaxButton
+{
+    background-color:rgb(130,130,130);
+    color:rgb(255,255,255);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+#TitleMaxButton:pressed
+{
+    background-color:rgb(255,255,125);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+};
+#TitleCloseButton
+{
+    background-color:rgb(130,130,130) ;
+    color:rgb(255,255,255);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+#TitleCloseButton:pressed
+{
+    background-color:rgb(255,100,100);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+};
+#CustomTitleWindow
+{
+    background-color :rgb(25,25,25);
+    border-radius:5px;
+};
+</code></pre><br>
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const OFFSET_HEIGHT = 100; // 文章调整的时候避开顶上的菜单栏
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+            const href = link.getAttribute('href');
+            const decodedHref = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(decodedHref);
+            console.log(decodedHref);
+            if (target) {
+                event.preventDefault();
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: targetPosition - OFFSET_HEIGHT, behavior: 'smooth' });
+            }
+
+            const toc_style = document.getElementById('toc-style');
+            const toc_button = document.getElementById('toc-button');  
+            toc_style.style.display = 'none';
+            toc_button.textContent = '显示目录';
+
+            });
+        });
+        });
+    </script>
+
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 坏包包
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;坏包包
+            <br/>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
+            <br/>
+            <a class="BilibliLink" href="/">返回主页</a>
+            <br/>
+            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+            <br/>
+            本页面由Hexo生成，搭建在Github
+            <br/>
+            主题：Particlex(魔改)
+        </div>
+        
+    </div>
+    <script>
+        // 滚动事件监听器，用于显示/隐藏返回顶部按钮
+        // window.onscroll = function() {
+        //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        //     document.getElementById('backToTop').style.display = 'block';
+        //   } else {
+        //     document.getElementById('backToTop').style.display = 'none';
+        //   }
+        // };
+       
+        // 返回顶部的函数
+        function scrollToTop() {
+          document.body.scrollTop = 0; // 对Safari
+          document.documentElement.scrollTop = 0; // 对Chrome, Firefox, IE 和 Opera
+        }
+      </script>
+</footer>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" alt="" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="hbbwang/HbbHexoComment"
+    data-repo-id="R_kgDOMC9ptw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMC9pt84Cfv5q"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="noborder_dark"
+    data-lang="zh-CN"
+    
+    data-loading="lazy"
+    
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=n();function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t=t.concat(e)}function t(t){(a||t)&&(d=n());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,a,o,n=d[i];e=function(){d=d.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)},(t=n).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),t.removeAttribute("style"),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,100)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+</html>

@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>DDS纹理数据导入（不依赖d3d11.h） | 坏包包</title>
+    <meta name="author" content="坏包包" />
+    <meta name="description" content="坏包包的个人博客" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/Icon.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+<script src="/js/lib/search.js"></script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    
+<link
+    rel="stylesheet"
+    href="/css/prism.css"
+/>
+<script src="/js/lib/prism.js"></script>
+
+
+<script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2> LOADING </h2>
+                    <p>...加载中...</p>
+                    <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
+                    <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>坏包包</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-All fa-fw"></i>
+            <span>&ensp;所有文章</span>
+        </a>
+        
+        <a href="/categories/Unreal">
+            <i class="fa-solid fa-Unreal fa-fw"></i>
+            <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
+        </a>
+        
+        <a href="/categories/Others">
+            <i class="fa-solid fa-Others fa-fw"></i>
+            <span>&ensp;Others</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;坏包包</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-All fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">所有文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Unreal">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Unreal fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Others">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Others fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Others</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <!-- 目录卡片 -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        target.style.display = 'none';
+        button.textContent = '显示目录';
+
+        const home = document.getElementById('home-toc');
+        home.style.display = 'none';
+
+        setTimeout(()=>{
+            const home = document.getElementById('home-toc');
+            home.style.display = 'block';
+        },800);
+    });
+    
+    function onButtonClick() 
+    {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        if(target.style.display == 'none')
+        {
+            target.style.display = 'block';
+            button.textContent = '隐藏目录';
+        }
+        else
+        {
+            target.style.display = 'none';
+            button.textContent = '显示目录';
+        }
+
+    }
+</script>
+<div id="home-toc" class="toc-article">
+    <button id="toc-button" class="toc-button" onclick="onButtonClick()">显示目录</button>
+    <div id="toc-style">
+        <!-- <div class="toc-title">目录</div> -->
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%EF%BC%88DDSTool.h%EF%BC%89"><span class="toc-text">头文件（DDSTool.h）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E6%96%87%E4%BB%B6%EF%BC%88DDSTool.cpp%EF%BC%89"><span class="toc-text">源文件（DDSTool.cpp）</span></a></li></ol>
+    </div>
+</div>
+<div class="article">
+    <!-- 只有设置了image参数才会加载头图 -->
+    
+    
+    <div class="post-title-parent">
+        <h1 class="post-title">DDS纹理数据导入（不依赖d3d11.h）</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/3/29
+        </span>
+        
+        <span class="category">
+            <a href="/categories/CplusplusCsharp/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                CplusplusCsharp
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #00bcd4">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%BA%B9%E7%90%86/" style="color: #03a9f4">
+                    纹理
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/DDS/" style="color: #00bcd4">
+                    DDS
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%9B%BE%E5%83%8F/" style="color: #03a9f4">
+                    图像
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%AF%BC%E5%85%A5/" style="color: #00a596">
+                    导入
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><span style="color:rgb(255,230,180);" >重点部分都在里面了，少部分是我自己的代码，比如这个ImageData是我自己的一个图像结构，不用管，客官们，看过程就好</span><br>(如果有错误，之后我会不定时优化)。<br><h2 id="头文件（DDSTool.h）" >头文件（DDSTool.h）</h2><br><pre class="line-numbers"><code class="language-cpp">#pragma once
+#include "Common.h"
+#include "EngineType.h"
+#include "ImageTool.h"
+
+#pragma region DirectXFormat
+
+typedef enum EDXGI_FORMAT
+{
+    DXGI_FORMAT_UNKNOWN = 0,
+    DXGI_FORMAT_R32G32B32A32_TYPELESS = 1,
+    DXGI_FORMAT_R32G32B32A32_FLOAT = 2,
+    DXGI_FORMAT_R32G32B32A32_UINT = 3,
+    DXGI_FORMAT_R32G32B32A32_SINT = 4,
+    DXGI_FORMAT_R32G32B32_TYPELESS = 5,
+    DXGI_FORMAT_R32G32B32_FLOAT = 6,
+    DXGI_FORMAT_R32G32B32_UINT = 7,
+    DXGI_FORMAT_R32G32B32_SINT = 8,
+    DXGI_FORMAT_R16G16B16A16_TYPELESS = 9,
+    DXGI_FORMAT_R16G16B16A16_FLOAT = 10,
+    DXGI_FORMAT_R16G16B16A16_UNORM = 11,
+    DXGI_FORMAT_R16G16B16A16_UINT = 12,
+    DXGI_FORMAT_R16G16B16A16_SNORM = 13,
+    DXGI_FORMAT_R16G16B16A16_SINT = 14,
+    DXGI_FORMAT_R32G32_TYPELESS = 15,
+    DXGI_FORMAT_R32G32_FLOAT = 16,
+    DXGI_FORMAT_R32G32_UINT = 17,
+    DXGI_FORMAT_R32G32_SINT = 18,
+    DXGI_FORMAT_R32G8X24_TYPELESS = 19,
+    DXGI_FORMAT_D32_FLOAT_S8X24_UINT = 20,
+    DXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS = 21,
+    DXGI_FORMAT_X32_TYPELESS_G8X24_UINT = 22,
+    DXGI_FORMAT_R10G10B10A2_TYPELESS = 23,
+    DXGI_FORMAT_R10G10B10A2_UNORM = 24,
+    DXGI_FORMAT_R10G10B10A2_UINT = 25,
+    DXGI_FORMAT_R11G11B10_FLOAT = 26,
+    DXGI_FORMAT_R8G8B8A8_TYPELESS = 27,
+    DXGI_FORMAT_R8G8B8A8_UNORM = 28,
+    DXGI_FORMAT_R8G8B8A8_UNORM_SRGB = 29,
+    DXGI_FORMAT_R8G8B8A8_UINT = 30,
+    DXGI_FORMAT_R8G8B8A8_SNORM = 31,
+    DXGI_FORMAT_R8G8B8A8_SINT = 32,
+    DXGI_FORMAT_R16G16_TYPELESS = 33,
+    DXGI_FORMAT_R16G16_FLOAT = 34,
+    DXGI_FORMAT_R16G16_UNORM = 35,
+    DXGI_FORMAT_R16G16_UINT = 36,
+    DXGI_FORMAT_R16G16_SNORM = 37,
+    DXGI_FORMAT_R16G16_SINT = 38,
+    DXGI_FORMAT_R32_TYPELESS = 39,
+    DXGI_FORMAT_D32_FLOAT = 40,
+    DXGI_FORMAT_R32_FLOAT = 41,
+    DXGI_FORMAT_R32_UINT = 42,
+    DXGI_FORMAT_R32_SINT = 43,
+    DXGI_FORMAT_R24G8_TYPELESS = 44,
+    DXGI_FORMAT_D24_UNORM_S8_UINT = 45,
+    DXGI_FORMAT_R24_UNORM_X8_TYPELESS = 46,
+    DXGI_FORMAT_X24_TYPELESS_G8_UINT = 47,
+    DXGI_FORMAT_R8G8_TYPELESS = 48,
+    DXGI_FORMAT_R8G8_UNORM = 49,
+    DXGI_FORMAT_R8G8_UINT = 50,
+    DXGI_FORMAT_R8G8_SNORM = 51,
+    DXGI_FORMAT_R8G8_SINT = 52,
+    DXGI_FORMAT_R16_TYPELESS = 53,
+    DXGI_FORMAT_R16_FLOAT = 54,
+    DXGI_FORMAT_D16_UNORM = 55,
+    DXGI_FORMAT_R16_UNORM = 56,
+    DXGI_FORMAT_R16_UINT = 57,
+    DXGI_FORMAT_R16_SNORM = 58,
+    DXGI_FORMAT_R16_SINT = 59,
+    DXGI_FORMAT_R8_TYPELESS = 60,
+    DXGI_FORMAT_R8_UNORM = 61,
+    DXGI_FORMAT_R8_UINT = 62,
+    DXGI_FORMAT_R8_SNORM = 63,
+    DXGI_FORMAT_R8_SINT = 64,
+    DXGI_FORMAT_A8_UNORM = 65,
+    DXGI_FORMAT_R1_UNORM = 66,
+    DXGI_FORMAT_R9G9B9E5_SHAREDEXP = 67,
+    DXGI_FORMAT_R8G8_B8G8_UNORM = 68,
+    DXGI_FORMAT_G8R8_G8B8_UNORM = 69,
+    DXGI_FORMAT_BC1_TYPELESS = 70,
+    DXGI_FORMAT_BC1_UNORM = 71,
+    DXGI_FORMAT_BC1_UNORM_SRGB = 72,
+    DXGI_FORMAT_BC2_TYPELESS = 73,
+    DXGI_FORMAT_BC2_UNORM = 74,
+    DXGI_FORMAT_BC2_UNORM_SRGB = 75,
+    DXGI_FORMAT_BC3_TYPELESS = 76,
+    DXGI_FORMAT_BC3_UNORM = 77,
+    DXGI_FORMAT_BC3_UNORM_SRGB = 78,
+    DXGI_FORMAT_BC4_TYPELESS = 79,
+    DXGI_FORMAT_BC4_UNORM = 80,
+    DXGI_FORMAT_BC4_SNORM = 81,
+    DXGI_FORMAT_BC5_TYPELESS = 82,
+    DXGI_FORMAT_BC5_UNORM = 83,
+    DXGI_FORMAT_BC5_SNORM = 84,
+    DXGI_FORMAT_B5G6R5_UNORM = 85,
+    DXGI_FORMAT_B5G5R5A1_UNORM = 86,
+    DXGI_FORMAT_B8G8R8A8_UNORM = 87,
+    DXGI_FORMAT_B8G8R8X8_UNORM = 88,
+    DXGI_FORMAT_R10G10B10_XR_BIAS_A2_UNORM = 89,
+    DXGI_FORMAT_B8G8R8A8_TYPELESS = 90,
+    DXGI_FORMAT_B8G8R8A8_UNORM_SRGB = 91,
+    DXGI_FORMAT_B8G8R8X8_TYPELESS = 92,
+    DXGI_FORMAT_B8G8R8X8_UNORM_SRGB = 93,
+    DXGI_FORMAT_BC6H_TYPELESS = 94,
+    DXGI_FORMAT_BC6H_UF16 = 95,
+    DXGI_FORMAT_BC6H_SF16 = 96,
+    DXGI_FORMAT_BC7_TYPELESS = 97,
+    DXGI_FORMAT_BC7_UNORM = 98,
+    DXGI_FORMAT_BC7_UNORM_SRGB = 99,
+    DXGI_FORMAT_AYUV = 100,
+    DXGI_FORMAT_Y410 = 101,
+    DXGI_FORMAT_Y416 = 102,
+    DXGI_FORMAT_NV12 = 103,
+    DXGI_FORMAT_P010 = 104,
+    DXGI_FORMAT_P016 = 105,
+    DXGI_FORMAT_420_OPAQUE = 106,
+    DXGI_FORMAT_YUY2 = 107,
+    DXGI_FORMAT_Y210 = 108,
+    DXGI_FORMAT_Y216 = 109,
+    DXGI_FORMAT_NV11 = 110,
+    DXGI_FORMAT_AI44 = 111,
+    DXGI_FORMAT_IA44 = 112,
+    DXGI_FORMAT_P8 = 113,
+    DXGI_FORMAT_A8P8 = 114,
+    DXGI_FORMAT_B4G4R4A4_UNORM = 115,
+
+    DXGI_FORMAT_P208 = 130,
+    DXGI_FORMAT_V208 = 131,
+    DXGI_FORMAT_V408 = 132,
+
+
+    DXGI_FORMAT_SAMPLER_FEEDBACK_MIN_MIP_OPAQUE = 189,
+    DXGI_FORMAT_SAMPLER_FEEDBACK_MIP_REGION_USED_OPAQUE = 190,
+
+
+    DXGI_FORMAT_FORCE_UINT = 0xffffffff
+} DXGI_FORMAT;
+
+#pragma endregion DirectXFormat
+
+#define DDS_FOURCC      0x00000004  // DDPF_FOURCC
+#define DDS_RGB         0x00000040  // DDPF_RGB
+#define DDS_RGBA        0x00000041  // DDPF_RGB | DDPF_ALPHAPIXELS
+#define DDS_LUMINANCE   0x00020000  // DDPF_LUMINANCE
+#define DDS_LUMINANCEA  0x00020001  // DDPF_LUMINANCE | DDPF_ALPHAPIXELS
+#define DDS_ALPHA       0x00000002  // DDPF_ALPHA
+#define DDS_PAL8        0x00000020  // DDPF_PALETTEINDEXED8
+
+#define SIZE_OF_BC(width, height ,dBlock)    ( std::max(1, ( (width + 3) /4 ) ) * std::max(1, ( (height + 3) /4 ) ) * dBlock)
+
+#define LENGTH_OF_BC(width ,dBlock)    ( std::max(1, ( (width + 3) /4 ) ) * dBlock)
+
+enum EDDSFlags
+{
+	DDSF_Caps = 0x00000001,
+	DDSF_Height = 0x00000002,
+	DDSF_Width = 0x00000004,
+	DDSF_PixelFormat = 0x00001000
+};
+
+enum EDDSCaps
+{
+	DDSC_CubeMap = 0x00000200,
+	DDSC_CubeMap_AllFaces = 0x00000400 | 0x00000800 | 0x00001000 | 0x00002000 | 0x00004000 | 0x00008000,
+	DDSC_Volume = 0x00200000,
+};
+
+#ifndef MAKEFOURCC
+#define MAKEFOURCC(ch0, ch1, ch2, ch3)\
+	((uint32_t)(uint8)(ch0) | ((uint32_t)(uint8)(ch1) &lt;&lt; 8) |\
+	((uint32_t)(uint8)(ch2) &lt;&lt; 16) | ((uint32_t)(uint8)(ch3) &lt;&lt; 24 ))
+#endif
+
+enum EDDSPixelFormat
+{
+	DDSPF_FourCC = 0x00000004,
+	DDSPF_RGB = 0x00000040,
+	DDSPF_DXT1 = MAKEFOURCC('D', 'X', 'T', '1'),
+	DDSPF_DXT3 = MAKEFOURCC('D', 'X', 'T', '3'),
+	DDSPF_DXT5 = MAKEFOURCC('D', 'X', 'T', '5'),
+	DDSPF_DX10 = MAKEFOURCC('D', 'X', '1', '0')
+};
+
+enum ECubeFace
+{
+	CubeFace_PosX = 0,
+	CubeFace_NegX,
+	CubeFace_PosY,
+	CubeFace_NegY,
+	CubeFace_PosZ,
+	CubeFace_NegZ,
+	CubeFace_MAX
+};
+
+// .DDS subheader.
+#pragma pack(push,1)
+struct FDDSPixelFormatHeader
+{
+	uint32_t dwSize;
+	uint32_t dwFlags;
+	uint32_t dwFourCC;
+	uint32_t dwRGBBitCount;
+	uint32_t dwRBitMask;
+	uint32_t dwGBitMask;
+	uint32_t dwBBitMask;
+	uint32_t dwABitMask;
+};
+#pragma pack(pop)
+
+// .DDS header.
+#pragma pack(push,1)
+struct FDDSFileHeader
+{
+	uint32_t dwSize;
+	uint32_t dwFlags;
+	uint32_t dwHeight;
+	uint32_t dwWidth;
+	uint32_t dwLinearSize;
+	uint32_t dwDepth;
+	uint32_t dwMipMapCount;
+	uint32_t dwReserved1[11];
+	FDDSPixelFormatHeader ddpf;
+	uint32_t dwCaps;
+	uint32_t dwCaps2;
+	uint32_t dwCaps3;
+	uint32_t dwCaps4;
+	uint32_t dwReserved2;
+};
+#pragma pack(pop)
+
+// .DDS10 header
+#pragma pack(push,1)
+struct FDDS10FileHeader
+{
+	uint32_t	format;
+	uint32_t	resourceType;
+	uint32_t	miscFlag;
+	uint32_t	arraySize;
+	uint32_t	miscFlag2;
+};
+#pragma pack(pop)
+
+class DDSLoader
+{
+public:
+	DLL_API DDSLoader(const char* filePath);
+	DLL_API DDSLoader(std::vector&lt;char&gt; buffer);
+	DLL_API ImageData* LoadDDSToImage();
+	DLL_API bool IsValid2DTexture() const;
+	bool IsValid() const {
+		return DDSHeader != 0 && DDSBuffer.size() &gt; sizeof(FDDSFileHeader);
+	}
+	std::vector&lt;char&gt; DDSBuffer;
+	const FDDSFileHeader* DDSHeader;
+	const FDDS10FileHeader* DDS10Header;
+	bool isCubeMap ;
+	int arraySize;
+	DString path;
+};
+</code></pre><br><h2 id="源文件（DDSTool.cpp）" >源文件（DDSTool.cpp）</h2><br><pre class="line-numbers"><code class="language-cpp">#include "DDSTool.h"
+#include "ImageTool.h"
+#include "Texture.h"
+
+#define ISBITMASK(r, g, b, a) (ddpf.dwRBitMask == r && ddpf.dwGBitMask == g && ddpf.dwBBitMask == b && ddpf.dwABitMask == a)
+
+static DXGI_FORMAT GetDXGIFormat(const FDDSPixelFormatHeader& ddpf)
+{
+	if (ddpf.dwFlags & DDS_RGB)
+	{
+		// Note that sRGB formats are written using the "DX10" extended header.
+
+		switch (ddpf.dwRGBBitCount)
+		{
+		case 32:
+			if (ISBITMASK(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000))
+			{
+				return DXGI_FORMAT_R8G8B8A8_UNORM;
+			}
+
+			if (ISBITMASK(0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000))
+			{
+				return DXGI_FORMAT_B8G8R8A8_UNORM;
+			}
+
+			if (ISBITMASK(0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000))
+			{
+				return DXGI_FORMAT_B8G8R8X8_UNORM;
+			}
+
+			// No DXGI format maps to ISBITMASK(0x000000ff, 0x0000ff00, 0x00ff0000, 0x00000000) aka D3DFMT_X8B8G8R8
+
+			// Note that many common DDS reader/writers (including D3DX) swap the
+			// the RED/BLUE masks for 10:10:10:2 formats. We assumme
+			// below that the 'backwards' header mask is being used since it is most
+			// likely written by D3DX. The more robust solution is to use the 'DX10'
+			// header extension and specify the DXGI_FORMAT_R10G10B10A2_UNORM format directly
+
+			// For 'correct' writers, this should be 0x000003ff, 0x000ffc00, 0x3ff00000 for RGB data
+			if (ISBITMASK(0x3ff00000, 0x000ffc00, 0x000003ff, 0xc0000000))
+			{
+				return DXGI_FORMAT_R10G10B10A2_UNORM;
+			}
+
+			// No DXGI format maps to ISBITMASK(0x000003ff, 0x000ffc00, 0x3ff00000, 0xc0000000) aka D3DFMT_A2R10G10B10
+
+			if (ISBITMASK(0x0000ffff, 0xffff0000, 0x00000000, 0x00000000))
+			{
+				return DXGI_FORMAT_R16G16_UNORM;
+			}
+
+			if (ISBITMASK(0xffffffff, 0x00000000, 0x00000000, 0x00000000))
+			{
+				// Only 32-bit color channel format in D3D9 was R32F.
+				return DXGI_FORMAT_R32_FLOAT; // D3DX writes this out as a FourCC of 114.
+			}
+			break;
+
+		case 24:
+			// No 24bpp DXGI formats aka D3DFMT_R8G8B8
+			break;
+
+		case 16:
+			if (ISBITMASK(0x7c00, 0x03e0, 0x001f, 0x8000))
+			{
+				return DXGI_FORMAT_B5G5R5A1_UNORM;
+			}
+			if (ISBITMASK(0xf800, 0x07e0, 0x001f, 0x0000))
+			{
+				return DXGI_FORMAT_B5G6R5_UNORM;
+			}
+
+			// No DXGI format maps to ISBITMASK(0x7c00, 0x03e0, 0x001f, 0x0000) aka D3DFMT_X1R5G5B5.
+			if (ISBITMASK(0x0f00, 0x00f0, 0x000f, 0xf000))
+			{
+				return DXGI_FORMAT_B4G4R4A4_UNORM;
+			}
+
+			// No DXGI format maps to ISBITMASK(0x0f00, 0x00f0, 0x000f, 0x0000) aka D3DFMT_X4R4G4B4.
+
+			// No 3:3:2, 3:3:2:8, or paletted DXGI formats aka D3DFMT_A8R3G3B2, D3DFMT_R3G3B2, D3DFMT_P8, D3DFMT_A8P8, etc.
+			break;
+		}
+	}
+	else if (ddpf.dwFlags & DDS_LUMINANCE)
+	{
+		if (8 == ddpf.dwRGBBitCount)
+		{
+			if (ISBITMASK(0x000000ff, 0x00000000, 0x00000000, 0x00000000))
+			{
+				return DXGI_FORMAT_R8_UNORM; // D3DX10/11 writes this out as DX10 extension
+			}
+
+			// No DXGI format maps to ISBITMASK(0x0f, 0x00, 0x00, 0xf0) aka D3DFMT_A4L4.
+		}
+
+		if (16 == ddpf.dwRGBBitCount)
+		{
+			if (ISBITMASK(0x0000ffff, 0x00000000, 0x00000000, 0x00000000))
+			{
+				return DXGI_FORMAT_R16_UNORM; // D3DX10/11 writes this out as DX10 extension.
+			}
+			if (ISBITMASK(0x000000ff, 0x00000000, 0x00000000, 0x0000ff00))
+			{
+				return DXGI_FORMAT_R8G8_UNORM; // D3DX10/11 writes this out as DX10 extension.
+			}
+		}
+	}
+	else if (ddpf.dwFlags & DDS_ALPHA)
+	{
+		if (8 == ddpf.dwRGBBitCount)
+		{
+			return DXGI_FORMAT_A8_UNORM;
+		}
+	}
+	else if (ddpf.dwFlags & DDS_FOURCC)
+	{
+		if (MAKEFOURCC('D', 'X', 'T', '1') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC1_UNORM;
+		}
+		if (MAKEFOURCC('D', 'X', 'T', '3') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC2_UNORM;
+		}
+		if (MAKEFOURCC('D', 'X', 'T', '5') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC3_UNORM;
+		}
+
+		// While pre-mulitplied alpha isn't directly supported by the DXGI formats,
+		// they are basically the same as these BC formats so they can be mapped
+		if (MAKEFOURCC('D', 'X', 'T', '2') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC2_UNORM;
+		}
+		if (MAKEFOURCC('D', 'X', 'T', '4') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC3_UNORM;
+		}
+
+		if (MAKEFOURCC('A', 'T', 'I', '1') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC4_UNORM;
+		}
+		if (MAKEFOURCC('B', 'C', '4', 'U') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC4_UNORM;
+		}
+		if (MAKEFOURCC('B', 'C', '4', 'S') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC4_SNORM;
+		}
+
+		if (MAKEFOURCC('A', 'T', 'I', '2') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC5_UNORM;
+		}
+		if (MAKEFOURCC('B', 'C', '5', 'U') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC5_UNORM;
+		}
+		if (MAKEFOURCC('B', 'C', '5', 'S') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_BC5_SNORM;
+		}
+
+		// BC6H and BC7 are written using the "DX10" extended header
+
+		if (MAKEFOURCC('R', 'G', 'B', 'G') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_R8G8_B8G8_UNORM;
+		}
+		if (MAKEFOURCC('G', 'R', 'G', 'B') == ddpf.dwFourCC)
+		{
+			return DXGI_FORMAT_G8R8_G8B8_UNORM;
+		}
+
+		// Check for D3DFORMAT enums being set here.
+		switch (ddpf.dwFourCC)
+		{
+		case 36: // D3DFMT_A16B16G16R16
+			return DXGI_FORMAT_R16G16B16A16_UNORM;
+
+		case 110: // D3DFMT_Q16W16V16U16
+			return DXGI_FORMAT_R16G16B16A16_SNORM;
+
+		case 111: // D3DFMT_R16F
+			return DXGI_FORMAT_R16_FLOAT;
+
+		case 112: // D3DFMT_G16R16F
+			return DXGI_FORMAT_R16G16_FLOAT;
+
+		case 113: // D3DFMT_A16B16G16R16F
+			return DXGI_FORMAT_R16G16B16A16_FLOAT;
+
+		case 114: // D3DFMT_R32F
+			return DXGI_FORMAT_R32_FLOAT;
+
+		case 115: // D3DFMT_G32R32F
+			return DXGI_FORMAT_R32G32_FLOAT;
+
+		case 116: // D3DFMT_A32B32G32R32F
+			return DXGI_FORMAT_R32G32B32A32_FLOAT;
+		}
+	}
+
+	return DXGI_FORMAT_UNKNOWN;
+}
+
+//--------------------------------------------------------------------------------------
+// Return the BPP for a particular format.
+//--------------------------------------------------------------------------------------
+static size_t BitsPerPixel(_In_ DXGI_FORMAT fmt)
+{
+	switch (fmt)
+	{
+	case DXGI_FORMAT_R32G32B32A32_TYPELESS:
+	case DXGI_FORMAT_R32G32B32A32_FLOAT:
+	case DXGI_FORMAT_R32G32B32A32_UINT:
+	case DXGI_FORMAT_R32G32B32A32_SINT:
+		return 128;
+
+	case DXGI_FORMAT_R32G32B32_TYPELESS:
+	case DXGI_FORMAT_R32G32B32_FLOAT:
+	case DXGI_FORMAT_R32G32B32_UINT:
+	case DXGI_FORMAT_R32G32B32_SINT:
+		return 96;
+
+	case DXGI_FORMAT_R16G16B16A16_TYPELESS:
+	case DXGI_FORMAT_R16G16B16A16_FLOAT:
+	case DXGI_FORMAT_R16G16B16A16_UNORM:
+	case DXGI_FORMAT_R16G16B16A16_UINT:
+	case DXGI_FORMAT_R16G16B16A16_SNORM:
+	case DXGI_FORMAT_R16G16B16A16_SINT:
+	case DXGI_FORMAT_R32G32_TYPELESS:
+	case DXGI_FORMAT_R32G32_FLOAT:
+	case DXGI_FORMAT_R32G32_UINT:
+	case DXGI_FORMAT_R32G32_SINT:
+	case DXGI_FORMAT_R32G8X24_TYPELESS:
+	case DXGI_FORMAT_D32_FLOAT_S8X24_UINT:
+	case DXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS:
+	case DXGI_FORMAT_X32_TYPELESS_G8X24_UINT:
+		return 64;
+
+	case DXGI_FORMAT_R10G10B10A2_TYPELESS:
+	case DXGI_FORMAT_R10G10B10A2_UNORM:
+	case DXGI_FORMAT_R10G10B10A2_UINT:
+	case DXGI_FORMAT_R11G11B10_FLOAT:
+	case DXGI_FORMAT_R8G8B8A8_TYPELESS:
+	case DXGI_FORMAT_R8G8B8A8_UNORM:
+	case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
+	case DXGI_FORMAT_R8G8B8A8_UINT:
+	case DXGI_FORMAT_R8G8B8A8_SNORM:
+	case DXGI_FORMAT_R8G8B8A8_SINT:
+	case DXGI_FORMAT_R16G16_TYPELESS:
+	case DXGI_FORMAT_R16G16_FLOAT:
+	case DXGI_FORMAT_R16G16_UNORM:
+	case DXGI_FORMAT_R16G16_UINT:
+	case DXGI_FORMAT_R16G16_SNORM:
+	case DXGI_FORMAT_R16G16_SINT:
+	case DXGI_FORMAT_R32_TYPELESS:
+	case DXGI_FORMAT_D32_FLOAT:
+	case DXGI_FORMAT_R32_FLOAT:
+	case DXGI_FORMAT_R32_UINT:
+	case DXGI_FORMAT_R32_SINT:
+	case DXGI_FORMAT_R24G8_TYPELESS:
+	case DXGI_FORMAT_D24_UNORM_S8_UINT:
+	case DXGI_FORMAT_R24_UNORM_X8_TYPELESS:
+	case DXGI_FORMAT_X24_TYPELESS_G8_UINT:
+	case DXGI_FORMAT_R9G9B9E5_SHAREDEXP:
+	case DXGI_FORMAT_R8G8_B8G8_UNORM:
+	case DXGI_FORMAT_G8R8_G8B8_UNORM:
+	case DXGI_FORMAT_B8G8R8A8_UNORM:
+	case DXGI_FORMAT_B8G8R8X8_UNORM:
+	case DXGI_FORMAT_R10G10B10_XR_BIAS_A2_UNORM:
+	case DXGI_FORMAT_B8G8R8A8_TYPELESS:
+	case DXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
+	case DXGI_FORMAT_B8G8R8X8_TYPELESS:
+	case DXGI_FORMAT_B8G8R8X8_UNORM_SRGB:
+		return 32;
+
+	case DXGI_FORMAT_R8G8_TYPELESS:
+	case DXGI_FORMAT_R8G8_UNORM:
+	case DXGI_FORMAT_R8G8_UINT:
+	case DXGI_FORMAT_R8G8_SNORM:
+	case DXGI_FORMAT_R8G8_SINT:
+	case DXGI_FORMAT_R16_TYPELESS:
+	case DXGI_FORMAT_R16_FLOAT:
+	case DXGI_FORMAT_D16_UNORM:
+	case DXGI_FORMAT_R16_UNORM:
+	case DXGI_FORMAT_R16_UINT:
+	case DXGI_FORMAT_R16_SNORM:
+	case DXGI_FORMAT_R16_SINT:
+	case DXGI_FORMAT_B5G6R5_UNORM:
+	case DXGI_FORMAT_B5G5R5A1_UNORM:
+	case DXGI_FORMAT_B4G4R4A4_UNORM:
+		return 16;
+
+	case DXGI_FORMAT_R8_TYPELESS:
+	case DXGI_FORMAT_R8_UNORM:
+	case DXGI_FORMAT_R8_UINT:
+	case DXGI_FORMAT_R8_SNORM:
+	case DXGI_FORMAT_R8_SINT:
+	case DXGI_FORMAT_A8_UNORM:
+		return 8;
+
+	case DXGI_FORMAT_R1_UNORM:
+		return 1;
+
+	case DXGI_FORMAT_BC1_TYPELESS:
+	case DXGI_FORMAT_BC1_UNORM:
+	case DXGI_FORMAT_BC1_UNORM_SRGB:
+	case DXGI_FORMAT_BC4_TYPELESS:
+	case DXGI_FORMAT_BC4_UNORM:
+	case DXGI_FORMAT_BC4_SNORM:
+		return 4;
+
+	case DXGI_FORMAT_BC2_TYPELESS:
+	case DXGI_FORMAT_BC2_UNORM:
+	case DXGI_FORMAT_BC2_UNORM_SRGB:
+	case DXGI_FORMAT_BC3_TYPELESS:
+	case DXGI_FORMAT_BC3_UNORM:
+	case DXGI_FORMAT_BC3_UNORM_SRGB:
+	case DXGI_FORMAT_BC5_TYPELESS:
+	case DXGI_FORMAT_BC5_UNORM:
+	case DXGI_FORMAT_BC5_SNORM:
+	case DXGI_FORMAT_BC6H_TYPELESS:
+	case DXGI_FORMAT_BC6H_UF16:
+	case DXGI_FORMAT_BC6H_SF16:
+	case DXGI_FORMAT_BC7_TYPELESS:
+	case DXGI_FORMAT_BC7_UNORM:
+	case DXGI_FORMAT_BC7_UNORM_SRGB:
+		return 8;
+
+	default:
+		return 0;
+	}
+}
+
+//--------------------------------------------------------------------------------------
+// Get surface information for a particular format.
+//--------------------------------------------------------------------------------------
+static int GetCnumBytesPerBlock(
+	_In_ DXGI_FORMAT fmt
+)
+{
+	size_t bcnumBytesPerBlock = 0;
+	switch (fmt)
+	{
+	case DXGI_FORMAT_BC1_TYPELESS:
+	case DXGI_FORMAT_BC1_UNORM:
+	case DXGI_FORMAT_BC1_UNORM_SRGB:
+	case DXGI_FORMAT_BC4_TYPELESS:
+	case DXGI_FORMAT_BC4_UNORM:
+	case DXGI_FORMAT_BC4_SNORM:
+		bcnumBytesPerBlock = 8;
+		break;
+
+	case DXGI_FORMAT_BC2_TYPELESS:
+	case DXGI_FORMAT_BC2_UNORM:
+	case DXGI_FORMAT_BC2_UNORM_SRGB:
+	case DXGI_FORMAT_BC3_TYPELESS:
+	case DXGI_FORMAT_BC3_UNORM:
+	case DXGI_FORMAT_BC3_UNORM_SRGB:
+	case DXGI_FORMAT_BC5_TYPELESS:
+	case DXGI_FORMAT_BC5_UNORM:
+	case DXGI_FORMAT_BC5_SNORM:
+	case DXGI_FORMAT_BC6H_TYPELESS:
+	case DXGI_FORMAT_BC6H_UF16:
+	case DXGI_FORMAT_BC6H_SF16:
+	case DXGI_FORMAT_BC7_TYPELESS:
+	case DXGI_FORMAT_BC7_UNORM:
+	case DXGI_FORMAT_BC7_UNORM_SRGB:
+		bcnumBytesPerBlock = 16;
+		break;
+
+	case DXGI_FORMAT_R8G8_B8G8_UNORM:
+	case DXGI_FORMAT_G8R8_G8B8_UNORM:
+		break;
+	}
+	return bcnumBytesPerBlock;
+}
+
+
+//--------------------------------------------------------------------------------------
+DDSLoader::DDSLoader(const char* filePath) : DDSHeader(0), DDS10Header(0)
+{
+	isCubeMap = false;
+	path = filePath;
+	std::ifstream file(filePath, std::ios::ate | std::ios::binary);
+	if (!file.is_open())
+	{
+		//throw std::runtime_error((DString("failed to open file : ") + filePath).c_str());
+		ConsoleDebug::print_endl((DString("failed to open dds file : ") + filePath).c_str(), "255,20,0");
+		return;
+	}
+	size_t fileSize = static_cast&lt;size_t&gt;(file.tellg());
+	if (fileSize &lt;= sizeof(FDDSFileHeader))
+	{
+		return;
+	}
+	DDSBuffer.resize(fileSize);
+	file.seekg(0);
+	file.read(DDSBuffer.data(), fileSize);
+	file.close();
+}
+
+DDSLoader::DDSLoader(std::vector&lt;char&gt; buffer) : DDSHeader(0), DDS10Header(0)
+{
+	isCubeMap = false;
+	DDSBuffer = buffer;
+}
+
+ImageData* DDSLoader::LoadDDSToImage()
+{
+	arraySize = 1;
+	if (DDSBuffer.size() &lt;= sizeof(FDDSFileHeader))
+	{
+		return NULL;
+	}
+
+	//获取文件头
+	const FDDSFileHeader* DDS = (FDDSFileHeader*)(DDSBuffer.data() + 4);
+	uint32_t AlwaysRequiredFlags = DDSF_Caps | DDSF_Height | DDSF_Width | DDSF_PixelFormat;
+	if (DDSBuffer.size() &gt;= sizeof(FDDSFileHeader) + 4 &&
+		DDSBuffer[0] == 'D' && DDSBuffer[1] == 'D' && DDSBuffer[2] == 'S' && DDSBuffer[3] == ' ' &&
+		DDS-&gt;dwSize == sizeof(FDDSFileHeader) &&
+		DDS-&gt;ddpf.dwSize == sizeof(FDDSPixelFormatHeader) &&
+		(DDS-&gt;dwFlags & AlwaysRequiredFlags) == AlwaysRequiredFlags)
+	{
+		DDSHeader = DDS;
+	}
+	// Check for dx10 dds format, 并不是特指DX10,而是只支持DX10以上版本
+	// 比如最新的BC6和BC7格式
+	if (DDS-&gt;ddpf.dwFourCC == DDSPF_DX10)
+	{
+		DDS10Header = (FDDS10FileHeader*)(DDSBuffer.data() + 4 + sizeof(FDDSFileHeader));
+	}
+	//是否导入失败
+	if (!IsValid())
+	{
+		ConsoleDebug::print_endl((DString("load dds file failed.")).c_str(), "255,20,0");
+		return NULL;
+	}
+
+	//是不是CubeMap
+	if (DDSHeader-&gt;dwCaps2 & DDSC_CubeMap)
+	{
+		isCubeMap = true;
+		arraySize = 6;
+	}
+
+	unsigned int  blockSize = 16;
+	bool bcFormat = false;
+	uint8_t bitsPerPixel = 8;
+
+	//-----Get format 获取纹理格式
+	DXGI_FORMAT dxgiTextureFormat = DXGI_FORMAT_UNKNOWN;
+	if(DDS10Header)
+	{
+		dxgiTextureFormat = (DXGI_FORMAT)DDS10Header-&gt;format;
+	}
+	else
+	{
+		dxgiTextureFormat = GetDXGIFormat(DDSHeader-&gt;ddpf);
+	}
+
+	//如果没有获取到格式,就相当于失败了。
+	if(dxgiTextureFormat == DXGI_FORMAT_UNKNOWN)
+	{
+		ConsoleDebug::print_endl((DString("load dds file failed.Unknow texture format.")).c_str(), "255,20,0");
+		return NULL;
+	}
+
+	ImageData* out = new ImageData;
+
+	//获取BC block 大小,只有压缩纹理才会有
+	blockSize = GetCnumBytesPerBlock(dxgiTextureFormat);
+	//获取像素位数
+	bitsPerPixel = BitsPerPixel(dxgiTextureFormat);
+	bcFormat = blockSize != 0;
+
+	switch(dxgiTextureFormat)
+	{
+		//RGBA8
+		case	DXGI_FORMAT_R8G8B8A8_UNORM:
+			out-&gt;texFormat = TextureFormat::R8G8B8A8_UNORM; break;
+		case	DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
+			out-&gt;texFormat = TextureFormat::R8G8B8A8_SRGB; break;
+		case	DXGI_FORMAT_R8G8B8A8_UINT :
+			out-&gt;texFormat = TextureFormat::R8G8B8A8_UINT; break;
+		case	DXGI_FORMAT_R8G8B8A8_SNORM :
+			out-&gt;texFormat = TextureFormat::R8G8B8A8_SNORM; break;
+		case	DXGI_FORMAT_R8G8B8A8_SINT :
+			out-&gt;texFormat = TextureFormat::R8G8B8A8_SINT; break;
+		//RGBA16
+		case	DXGI_FORMAT_R16G16B16A16_FLOAT:
+			out-&gt;texFormat = TextureFormat::R16G16B16A16_SFLOAT; break;
+		case	DXGI_FORMAT_R16G16B16A16_UNORM:
+			out-&gt;texFormat = TextureFormat::R16G16B16A16_UNORM; break;
+		case	DXGI_FORMAT_R16G16B16A16_UINT:
+			out-&gt;texFormat = TextureFormat::R16G16B16A16_UINT; break;
+		case	DXGI_FORMAT_R16G16B16A16_SNORM:
+			out-&gt;texFormat = TextureFormat::R16G16B16A16_SNORM; break;
+		case	DXGI_FORMAT_R16G16B16A16_SINT:
+			out-&gt;texFormat = TextureFormat::R16G16B16A16_SINT; break;
+		//RGBA32
+		case	DXGI_FORMAT_R32G32B32A32_FLOAT:
+			out-&gt;texFormat = TextureFormat::R32G32B32A32_SFLOAT; break;
+		case	DXGI_FORMAT_R32G32B32A32_UINT:
+			out-&gt;texFormat = TextureFormat::R32G32B32A32_UINT; break;
+		case	DXGI_FORMAT_R32G32B32A32_SINT:
+			out-&gt;texFormat = TextureFormat::R32G32B32A32_SINT; break;
+		//R
+		case	DXGI_FORMAT_R8_UNORM:
+			out-&gt;texFormat = TextureFormat::R8_UNORM; break;
+		case	DXGI_FORMAT_R8_UINT:
+			out-&gt;texFormat = TextureFormat::R8_UINT; break;
+		case	DXGI_FORMAT_R8_SNORM:
+			out-&gt;texFormat = TextureFormat::R8_SNORM; break;
+		case	DXGI_FORMAT_R8_SINT:
+			out-&gt;texFormat = TextureFormat::R8_SINT; break;
+		//BC1
+		case	DXGI_FORMAT_BC1_UNORM:
+			out-&gt;texFormat = TextureFormat::BC1_RGB_UNORM_BLOCK; break;
+		case	DXGI_FORMAT_BC1_UNORM_SRGB:
+			out-&gt;texFormat = TextureFormat::BC1_RGB_SRGB_BLOCK; break;
+		//BC2
+		case	DXGI_FORMAT_BC2_UNORM:
+			out-&gt;texFormat = TextureFormat::BC2_UNORM_BLOCK; break;
+		case	DXGI_FORMAT_BC2_UNORM_SRGB:
+			out-&gt;texFormat = TextureFormat::BC2_SRGB_BLOCK; break;
+		//BC3
+		case	DXGI_FORMAT_BC3_UNORM:
+			out-&gt;texFormat = TextureFormat::BC3_UNORM_BLOCK; break;
+		case	DXGI_FORMAT_BC3_UNORM_SRGB:
+			out-&gt;texFormat = TextureFormat::BC3_SRGB_BLOCK; break;
+		//BC4
+		case	DXGI_FORMAT_BC4_UNORM:
+			out-&gt;texFormat = TextureFormat::BC4_UNORM_BLOCK; break;
+		case	DXGI_FORMAT_BC4_SNORM:
+			out-&gt;texFormat = TextureFormat::BC4_SNORM_BLOCK; break;
+		//BC5
+		case	DXGI_FORMAT_BC5_UNORM:
+			out-&gt;texFormat = TextureFormat::BC5_UNORM_BLOCK; break;
+		case	DXGI_FORMAT_BC5_SNORM:
+			out-&gt;texFormat = TextureFormat::BC5_SNORM_BLOCK; break;
+		//BC6
+		case	DXGI_FORMAT_BC6H_UF16:
+			out-&gt;texFormat = TextureFormat::BC6H_UFLOAT_BLOCK; break;
+		case	DXGI_FORMAT_BC6H_SF16:
+			out-&gt;texFormat = TextureFormat::BC6H_SFLOAT_BLOCK; break;
+		//BC6
+		case	DXGI_FORMAT_BC7_UNORM:
+			out-&gt;texFormat = TextureFormat::BC7_UNORM_BLOCK; break;
+		case	DXGI_FORMAT_BC7_UNORM_SRGB:
+			out-&gt;texFormat = TextureFormat::BC7_SRGB_BLOCK; break;
+	}
+
+	//-----Get data
+	out-&gt;isCubeMap = isCubeMap;
+	out-&gt;blockSize = blockSize;
+	out-&gt;data_header.width = DDSHeader-&gt;dwWidth;
+	out-&gt;data_header.height = DDSHeader-&gt;dwHeight;
+	out-&gt;data_header.bitsPerPixel = bitsPerPixel;
+	out-&gt;mipLevel = DDSHeader-&gt;dwMipMapCount;
+
+	//获取图像总大小
+	out-&gt;imageSize = 0;
+	int32_t mipWidth = DDSHeader-&gt;dwWidth;
+	int32_t mipHeight = DDSHeader-&gt;dwHeight;
+	for (int i = 0; i &lt; out-&gt;mipLevel; ++i)
+	{
+		if (bcFormat)
+		{
+			uint32_t imageSize = SIZE_OF_BC(mipWidth, mipHeight, blockSize);//BC压缩格式的大小计算公式
+			out-&gt;imageSize += imageSize;
+		}
+		else
+			out-&gt;imageSize += mipWidth * mipHeight * (bitsPerPixel /8);
+		if (mipWidth &gt; 1) mipWidth /= 2;
+		if (mipHeight &gt; 1) mipHeight /= 2;
+	}
+
+	//-----Get image data pointer 获取图像数据
+	const char* Ptr = (const char*)DDSHeader + sizeof(FDDSFileHeader);
+	// jump over dx10 header if available
+	if (DDS10Header)
+	{
+		Ptr = (const char*)DDSHeader + sizeof(FDDSFileHeader) + sizeof(FDDS10FileHeader);
+	}
+	if(isCubeMap)
+	{
+		out-&gt;imageData.resize(out-&gt;imageSize * 6);
+		memcpy(out-&gt;imageData.data(), Ptr, out-&gt;imageSize* 6);
+	}
+	else
+	{
+		out-&gt;imageData.resize(out-&gt;imageSize);
+		memcpy(out-&gt;imageData.data(), Ptr, out-&gt;imageSize);
+	}
+	return out;
+}
+
+bool DDSLoader::IsValid2DTexture() const
+{
+	if (IsValid() && (DDSHeader-&gt;dwCaps2 & DDSC_CubeMap) == 0 && (DDSHeader-&gt;dwCaps2 & DDSC_Volume) == 0 && (DDS10Header == nullptr || (DDS10Header-&gt;resourceType == 3 && DDS10Header-&gt;arraySize == 1)))
+	{
+		return true;
+	}
+	return false;
+}
+</code></pre></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const OFFSET_HEIGHT = 100; // 文章调整的时候避开顶上的菜单栏
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+            const href = link.getAttribute('href');
+            const decodedHref = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(decodedHref);
+            console.log(decodedHref);
+            if (target) {
+                event.preventDefault();
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: targetPosition - OFFSET_HEIGHT, behavior: 'smooth' });
+            }
+
+            const toc_style = document.getElementById('toc-style');
+            const toc_button = document.getElementById('toc-button');  
+            toc_style.style.display = 'none';
+            toc_button.textContent = '显示目录';
+
+            });
+        });
+        });
+    </script>
+
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 坏包包
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;坏包包
+            <br/>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
+            <br/>
+            <a class="BilibliLink" href="/">返回主页</a>
+            <br/>
+            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+            <br/>
+            本页面由Hexo生成，搭建在Github
+            <br/>
+            主题：Particlex(魔改)
+        </div>
+        
+    </div>
+    <script>
+        // 滚动事件监听器，用于显示/隐藏返回顶部按钮
+        // window.onscroll = function() {
+        //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        //     document.getElementById('backToTop').style.display = 'block';
+        //   } else {
+        //     document.getElementById('backToTop').style.display = 'none';
+        //   }
+        // };
+       
+        // 返回顶部的函数
+        function scrollToTop() {
+          document.body.scrollTop = 0; // 对Safari
+          document.documentElement.scrollTop = 0; // 对Chrome, Firefox, IE 和 Opera
+        }
+      </script>
+</footer>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" alt="" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="hbbwang/HbbHexoComment"
+    data-repo-id="R_kgDOMC9ptw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMC9pt84Cfv5q"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="noborder_dark"
+    data-lang="zh-CN"
+    
+    data-loading="lazy"
+    
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=n();function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t=t.concat(e)}function t(t){(a||t)&&(d=n());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,a,o,n=d[i];e=function(){d=d.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)},(t=n).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),t.removeAttribute("style"),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,100)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+</html>

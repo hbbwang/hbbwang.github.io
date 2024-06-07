@@ -52,6 +52,8 @@
 
 
 <script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -71,6 +73,11 @@
             <span>坏包包</span>
         </a>
         
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
         <a href="/archives/">
             <i class="fa-solid fa-All fa-fw"></i>
             <span>&ensp;所有文章</span>
@@ -79,6 +86,11 @@
         <a href="/categories/Unreal">
             <i class="fa-solid fa-Unreal fa-fw"></i>
             <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
         </a>
         
         <a href="/categories/Others">
@@ -95,6 +107,15 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
                 <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
@@ -110,6 +131,15 @@
                             <i class="fa-solid fa-Unreal fa-fw"></i>
                         </div>
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
                     </div>
                 </a>
                 
@@ -208,7 +238,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Unreal/" style="color: #ffa2c4">
+                <a href="/tags/Unreal/" style="color: #ff7d73">
                     Unreal
                 </a>
             </span>
@@ -240,9 +270,9 @@
     
     <div class="content" v-pre>
         <p>做这个文档的起因是，网上搜索到的教程的版本都比较旧，基本上都是4.24以前的，然后UE4似乎从4.25之后，对底层代码做了不少改动，导致网上的做法都不可行了，所以做这个文档记录一下。<br><br>还有我不敢保证更新的版本支持这个写法，比如UE5。<br><br>该方法是独立于渲染管线之外的，继承于FGlobalShader，如果想集成到Mesh renderpass 里，想根据渲染顺序读取模型数据之类的的话就不行了（不过一般ComputeShader也不会走管线计算）<br><br><h1 id="首先第一步，新建一个模块（Module）" >首先第一步，新建一个模块（Module）</h1><br>为什么要新建Module？<br><br>因为我们ComputeShader需要继承FGlobalShader，而继承了FGlobalShader类，必须要在引擎之前加载，不然会导致错误，加载失败，所以我们不能把Compute shader写在引擎的逻辑代码上，必须通过Module，使其提前加载。<br><br>创建了Module之后，在项目的.uproject文件上修改即可<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>如果这样还是报错的话，就把模块的位置放到上面试试（亲测可行）<br><br>如果实在不行的话，那就只能和网上说一样新建一个Plugins，然后再在里面生成一个module了。<br><br>新建模块可以在商城里面找到一个免费的插件<br><div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="1.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>这个免费插件可以帮助我们一键生产模块，自动添加cs和uproject配置，很方便，非常推荐。<br><br>这里我新建了一个模块叫ComputeShaderTest<br><br><h1 id="第二步，编写Compute Shader（TestCS.usf）" >第二步，编写Compute Shader（TestCS.usf）</h1><br>编写测试用的ComputeShader，这里我们直接输出一个绿色。<br><br>TestCS.usf<br><pre class="line-numbers"><code class="language-c">#include "/Engine/Private/Common.ush"
-RWTexture2D<float4> _texture_out;
+RWTexture2D&lt;float4&gt; _texture_out;
 uint Index;
-<span style="" ></span>
+&lt;span style="" &gt;&lt;/span&gt;
 void CSMain(uint3 id :SV_DispatchThreadID)
 {
    _texture_out[id.xy] = float4(0.0,1.0, 0.0, 1.0);
@@ -267,7 +297,7 @@ private:
    DECLARE_SHADER_TYPE(FTestComputeShader,Global);
    //------------------------------------ 下面这段可有可无，去掉好像也没影响...
    BEGIN_SHADER_PARAMETER_STRUCT(FParameters, )
-      SHADER_PARAMETER_UAV(RWTexture2D<float4>, _texture_out)
+      SHADER_PARAMETER_UAV(RWTexture2D&lt;float4&gt;, _texture_out)
    END_SHADER_PARAMETER_STRUCT()
    //------------------------------------
    LAYOUT_FIELD(FRWShaderParameter, OutputSurface); //
@@ -320,36 +350,36 @@ void FTestComputeShader::ExecComputeShader_RenderThread( UTextureRenderTarget2D*
     check(IsInRenderingThread());
 	check(RenderTarget!= nullptr);
 	//从global shader获取我们的compute shader
-	TShaderMapRef<FTestComputeShader> ComputeShader(GetGlobalShaderMap(FeatureLevel));
+	TShaderMapRef&lt;FTestComputeShader&gt; ComputeShader(GetGlobalShaderMap(FeatureLevel));
 	//使用之前，需要绑定Compute Shader
 	FRHIComputeShader* cs = ComputeShader.GetComputeShader();
 	RHICmdList.SetComputeShader(cs);
 	//创建贴图
-    int32 SizeX = RenderTarget->SizeX;  
-    int32 SizeY = RenderTarget->SizeY;  
+    int32 SizeX = RenderTarget-&gt;SizeX;  
+    int32 SizeY = RenderTarget-&gt;SizeY;  
     FRHIResourceCreateInfo CreateInfo;
 	//创建UAV Texture2D，一定要注意第三个贴图格式！必须要和renderTarget一致，不然就无法copy到renderTarget上
-    FTexture2DRHIRef Texture = RHICreateTexture2D(SizeX, SizeY, RenderTarget->GetFormat(), 1, 1, TexCreate_ShaderResource | TexCreate_UAV, CreateInfo);
+    FTexture2DRHIRef Texture = RHICreateTexture2D(SizeX, SizeY, RenderTarget-&gt;GetFormat(), 1, 1, TexCreate_ShaderResource | TexCreate_UAV, CreateInfo);
     //创建UAV
     FUnorderedAccessViewRHIRef TextureUAV = RHICreateUnorderedAccessView(Texture);  
 	//绑定UAV（Set UAV Parameter）
-	ComputeShader->BindBuffers(RHICmdList, TextureUAV , Texture);  
+	ComputeShader-&gt;BindBuffers(RHICmdList, TextureUAV , Texture);  
 	//执行compute shader
     DispatchComputeShader(RHICmdList, ComputeShader, SizeX/32, SizeY/32, 1);
 	//计算完成之后，解除UAV的绑定，释放GPU权限，这样才能在CPU读取到数据
-    ComputeShader->UnbindBuffers(RHICmdList);
+    ComputeShader-&gt;UnbindBuffers(RHICmdList);
 	
 	//把UAV texture 复制到我们的RenderTarget上
-	RHICmdList.CopyTexture(Texture, RenderTarget->GetRenderTargetResource()->TextureRHI, FRHICopyTextureInfo());
+	RHICmdList.CopyTexture(Texture, RenderTarget-&gt;GetRenderTargetResource()-&gt;TextureRHI, FRHICopyTextureInfo());
 	//
     /*------------------开始读取数据--------------*/
     uint32 LolStride = 0;
 	//读出贴图数据
     unsigned char* TextureData = (unsigned char*)RHICmdList.LockTexture2D(Texture, 0, EResourceLockMode::RLM_ReadOnly, LolStride, false);
-	TArray<FColor> Bitmap;
-	for (int32 y = 0; y < SizeY; y++)
+	TArray&lt;FColor&gt; Bitmap;
+	for (int32 y = 0; y &lt; SizeY; y++)
 	{
-		for (int32 x = 0; x < SizeX; x++)
+		for (int32 x = 0; x &lt; SizeX; x++)
 		{
 			FColor convert;
 			convert.R = TextureData[(y*SizeX + x) * 4 + 2];//R
@@ -368,9 +398,9 @@ void FTestComputeShader::ExecComputeShader_RenderThread( UTextureRenderTarget2D*
         //把贴图存在引擎的截图路径
         IFileManager::Get().MakeDirectory(*FPaths::ScreenShotDir(), true);  
         const FString ScreenFileName(FPaths::ScreenShotDir() / TEXT("VisualizeTexture"));  
-        uint32 width = Bitmap.Num() / Texture->GetSizeY();  
+        uint32 width = Bitmap.Num() / Texture-&gt;GetSizeY();  
 		//保存成BMP
-        FFileHelper::CreateBitmap(*ScreenFileName, Texture->GetSizeX(), Texture->GetSizeY(), Bitmap.GetData());  
+        FFileHelper::CreateBitmap(*ScreenFileName, Texture-&gt;GetSizeX(), Texture-&gt;GetSizeY(), Bitmap.GetData());  
     }  
 }
 </code></pre><h1 id="第四步，把功能实现到引擎蓝图里" >第四步，把功能实现到引擎蓝图里</h1><br>.h头文件<br>回到头文件，找到我们新建的Actor类<br><br>ComputeShaderTestActor.h<br><pre class="line-numbers"><code class="language-c">UENUM()
@@ -402,20 +432,20 @@ public:
 };
 </code></pre>这里我声明了一个枚举，用来判断不同的平台，大家也可以直接在这个C++里对不同平台直接判断，就不用这么麻烦了<br><br>.cpp文件<br>ComputeShaderTestActor.cpp<br><pre class="line-numbers"><code class="language-c">void AComputeShaderTestActor::TestComputeShader(int TextureSize,ERHIFeature type)
 {
-	if(TextureSize>=1)
+	if(TextureSize&gt;=1)
 	{
 		if(_RT != NULL)
 		{
-			_RT->ReleaseResource();
+			_RT-&gt;ReleaseResource();
 		}
  		//新建一张RenderTarget，也可以从蓝图读取进来，就不需要我们手动释放内存了
-		_RT = NewObject<UTextureRenderTarget2D>(GetTransientPackage(),NAME_None,RF_Transient);
+		_RT = NewObject&lt;UTextureRenderTarget2D&gt;(GetTransientPackage(),NAME_None,RF_Transient);
 		check(_RT);
-		_RT->RenderTargetFormat = RTF_RGBA8;
-		_RT->ClearColor = FLinearColor(0,0,0,1);
-		_RT->bAutoGenerateMips = false;
-		_RT->InitAutoFormat(TextureSize, TextureSize);	
-		_RT->UpdateResourceImmediate(true);
+		_RT-&gt;RenderTargetFormat = RTF_RGBA8;
+		_RT-&gt;ClearColor = FLinearColor(0,0,0,1);
+		_RT-&gt;bAutoGenerateMips = false;
+		_RT-&gt;InitAutoFormat(TextureSize, TextureSize);	
+		_RT-&gt;UpdateResourceImmediate(true);
 		
 		ENQUEUE_RENDER_COMMAND(TestCommand)(
 			[this,type](FRHICommandListImmediate& RHICmdList)

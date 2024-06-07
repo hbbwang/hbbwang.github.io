@@ -50,6 +50,8 @@
 
 
 <script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -69,6 +71,11 @@
             <span>坏包包</span>
         </a>
         
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
         <a href="/archives/">
             <i class="fa-solid fa-All fa-fw"></i>
             <span>&ensp;所有文章</span>
@@ -77,6 +84,11 @@
         <a href="/categories/Unreal">
             <i class="fa-solid fa-Unreal fa-fw"></i>
             <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
         </a>
         
         <a href="/categories/Others">
@@ -93,6 +105,15 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
                 <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
@@ -108,6 +129,15 @@
                             <i class="fa-solid fa-Unreal fa-fw"></i>
                         </div>
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
                     </div>
                 </a>
                 
@@ -170,13 +200,22 @@
         </div>
         
         
-        <div class="friend-links">
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">Bilibili主页</a>
+        
+            <div class="custom-icon-links">
+                
+                <div class="custom-icon-link">
+                    <a target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">
+                        <div class="custom-icon-link-image no-lazy" style="background-image: url(/images/icon_bilibili.png);" ></div>
+                    </a>
+                </div>
+                
+                <div class="custom-icon-link">
+                    <a target="_blank" rel="noopener" href="https://github.com/hbbwang">
+                        <div class="custom-icon-link-image no-lazy" style="background-image: url(/images/icon_github.png);" ></div>
+                    </a>
+                </div>
+                
             </div>
-            
-        </div>
         
     </div>
 </div>
@@ -190,47 +229,43 @@
 
 
 
+
+
 <script>  
-//最多显示6个卡片
-var num_max_posts_card = 6;
+//最多显示的卡片
+var num_max_posts_card_0_900 = 8;
+var num_max_posts_card_900_1440 = 6;
+var num_max_posts_card_900_end = 8;
+var currentWindowWidth = 0;
 //none就是all所有
 var current_home_post_tab_category ='?';
 function openTab(new_category) 
 {
-    if(current_home_post_tab_category == new_category)
-        return;
+    // if(current_home_post_tab_category == new_category)
+    //     return;
     //console.log("new category posts card : " + new_category);
     let posts_tabs = document.getElementById('posts-tabs'); 
     for(let i = 0 ; i < posts_tabs.childNodes.length;i++)
     {
-        posts_tabs.childNodes[i].style.transform = 'translateY(+2px)';
+        posts_tabs.childNodes[i].style.transform = 'translateY(-6px)';
+        posts_tabs.childNodes[i].style.border = '1px solid rgb(80,80,90)';
+        posts_tabs.childNodes[i].style.color = 'rgb(180,180,180)';
+        posts_tabs.childNodes[i].style.zIndex = 0;
+        posts_tabs.childNodes[i].style.boxShadow = 'none';
     }
     let tab_button_id = 'posts-tab-button-' + new_category;
     let tab_button =document.getElementById(tab_button_id);
     if(tab_button)
     {
-        tab_button.style.transform = 'translateY(-8px)';
+        tab_button.style.transform = 'translateY(+4px)';
+        tab_button.style.border = '1px solid rgb(255,230,150)';
+        tab_button.style.color = 'rgb(255,255,255)';
+        tab_button.style.zIndex = 1;
+        tab_button.style.boxShadow = ' 0 0 10px rgb(80,80,40)';
     }
 
     current_home_post_tab_category = new_category;
     let home_post = document.getElementById('home-posts'); 
-    if(new_category == 'all')
-    {
-        //全部卡片先隐藏了
-        for(let i = 0 ; i < home_post.childNodes.length;i++)
-        {
-            home_post.childNodes[i].style.display = 'none';
-        }
-        for(let i = 0 ; i < home_post.childNodes.length;i++)
-        {
-            if(i >= num_max_posts_card)
-            {
-                break;
-            }
-            home_post.childNodes[i].style.display = 'block';
-        }
-    }
-    else
     {
         //全部卡片先隐藏了
         for(let i = 0 ; i < home_post.childNodes.length;i++)
@@ -241,16 +276,26 @@ function openTab(new_category)
         let post_card_count = 0 ;
         for(let i = 0 ; i < home_post.childNodes.length;i++)
         {
-            if(post_card_count >= num_max_posts_card){
-                break;
-            }   
-            let categpry_child = home_post.childNodes[i].querySelector('#' + new_category);
-            //console.log( new_category + ' : ' +categpry_child );
-            if(categpry_child)
+            if(window.innerWidth == currentWindowWidth) break;
+            else if( window.innerWidth <= 900 && post_card_count >= num_max_posts_card_0_900) break;  
+            else if( window.innerWidth <= 1500 && window.innerWidth > 900 && post_card_count >= num_max_posts_card_900_1440) break;  
+            else if( window.innerWidth > 1500 && post_card_count >= num_max_posts_card_900_end) break;  
+            if(new_category == 'all')
             {
-                home_post.childNodes[i].style.display = 'block';
                 post_card_count++;
+                home_post.childNodes[i].style.display = 'block';
             }
+            else
+            {
+                let categpry_child = home_post.childNodes[i].querySelector('#' + new_category);
+                //console.log( new_category + ' : ' +categpry_child );
+                if(categpry_child)
+                {
+                    home_post.childNodes[i].style.display = 'block';
+                    post_card_count++;
+                }
+            }
+
         }
     }
 }
@@ -271,6 +316,11 @@ function openPostsMore()
 document.addEventListener('DOMContentLoaded', function() {
     openTab('all');
 });
+
+window.addEventListener('resize', function() {
+    openTab(current_home_post_tab_category);
+});
+
 </script>
 
 <!-- 首页的文章显示 -->
@@ -315,9 +365,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="posts-tabs">
         <button id='posts-tab-button-all' class="posts-tab-button" onclick="openTab('all')">所有</button>
         
-        <button id='posts-tab-button-Others' class="posts-tab-button" onclick="openTab('Others')">Others</button>
-        
         <button id='posts-tab-button-Unreal' class="posts-tab-button" onclick="openTab('Unreal')">Unreal</button>
+        
+        <button id='posts-tab-button-CplusplusCsharp' class="posts-tab-button" onclick="openTab('CplusplusCsharp')">C++/C#</button>
+        
+        <button id='posts-tab-button-Others' class="posts-tab-button" onclick="openTab('Others')">Others</button>
         
     </div>
     <div id="home-posts">
@@ -412,6 +464,97 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="post">
             <div class="post-image-parent">
             
+                <img src="/images/loading3.gif" data-original="/2023/08/14/CplusplusCsharp/Unity%20%E6%A1%8C%E5%AE%A0%20%E5%AE%9E%E7%8E%B0/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2023/08/14/CplusplusCsharp/Unity%20%E6%A1%8C%E5%AE%A0%20%E5%AE%9E%E7%8E%B0/">
+                <h2 class="post-title">Unity 桌宠 实现</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2023/8/14
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2023/04/02/CplusplusCsharp/(%E5%85%A8%E6%99%AF%E5%9B%BE%E2%86%92CubeMap)%20NVTT+OpenCV%E7%94%9F%E6%88%90DDS%E6%A0%BC%E5%BC%8F%E7%9A%84CubeMap/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2023/04/02/CplusplusCsharp/(%E5%85%A8%E6%99%AF%E5%9B%BE%E2%86%92CubeMap)%20NVTT+OpenCV%E7%94%9F%E6%88%90DDS%E6%A0%BC%E5%BC%8F%E7%9A%84CubeMap/">
+                <h2 class="post-title">(全景图→CubeMap) NVTT+OpenCV生成DDS格式的CubeMap</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2023/4/2
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2023/03/29/CplusplusCsharp/DDS%E7%BA%B9%E7%90%86%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5(%E4%B8%8D%E4%BE%9D%E8%B5%96d3d11)/">
+                <h2 class="post-title">DDS纹理数据导入（不依赖d3d11.h）</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2023/3/29
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
                 <img src="/images/loading3.gif" data-original="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/Header.jpg" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
             
             </div>        
@@ -434,6 +577,159 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fa-solid fa-calendar fa-fw"></i>
                     </span>
                     2022/7/20
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/29/CplusplusCsharp/TGA%E8%B4%B4%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">
+                <h2 class="post-title">TGA贴图数据导入导出</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/29
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/24/CplusplusCsharp/QT5%20%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96%E5%AF%B9%E8%AF%9D%E6%A1%86/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/24/CplusplusCsharp/QT5%20%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96%E5%AF%B9%E8%AF%9D%E6%A1%86/">
+                <h2 class="post-title">QT5 颜色吸取对话框</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/24
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/23/CplusplusCsharp/C++%20QT5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E9%A2%98%E6%A0%8F/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/23/CplusplusCsharp/C++%20QT5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E9%A2%98%E6%A0%8F/">
+                <h2 class="post-title">C++ QT5 自定义标题栏</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/23
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/20/CplusplusCsharp/Csharp%20WPF%E5%AF%BC%E5%85%A5C++%E7%9A%84%E7%BC%96%E8%AF%91DLL(%E9%9D%9EC++CLI%E6%89%98%E7%AE%A1)/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/20/CplusplusCsharp/Csharp%20WPF%E5%AF%BC%E5%85%A5C++%E7%9A%84%E7%BC%96%E8%AF%91DLL(%E9%9D%9EC++CLI%E6%89%98%E7%AE%A1)/">
+                <h2 class="post-title">C# WPF导入C++的编译DLL(非C++/CLI托管)</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/20
+                </span>
+                
+                
+            </div>
+        </div>        
+
+        <div class="post">
+            <div class="post-image-parent">
+            
+                <img src="/images/loading3.gif" data-original="/2022/06/20/CplusplusCsharp/C++%20GLFW%20%E7%AA%97%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AF%B4%E6%98%8E/Header.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" class="post-image" />
+            
+            </div>        
+            <a class="post-title-a" href="/2022/06/20/CplusplusCsharp/C++%20GLFW%20%E7%AA%97%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AF%B4%E6%98%8E/">
+                <h2 class="post-title">C++ GLFW 窗口初始化说明</h2>
+            </a>
+            <div class="category-and-date">
+                
+                <span class="category" id="CplusplusCsharp">
+                    <a href="/categories/CplusplusCsharp/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        C++/C#
+                    </a>
+                </span>
+                
+                <span class="date">
+                    <span class="icon">
+                        <i class="fa-solid fa-calendar fa-fw"></i>
+                    </span>
+                    2022/6/20
                 </span>
                 
                 

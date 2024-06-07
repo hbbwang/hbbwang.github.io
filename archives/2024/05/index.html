@@ -48,6 +48,8 @@
 
 
 <script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -67,6 +69,11 @@
             <span>坏包包</span>
         </a>
         
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
         <a href="/archives/">
             <i class="fa-solid fa-All fa-fw"></i>
             <span>&ensp;所有文章</span>
@@ -75,6 +82,11 @@
         <a href="/categories/Unreal">
             <i class="fa-solid fa-Unreal fa-fw"></i>
             <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
         </a>
         
         <a href="/categories/Others">
@@ -91,6 +103,15 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
                 <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
@@ -106,6 +127,15 @@
                             <i class="fa-solid fa-Unreal fa-fw"></i>
                         </div>
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
                     </div>
                 </a>
                 
@@ -131,10 +161,13 @@
     <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
 
 
+
+
+
 <div id="archives">
-    <div id="timeline-wrap" ref="timeline">
+    <div id="all-timeline" ref="timeline">
         
-        <div class="timeline" data-title="javascript正则表达式">
+        <div class="timeline" id="JavaScript 正则表达式" data-title="javascript正则表达式">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2024/5/28</div>
@@ -161,14 +194,14 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/GitHub/" style="color: #ff7d73">
+                            <a href="/tags/GitHub/" style="color: #00a596">
                                 GitHub
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/Hexo/" style="color: #ffa2c4">
+                            <a href="/tags/Hexo/" style="color: #00bcd4">
                                 Hexo
                             </a>
                         </span>
@@ -179,7 +212,7 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="github+hexo搭建个人博客">
+        <div class="timeline" id="GitHub + Hexo 搭建个人博客" data-title="github+hexo搭建个人博客">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2024/5/23</div>
@@ -206,14 +239,14 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/GitHub/" style="color: #ffa2c4">
+                            <a href="/tags/GitHub/" style="color: #03a9f4">
                                 GitHub
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/Hexo/" style="color: #ff7d73">
+                            <a href="/tags/Hexo/" style="color: #00bcd4">
                                 Hexo
                             </a>
                         </span>
@@ -224,7 +257,7 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="移动端性能指令介绍">
+        <div class="timeline" id="移动端性能指令介绍" data-title="移动端性能指令介绍">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2024/1/15</div>
@@ -251,21 +284,21 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/Unreal/" style="color: #03a9f4">
+                            <a href="/tags/Unreal/" style="color: #ff7d73">
                                 Unreal
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/UnrealEngine/" style="color: #ff7d73">
+                            <a href="/tags/UnrealEngine/" style="color: #03a9f4">
                                 UnrealEngine
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #00a596">
+                            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #ff7d73">
                                 手游
                             </a>
                         </span>
@@ -279,14 +312,14 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #ff7d73">
+                            <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #00a596">
                                 性能
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/Adreno/" style="color: #00a596">
+                            <a href="/tags/Adreno/" style="color: #ff7d73">
                                 Adreno
                             </a>
                         </span>
@@ -300,7 +333,7 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #ff7d73">
+                            <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #00bcd4">
                                 离线编译器
                             </a>
                         </span>
@@ -311,12 +344,644 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="ue5自定义材质编辑器的节点">
+        <div class="timeline" id="Unity 桌宠 实现" data-title="unity桌宠实现">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2023/8/14</div>
+                <a href="/2023/08/14/CplusplusCsharp/Unity%20%E6%A1%8C%E5%AE%A0%20%E5%AE%9E%E7%8E%B0/">
+                    <h3>Unity 桌宠 实现</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00a596">
+                                C#
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Unity/" style="color: #ff7d73">
+                                Unity
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%A1%8C%E5%AE%A0/" style="color: #00a596">
+                                桌宠
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="(全景图→CubeMap) NVTT+OpenCV生成DDS格式的CubeMap" data-title="(全景图→cubemap)nvtt+opencv生成dds格式的cubemap">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2023/4/2</div>
+                <a href="/2023/04/02/CplusplusCsharp/(%E5%85%A8%E6%99%AF%E5%9B%BE%E2%86%92CubeMap)%20NVTT+OpenCV%E7%94%9F%E6%88%90DDS%E6%A0%BC%E5%BC%8F%E7%9A%84CubeMap/">
+                    <h3>(全景图→CubeMap) NVTT+OpenCV生成DDS格式的CubeMap</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00a596">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/NVTT/" style="color: #03a9f4">
+                                NVTT
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E7%BA%B9%E7%90%86/" style="color: #ffa2c4">
+                                纹理
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/CubeMap/" style="color: #03a9f4">
+                                CubeMap
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/DDS/" style="color: #ff7d73">
+                                DDS
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/HDR/" style="color: #00a596">
+                                HDR
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%85%A8%E6%99%AF%E5%9B%BE/" style="color: #00bcd4">
+                                全景图
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="DDS纹理数据导入（不依赖d3d11.h）" data-title="dds纹理数据导入（不依赖d3d11.h）">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2023/3/29</div>
+                <a href="/2023/03/29/CplusplusCsharp/DDS%E7%BA%B9%E7%90%86%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5(%E4%B8%8D%E4%BE%9D%E8%B5%96d3d11)/">
+                    <h3>DDS纹理数据导入（不依赖d3d11.h）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00a596">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E7%BA%B9%E7%90%86/" style="color: #03a9f4">
+                                纹理
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/DDS/" style="color: #00a596">
+                                DDS
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%9B%BE%E5%83%8F/" style="color: #00bcd4">
+                                图像
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AF%BC%E5%85%A5/" style="color: #03a9f4">
+                                导入
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="UE5 自定义材质编辑器的节点" data-title="ue5自定义材质编辑器的节点">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2022/7/20</div>
                 <a href="/2022/07/20/Unreal/UE5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E8%8A%82%E7%82%B9/">
                     <h3>UE5 自定义材质编辑器的节点</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/Unreal/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            Unreal
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #03a9f4">
+                                自定义
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Unreal/" style="color: #00bcd4">
+                                Unreal
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/UnrealEngine/" style="color: #00a596">
+                                UnrealEngine
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/UE5/" style="color: #ffa2c4">
+                                UE5
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #00bcd4">
+                                材质节点，编辑器
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="TGA贴图数据导入导出" data-title="tga贴图数据导入导出">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/29</div>
+                <a href="/2022/06/29/CplusplusCsharp/TGA%E8%B4%B4%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">
+                    <h3>TGA贴图数据导入导出</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00a596">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%9B%BE%E5%83%8F/" style="color: #00bcd4">
+                                图像
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AF%BC%E5%85%A5/" style="color: #ff7d73">
+                                导入
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/TGA/" style="color: #00a596">
+                                TGA
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AF%BC%E5%87%BA/" style="color: #03a9f4">
+                                导出
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="QT5 颜色吸取对话框" data-title="qt5颜色吸取对话框">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/24</div>
+                <a href="/2022/06/24/CplusplusCsharp/QT5%20%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96%E5%AF%B9%E8%AF%9D%E6%A1%86/">
+                    <h3>QT5 颜色吸取对话框</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00bcd4">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/QT5/" style="color: #ff7d73">
+                                QT5
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96/" style="color: #00a596">
+                                颜色吸取
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/" style="color: #ffa2c4">
+                                对话框
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="C++ QT5 自定义标题栏" data-title="c++qt5自定义标题栏">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/23</div>
+                <a href="/2022/06/23/CplusplusCsharp/C++%20QT5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E9%A2%98%E6%A0%8F/">
+                    <h3>C++ QT5 自定义标题栏</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #ffa2c4">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E7%AA%97%E5%8F%A3/" style="color: #ff7d73">
+                                窗口
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/QT5/" style="color: #00a596">
+                                QT5
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00bcd4">
+                                自定义
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="C# WPF导入C++的编译DLL(非C++/CLI托管)" data-title="c#wpf导入c++的编译dll(非c++/cli托管)">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/20</div>
+                <a href="/2022/06/20/CplusplusCsharp/Csharp%20WPF%E5%AF%BC%E5%85%A5C++%E7%9A%84%E7%BC%96%E8%AF%91DLL(%E9%9D%9EC++CLI%E6%89%98%E7%AE%A1)/">
+                    <h3>C# WPF导入C++的编译DLL(非C++/CLI托管)</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #ff7d73">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E7%AA%97%E5%8F%A3/" style="color: #03a9f4">
+                                窗口
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00a596">
+                                C#
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/WPF/" style="color: #00bcd4">
+                                WPF
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/DLL/" style="color: #ff7d73">
+                                DLL
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="C++ GLFW 窗口初始化说明" data-title="c++glfw窗口初始化说明">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/20</div>
+                <a href="/2022/06/20/CplusplusCsharp/C++%20GLFW%20%E7%AA%97%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AF%B4%E6%98%8E/">
+                    <h3>C++ GLFW 窗口初始化说明</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/CplusplusCsharp/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            C++/C#
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/C/" style="color: #00a596">
+                                C++
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/GLFW/" style="color: #03a9f4">
+                                GLFW
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E7%AA%97%E5%8F%A3/" style="color: #00bcd4">
+                                窗口
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="color: #03a9f4">
+                                初始化
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="UE 4.26 安卓打包配置 详细流程分享" data-title="ue4.26安卓打包配置详细流程分享">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/16</div>
+                <a href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/">
+                    <h3>UE 4.26 安卓打包配置 详细流程分享</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/Unreal/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            Unreal
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Unreal/" style="color: #00a596">
+                                Unreal
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/UnrealEngine/" style="color: #00bcd4">
+                                UnrealEngine
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AE%89%E5%8D%93/" style="color: #00a596">
+                                安卓
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #ffa2c4">
+                                打包
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="视差材质的原理与实现" data-title="视差材质的原理与实现">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/14</div>
+                <a href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                    <h3>视差材质的原理与实现</h3>
                 </a>
                 <div class="info">
                     
@@ -352,146 +1017,21 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/UE5/" style="color: #ffa2c4">
-                                UE5
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00a596">
-                                自定义
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="color: #00bcd4">
-                                材质节点，编辑器
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="ue4.26安卓打包配置详细流程分享">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/6/16</div>
-                <a href="/2022/06/16/Unreal/UE%204.26%20%E5%AE%89%E5%8D%93%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%20%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B%E5%88%86%E4%BA%AB/">
-                    <h3>UE 4.26 安卓打包配置 详细流程分享</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/Unreal/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            Unreal
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Unreal/" style="color: #ff7d73">
-                                Unreal
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/UnrealEngine/" style="color: #00a596">
-                                UnrealEngine
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E5%AE%89%E5%8D%93/" style="color: #ff7d73">
-                                安卓
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%89%93%E5%8C%85/" style="color: #00a596">
-                                打包
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="视差材质的原理与实现">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/6/14</div>
-                <a href="/2022/06/14/Unreal/%E8%A7%86%E5%B7%AE%E6%9D%90%E8%B4%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
-                    <h3>视差材质的原理与实现</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/Unreal/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            Unreal
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Unreal/" style="color: #03a9f4">
-                                Unreal
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/UnrealEngine/" style="color: #00a596">
-                                UnrealEngine
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00bcd4">
+                            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">
                                 渲染
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #ffa2c4">
+                            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #03a9f4">
                                 视差
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00a596">
+                            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #00bcd4">
                                 材质
                             </a>
                         </span>
@@ -502,12 +1042,78 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="ue5.01customshadingmodel">
+        <div class="timeline" id="UE5.01 Custom Shading Model" data-title="ue5.01customshadingmodel">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2022/6/14</div>
                 <a href="/2022/06/14/Unreal/UE5.01%20Custom%20Shading%20Model/">
                     <h3>UE5.01 Custom Shading Model</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/Unreal/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            Unreal
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #00a596">
+                                自定义
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Unreal/" style="color: #00bcd4">
+                                Unreal
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/UnrealEngine/" style="color: #ffa2c4">
+                                UnrealEngine
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/UE5/" style="color: #00bcd4">
+                                UE5
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/ShadingModel/" style="color: #03a9f4">
+                                ShadingModel
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" id="自定义ShadowMap(英文)" data-title="自定义shadowmap(英文)">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/6/11</div>
+                <a href="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/">
+                    <h3>自定义ShadowMap(英文)</h3>
                 </a>
                 <div class="info">
                     
@@ -543,72 +1149,6 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/UE5/" style="color: #00bcd4">
-                                UE5
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="color: #ff7d73">
-                                自定义
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/ShadingModel/" style="color: #03a9f4">
-                                ShadingModel
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="自定义shadowmap(英文)">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/6/11</div>
-                <a href="/2022/06/11/Unreal/%E8%87%AA%E5%AE%9A%E4%B9%89ShadowMap(%E8%8B%B1%E6%96%87)/">
-                    <h3>自定义ShadowMap(英文)</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/Unreal/">
-                            <span class="icon">
-                                <i class="fa-solid fa-bookmark fa-fw"></i>
-                            </span>
-                            Unreal
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Unreal/" style="color: #00a596">
-                                Unreal
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/UnrealEngine/" style="color: #ffa2c4">
-                                UnrealEngine
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
                             <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">
                                 渲染
                             </a>
@@ -616,14 +1156,14 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #ffa2c4">
+                            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="color: #00a596">
                                 阴影
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #00bcd4">
+                            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="color: #03a9f4">
                                 动态阴影
                             </a>
                         </span>
@@ -634,7 +1174,7 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="ue4.26-ue4.27computeshader的实现过程">
+        <div class="timeline" id="UE4.26-UE4.27 Compute shader的实现过程" data-title="ue4.26-ue4.27computeshader的实现过程">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2022/4/24</div>
@@ -661,28 +1201,28 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/Unreal/" style="color: #ff7d73">
+                            <a href="/tags/Unreal/" style="color: #03a9f4">
                                 Unreal
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/UnrealEngine/" style="color: #00bcd4">
+                            <a href="/tags/UnrealEngine/" style="color: #00a596">
                                 UnrealEngine
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/Compute-Shader/" style="color: #03a9f4">
+                            <a href="/tags/Compute-Shader/" style="color: #ffa2c4">
                                 Compute Shader
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #00bcd4">
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="color: #00a596">
                                 计算着色器
                             </a>
                         </span>
@@ -693,7 +1233,7 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="markdown测试文章">
+        <div class="timeline" id="Markdown测试文章" data-title="markdown测试文章">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2021/1/23</div>
@@ -720,14 +1260,14 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/GitHub/" style="color: #03a9f4">
+                            <a href="/tags/GitHub/" style="color: #00bcd4">
                                 GitHub
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/Hexo/" style="color: #00a596">
+                            <a href="/tags/Hexo/" style="color: #03a9f4">
                                 Hexo
                             </a>
                         </span>
@@ -738,7 +1278,7 @@
             </div>
         </div>
         
-        <div class="timeline" data-title="让我们在我们的场景中更进一步的学习如何设置静态光照的变量">
+        <div class="timeline" id="让我们在我们的场景中更进一步的学习如何设置静态光照的变量" data-title="让我们在我们的场景中更进一步的学习如何设置静态光照的变量">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
                 <div class="item-time">2018/8/30</div>
@@ -765,7 +1305,7 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/Unreal/" style="color: #ff7d73">
+                            <a href="/tags/Unreal/" style="color: #ffa2c4">
                                 Unreal
                             </a>
                         </span>
@@ -779,21 +1319,21 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">
+                            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">
                                 渲染
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #03a9f4">
+                            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="color: #00a596">
                                 视差
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #ffa2c4">
+                            <a href="/tags/%E6%9D%90%E8%B4%A8/" style="color: #03a9f4">
                                 材质
                             </a>
                         </span>
@@ -805,6 +1345,10 @@
         </div>
         
     </div>
+    <!-- <div class="pagination">
+        <button class="pagination-button prev">上一页</button>
+        <button class="pagination-button next">下一页</button>
+    </div> -->
 </div>
 
             <footer id="footer">

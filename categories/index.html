@@ -48,6 +48,8 @@
 
 
 <script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="generator" content="Hexo 7.2.0"></head>
 <body>
     <div id="layout">
@@ -67,6 +69,11 @@
             <span>坏包包</span>
         </a>
         
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
         <a href="/archives/">
             <i class="fa-solid fa-All fa-fw"></i>
             <span>&ensp;所有文章</span>
@@ -75,6 +82,11 @@
         <a href="/categories/Unreal">
             <i class="fa-solid fa-Unreal fa-fw"></i>
             <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
         </a>
         
         <a href="/categories/Others">
@@ -91,6 +103,15 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
                 <a href="/archives/">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
@@ -106,6 +127,15 @@
                             <i class="fa-solid fa-Unreal fa-fw"></i>
                         </div>
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
                     </div>
                 </a>
                 
@@ -138,11 +168,11 @@
 
     <!-- 不需要分类了 -->
     <!-- <span>
-        <a href="/categories/Others/" style="background: #ff7d73">
+        <a href="/categories/CplusplusCsharp/" style="background: #ffa2c4">
             <span class="icon">
                 <i class="fa-solid fa-bookmark fa-fw"></i>
             </span>
-            Others
+            CplusplusCsharp
         </a>
     </span> -->
 
@@ -153,7 +183,7 @@
 
     <!-- 不需要分类了 -->
     <!-- <span>
-        <a href="/categories/Unreal/" style="background: #ffa2c4">
+        <a href="/categories/Unreal/" style="background: #ff7d73">
             <span class="icon">
                 <i class="fa-solid fa-bookmark fa-fw"></i>
             </span>
@@ -163,6 +193,23 @@
 
 
     
+    
+    
+
+    <!-- 不需要分类了 -->
+    <!-- <span>
+        <a href="/categories/Others/" style="background: #00a596">
+            <span class="icon">
+                <i class="fa-solid fa-bookmark fa-fw"></i>
+            </span>
+            Others
+        </a>
+    </span> -->
+
+
+    
+    
+
     
 
     <div id="all-timeline">

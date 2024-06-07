@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>QT5 颜色吸取对话框 | 坏包包</title>
+    <meta name="author" content="坏包包" />
+    <meta name="description" content="坏包包的个人博客" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/Icon.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+<script src="/js/lib/search.js"></script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    
+<link
+    rel="stylesheet"
+    href="/css/prism.css"
+/>
+<script src="/js/lib/prism.js"></script>
+
+
+<script src="/js/lib/function_library.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2> LOADING </h2>
+                    <p>...加载中...</p>
+                    <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
+                    <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>坏包包</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-All fa-fw"></i>
+            <span>&ensp;所有文章</span>
+        </a>
+        
+        <a href="/categories/Unreal">
+            <i class="fa-solid fa-Unreal fa-fw"></i>
+            <span>&ensp;Unreal</span>
+        </a>
+        
+        <a href="/categories/CplusplusCsharp">
+            <i class="fa-solid fa-none fa-fw"></i>
+            <span>&ensp;C++/C#</span>
+        </a>
+        
+        <a href="/categories/Others">
+            <i class="fa-solid fa-Others fa-fw"></i>
+            <span>&ensp;Others</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;坏包包</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-All fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">所有文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Unreal">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Unreal fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Unreal</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/CplusplusCsharp">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-none fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">C++/C#</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/Others">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-Others fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Others</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <!-- 目录卡片 -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        target.style.display = 'none';
+        button.textContent = '显示目录';
+
+        const home = document.getElementById('home-toc');
+        home.style.display = 'none';
+
+        setTimeout(()=>{
+            const home = document.getElementById('home-toc');
+            home.style.display = 'block';
+        },800);
+    });
+    
+    function onButtonClick() 
+    {
+        const target = document.getElementById('toc-style');
+        const button = document.getElementById('toc-button');  
+        if(target.style.display == 'none')
+        {
+            target.style.display = 'block';
+            button.textContent = '隐藏目录';
+        }
+        else
+        {
+            target.style.display = 'none';
+            button.textContent = '显示目录';
+        }
+
+    }
+</script>
+<div id="home-toc" class="toc-article">
+    <button id="toc-button" class="toc-button" onclick="onButtonClick()">显示目录</button>
+    <div id="toc-style">
+        <!-- <div class="toc-title">目录</div> -->
+        
+    </div>
+</div>
+<div class="article">
+    <!-- 只有设置了image参数才会加载头图 -->
+    
+    <img src=Header.png class="post-image no-lazy" alt="" ></img>
+    
+    
+    <div class="post-title-parent">
+        <h1 class="post-title">QT5 颜色吸取对话框</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/6/24
+        </span>
+        
+        <span class="category">
+            <a href="/categories/CplusplusCsharp/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                CplusplusCsharp
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #00a596">
+                    C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/QT5/" style="color: #ffa2c4">
+                    QT5
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96/" style="color: #ff7d73">
+                    颜色吸取
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/" style="color: #03a9f4">
+                    对话框
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <div  style="display: flex;justify-content: center;text-align: center;"  ><img src="/images/loading3.gif" data-original="0.png" style="filter:brightness(0.75) grayscale(0.65) blur(1px);" ></div><br>不出意外的话，直接复制粘贴就能用。<br>但是前提项目必须是要QT5的，版本是QT5.12<br>.h文件：<br><pre class="line-numbers"><code class="language-cpp">#pragma once
+#include &lt;QWidget&gt;
+#include "ui_ColorSettting.h"
+#include "qpainter.h"
+#include "QWindow.h"
+#include "QPixmap.h"
+#include "qscreen.h"
+#include "qdesktopwidget.h"
+#include "qlabel.h"
+#include "qslider.h"
+#include "QLineEdit.h"
+#include "qpushbutton.h"
+//颜色精度，建议在32-128之间
+#define ColorMapPrecision 64
+class ColorWindow : public QWidget
+{
+	Q_OBJECT
+public:
+	ColorWindow(QWidget* parent = Q_NULLPTR);
+	~ColorWindow();
+	virtual void resizeEvent(QResizeEvent* event);
+	void paintEvent(QPaintEvent*);
+	void UpdateColorMap();
+	virtual void showEvent(QShowEvent* event);
+	//virtual void hideEvent(QHideEvent* event);
+
+	QColor RGB = QColor(255, 255, 255,255);
+	//用于储存刚开始的颜色
+	QColor backupRGB = QColor(255, 255, 255, 255);
+	//QPoint m_pos;
+	//
+	QSlider* slider;
+	QLabel* label;
+	QLabel* labelPos;
+	QPixmap ColorMap;
+
+	QLineEdit* R_edit; 
+	QLineEdit* G_edit;
+	QLineEdit* B_edit;
+	QLineEdit* A_edit;
+	QLabel* R_Name;
+	QLabel* G_Name;
+	QLabel* B_Name;
+	QLabel* A_Name;
+	QLineEdit* H_edit;
+	QLineEdit* S_edit;
+	QLineEdit* V_edit;
+	QLabel* H_Name;
+	QLabel* S_Name;
+	QLabel* V_Name;
+	QLineEdit* lineEditHex;
+	QLabel* Hex_Name;
+	QPushButton* ok_Button;
+	QPushButton* cancel_Button;
+	void UpdateLineEdit();
+	void UpdateColorButton();
+	QPoint mapPos;
+
+	virtual void mousePressEvent(QMouseEvent* event);
+	virtual void mouseReleaseEvent(QMouseEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
+	virtual void closeEvent(QCloseEvent* event);
+	virtual void keyReleaseEvent(QKeyEvent* event);
+	bool bPickColor = false;
+	void PickColor();
+private:
+	//void ConvertRgbToHsv();
+	//void ConvertHsvToRgb();
+	bool cancel=false;
+public slots:
+	void HUBChanged();
+	void SetR();
+	void SetG();
+	void SetB();
+	void SetA();
+	void SetHSV();
+	void SetHexadecimal();
+	void OKButton();
+	void CancelButton();
+};
+//
+class ColorSettting : public QWidget
+{
+	Q_OBJECT
+
+public:
+	ColorSettting(QString name, QWidget* parent = Q_NULLPTR);
+	~ColorSettting();
+
+	ColorWindow* colorWindow = nullptr;;
+	//
+	QColor RGB = QColor(255, 255, 255, 255);
+	QColor GetRGBA() const {
+		QColor out = QColor(RGB.red(), RGB.green(), RGB.blue(), RGB.alpha());
+		return out;
+	}
+	
+	Ui::ColorSettting ui;
+public slots:
+	void PickColor();
+	void SetHexadecimal();
+};
+</code></pre>.cpp<br><pre class="line-numbers"><code class="language-cpp">#include "ColorSettting.h"
+#include "qlayout.h"
+#include "qmessagebox.h"
+#include &lt;math.h&gt;
+#include &lt;cmath&gt;
+#include "QEvent.h"
+#include &lt;windows.h&gt;
+#include "windef.h"
+ColorSettting::ColorSettting(QString name, QWidget *parent)
+	: QWidget(parent)
+{
+	ui.setupUi(this);
+    colorWindow = new ColorWindow(this);
+    colorWindow-&gt;setWindowFlags(colorWindow-&gt;windowFlags()|Qt::FramelessWindowHint);
+    this-&gt;setObjectName("ColorMain");
+    colorWindow-&gt;setObjectName("ColorMain");
+    colorWindow-&gt;setStyleSheet("#ColorMain{background:rgb(20,20,20);border:10px solid rgb(255,230,230); border-radius: 10px; }#Name{color:white;}");
+    colorWindow-&gt;hide();
+    connect(ui.pushButton,SIGNAL(clicked()),this,SLOT(PickColor()));
+    colorWindow-&gt;UpdateColorButton();
+    ui.Name-&gt;setText(name);
+
+    QFont font("Microsoft YaHei", 11, 50); //第一个属性是字体（微软雅黑），第二个是大小，第三个是加粗
+    ui.Name-&gt;setFont(font);
+    ui.label-&gt;setFont(font);
+    ui.lineEdit-&gt;setFont(font);
+    //
+    connect(ui.lineEdit, &QLineEdit::editingFinished, this, &ColorSettting::SetHexadecimal);
+}
+ColorSettting::~ColorSettting()
+{
+}
+void ColorSettting::SetHexadecimal()
+{
+    colorWindow-&gt;lineEditHex-&gt;setText(ui.lineEdit-&gt;text());
+    colorWindow-&gt;SetHexadecimal();
+}
+void ColorSettting::PickColor()
+{
+    //colorWindow-&gt;RGB.setRgba(RGB.rgba());
+    colorWindow-&gt;show();
+    QPoint p;
+    p = QPoint(colorWindow-&gt;width()+75, colorWindow-&gt;height()/2);
+    colorWindow-&gt;move(mapToGlobal(ui.pushButton-&gt;pos()- p));
+}
+/// &lt;summary&gt;
+/// ///////////////////////////////////////////////////////////////////////////
+/// &lt;/summary&gt;
+/// &lt;param name="parent"&gt;&lt;/param&gt;
+ColorWindow::ColorWindow(QWidget* parent)
+    : QWidget(parent)
+{
+
+    label = new QLabel(this);
+    labelPos = new QLabel(this);
+    QHBoxLayout* layout = new QHBoxLayout(this);
+    setLayout(layout);
+
+    slider = new QSlider(this);
+
+    //layout-&gt;addWidget(label);
+    setWindowFlag(Qt::Window,true);
+
+    resize(300,256);
+    setMinimumSize(430,276);
+    setMaximumSize(430,276);
+    label-&gt;resize(256,256);
+    label-&gt;move(0+10, 0+10);
+    labelPos-&gt;resize(10, 10);
+    labelPos-&gt;setStyleSheet("border-radius:30px;");
+    slider-&gt;resize(305 - 266, 256);
+    slider-&gt;move(277,10);
+    slider-&gt;setMaximum(360);//最大值为
+    slider-&gt;setInvertedAppearance(true);//反向
+    slider-&gt;setStyleSheet(
+        "QSlider::groove \
+    {\
+        background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, \
+        stop:0 rgba(255, 0, 0, 255), \
+        stop:0.166 rgba(255, 255, 0, 255), \
+        stop:0.333 rgba(0, 255, 0, 255), \
+        stop:0.5 rgba(0, 255, 255, 255), \
+        stop:0.666 rgba(0, 0, 255, 255), \
+        stop:0.833 rgba(255, 0, 255, 255), \
+        stop:1 rgba(255, 0, 0, 255)\
+        );\
+        border: 2px solid rgb(10,10,10);\
+        border-radius:20px; \
+    }\
+        QSlider::handle\
+    {\
+        background:rgb(255, 255, 255);\
+        height: 13px; \
+        border: 1px solid rgb(50,50,50);\
+        border - radius: 4px;\
+    }"
+    );
+
+    R_edit = new QLineEdit(this);
+    G_edit = new QLineEdit(this);
+    B_edit = new QLineEdit(this);
+    A_edit = new QLineEdit(this);
+    R_Name = new QLabel(this);
+    G_Name = new QLabel(this);
+    B_Name = new QLabel(this);
+    A_Name = new QLabel(this);
+    H_edit = new QLineEdit(this);
+    S_edit = new QLineEdit(this);
+    V_edit = new QLineEdit(this);
+    H_Name = new QLabel(this);
+    S_Name = new QLabel(this);
+    V_Name = new QLabel(this);
+    lineEditHex = new QLineEdit(this);
+    Hex_Name = new QLabel(this);
+    QFont font("Microsoft YaHei", 11, 50); //第一个属性是字体（微软雅黑），第二个是大小，第三个是加粗
+    R_Name-&gt;resize(330 - 305, 26);
+    R_Name-&gt;move(316, 0+10);
+    R_Name-&gt;setText("R");
+    R_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    R_Name-&gt;setFont(font);
+    R_Name-&gt;setObjectName("Name");
+    G_Name-&gt;resize(330 - 305, 26);
+    G_Name-&gt;move(316, 26 +10);
+    G_Name-&gt;setText("G");
+    G_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    G_Name-&gt;setFont(font);
+    G_Name-&gt;setObjectName("Name");
+    B_Name-&gt;resize(330 - 305, 26);
+    B_Name-&gt;move(316, 26*2 + 10);
+    B_Name-&gt;setText("B");
+    B_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    B_Name-&gt;setFont(font);
+    B_Name-&gt;setObjectName("Name");
+    A_Name-&gt;resize(330 - 305, 26);
+    A_Name-&gt;move(316, 26 * 3 + 10);
+    A_Name-&gt;setText("A");
+    A_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    A_Name-&gt;setFont(font);
+    A_Name-&gt;setObjectName("Name");
+    R_edit-&gt;resize(390 - 330, 26);
+    R_edit-&gt;move(345, 0 + 10);
+    R_edit-&gt;setFont(font);
+    R_edit-&gt;setAlignment(Qt::AlignRight);
+    G_edit-&gt;resize(390 - 330, 26);
+    G_edit-&gt;move(345, 26 + 10);
+    G_edit-&gt;setFont(font);
+    G_edit-&gt;setAlignment(Qt::AlignRight);
+    B_edit-&gt;resize(390 - 330, 26);
+    B_edit-&gt;move(345, 26*2 + 10);
+    B_edit-&gt;setFont(font);
+    B_edit-&gt;setAlignment(Qt::AlignRight);
+    A_edit-&gt;resize(390 - 330, 26);
+    A_edit-&gt;move(345, 26 * 3 + 10);
+    A_edit-&gt;setFont(font);
+    A_edit-&gt;setAlignment(Qt::AlignRight);
+    //
+    H_Name-&gt;resize(330 - 305, 26);
+    H_Name-&gt;move(316, 26*4 + 6 + 10);
+    H_Name-&gt;setText("H");
+    H_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    H_Name-&gt;setFont(font);
+    H_Name-&gt;setObjectName("Name");
+    S_Name-&gt;resize(330 - 305, 26);
+    S_Name-&gt;move(316, 26*5 + 6 + 10);
+    S_Name-&gt;setText("S");
+    S_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    S_Name-&gt;setFont(font);
+    S_Name-&gt;setObjectName("Name");
+    V_Name-&gt;resize(330 - 305, 26);
+    V_Name-&gt;move(316, 26 * 6 + 6 + 10);
+    V_Name-&gt;setText("V");
+    V_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    V_Name-&gt;setFont(font);
+    V_Name-&gt;setObjectName("Name");
+    H_edit-&gt;resize(390 - 330, 26);
+    H_edit-&gt;move(345, 26 * 4 + 6 + 10 );
+    H_edit-&gt;setFont(font);
+    H_edit-&gt;setAlignment(Qt::AlignRight);
+    S_edit-&gt;resize(390 - 330, 26);
+    S_edit-&gt;move(345, 26*5 + 6 + 10);
+    S_edit-&gt;setFont(font);
+    S_edit-&gt;setAlignment(Qt::AlignRight);
+    V_edit-&gt;resize(390 - 330, 26);
+    V_edit-&gt;move(345, 26 * 6 + 6 + 10);
+    V_edit-&gt;setFont(font);
+    V_edit-&gt;setAlignment(Qt::AlignRight);
+    //
+    Hex_Name-&gt;resize(330 - 305, 26);
+    Hex_Name-&gt;move(316, 26 * 7 + 11 + 10);
+    Hex_Name-&gt;setText("#");
+    Hex_Name-&gt;setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    Hex_Name-&gt;setFont(font);
+    Hex_Name-&gt;setObjectName("Name");
+    lineEditHex-&gt;resize(400 - 330, 26);
+    lineEditHex-&gt;move(340, 26 * 7 + 11 + 10);
+    lineEditHex-&gt;setFont(font);
+    lineEditHex-&gt;setAlignment(Qt::AlignRight);
+    //
+    ok_Button =new QPushButton(this);
+    ok_Button-&gt;setFont(font);
+    ok_Button-&gt;setText("OK");
+    ok_Button-&gt;resize(36 , 30);
+    ok_Button-&gt;move(318, 26 * 8 + 15 + 10);
+    ok_Button-&gt;setStyleSheet("border: 2px solid rgb(10,10,10);border-radius:6px; background-color:rgb(180,180,180);");
+    cancel_Button = new QPushButton(this);
+    cancel_Button-&gt;setFont(font);
+    cancel_Button-&gt;setText("Cancel");
+    cancel_Button-&gt;resize(65, 30);
+    cancel_Button-&gt;move(354, 26 * 8 + 15 + 10);
+    cancel_Button-&gt;setStyleSheet("border: 2px solid rgb(10,10,10);border-radius:6px; background-color:rgb(180,180,180);");
+    int width = label-&gt;width();
+    int height = label-&gt;height();
+    ColorMap = QPixmap(width/(width / ColorMapPrecision), height/(height / ColorMapPrecision));
+
+    //connect(slider, &QSlider::sliderMoved, this, &ColorWindow::HUBChanged);
+    //connect(slider, &QSlider::sliderReleased, this, &ColorWindow::HUBChanged);
+    connect(R_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetR);
+    connect(G_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetG);
+    connect(B_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetB);
+    connect(A_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetA);
+    connect(H_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetHSV);
+    connect(S_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetHSV);
+    connect(V_edit, &QLineEdit::editingFinished, this, &ColorWindow::SetHSV);
+    //
+    connect(ok_Button, &QPushButton::clicked, this, &ColorWindow::OKButton);
+    connect(cancel_Button, &QPushButton::clicked, this, &ColorWindow::CancelButton);
+    connect(lineEditHex, &QLineEdit::editingFinished, this, &ColorWindow::SetHexadecimal);
+}
+void ColorWindow::SetR()
+{
+    RGB.setRed(R_edit-&gt;text().toInt());
+    slider-&gt;setValue(RGB.hue());
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::SetG()
+{
+    RGB.setGreen(G_edit-&gt;text().toInt());
+    slider-&gt;setValue(RGB.hue());
+    UpdateColorMap(); 
+    UpdateLineEdit();
+}
+void ColorWindow::SetB()
+{
+    RGB.setBlue(B_edit-&gt;text().toInt());
+    slider-&gt;setValue(RGB.hue());
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::SetA()
+{
+    RGB.setAlpha(A_edit-&gt;text().toInt());
+    slider-&gt;setValue(RGB.hue());
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::SetHSV()
+{
+    RGB.setHsv(H_edit-&gt;text().toInt(), S_edit-&gt;text().toInt(), V_edit-&gt;text().toInt(), A_edit-&gt;text().toInt());
+    slider-&gt;setValue(RGB.hue());
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::SetHexadecimal()
+{
+    RGB = QColor(lineEditHex-&gt;text().toUInt(NULL, 16));
+    slider-&gt;setValue(RGB.hue());
+    QPoint _pos = QPoint(((float)RGB.saturation() / (float)255) * label-&gt;width(), ((float)(255 - RGB.value()) / (float)255) * label-&gt;height());
+    labelPos-&gt;move(_pos);
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::UpdateColorButton()
+{
+    ColorSettting* out = reinterpret_cast&lt;ColorSettting*&gt;(parentWidget());
+    out-&gt;RGB.setRgba(RGB.rgba());
+    QString borderCol = "rgb(";
+    borderCol.append(QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ")");
+    QString style;
+    style = "background-color:rgb(";
+    style.append(QString::number(RGB.red()) + "," + QString::number(RGB.green()) + "," + QString::number(RGB.blue()) + ");border:3px solid " + borderCol + ";border-radius:6px;height:25;");
+    out-&gt;ui.pushButton-&gt;setStyleSheet(style);
+    //
+    QString hex = QString::number(RGB.rgb(), 16);
+    out-&gt;ui.lineEdit-&gt;setText(hex.remove(0, 2));//移除最前面的FF（不透明度）
+}
+void ColorWindow::OKButton()
+{
+    ColorSettting* out = reinterpret_cast&lt;ColorSettting*&gt;(parentWidget());
+    out-&gt;RGB.setRgba(RGB.rgba());
+    QString borderCol = "rgb(";
+    borderCol.append(QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ")");
+    QString style;
+    style = "background-color:rgb(";
+    style.append(QString::number(RGB.red()) + "," + QString::number(RGB.green()) + "," + QString::number(RGB.blue()) + ");border:3px solid " + borderCol + ";border-radius:6px;height:25;");
+    out-&gt;ui.pushButton-&gt;setStyleSheet(style);
+    close();
+}
+void ColorWindow::CancelButton()
+{
+    //关闭，撤销回之前的设置
+    RGB = QColor(backupRGB);
+    ColorSettting* out = reinterpret_cast&lt;ColorSettting*&gt;(parentWidget());
+    out-&gt;RGB.setRgba(RGB.rgba());
+    QString borderCol = "rgb(";
+    borderCol.append(QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ")");
+    QString style;
+    style = "background-color:rgb(";
+    style.append(QString::number(RGB.red()) + "," + QString::number(RGB.green()) + "," + QString::number(RGB.blue()) + ");border:3px solid " + borderCol + ";border-radius:6px;height:25;");
+    out-&gt;ui.pushButton-&gt;setStyleSheet(style);
+
+    cancel = true;
+    close();
+}
+void ColorWindow::showEvent(QShowEvent* event)
+{
+    backupRGB = QColor(RGB);
+    slider-&gt;setValue(RGB.hue());
+    ok_Button-&gt;clearFocus();
+    cancel_Button-&gt;clearFocus();
+    //读取吸取点
+    QPoint _pos = QPoint(  ((float)RGB.saturation() / (float)255 )* label-&gt;width(), ((float)(255 - RGB.value()) / (float)255 ) * label-&gt;height());
+    labelPos-&gt;move(_pos);
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::HUBChanged()
+{
+    RGB.setHsv(slider-&gt;value(), RGB.saturation(), RGB.value(), RGB.alpha());
+    UpdateColorMap();
+    UpdateLineEdit();
+}
+void ColorWindow::UpdateLineEdit()
+{
+    ColorSettting* colorSetting = reinterpret_cast&lt;ColorSettting*&gt;(parentWidget());
+    R_edit-&gt;setText(QString::number(RGB.red()));
+    G_edit-&gt;setText(QString::number(RGB.green()));
+    B_edit-&gt;setText(QString::number(RGB.blue()));
+    A_edit-&gt;setText(QString::number(RGB.alpha()));
+    H_edit-&gt;setText(QString::number(slider-&gt;value()));
+    S_edit-&gt;setText(QString::number(RGB.saturation()));
+    V_edit-&gt;setText(QString::number(RGB.value()));
+    QString hex = QString::number(RGB.rgb(), 16);
+    lineEditHex-&gt;setText(hex.remove(0, 2));//移除最前面的FF（不透明度）
+    colorSetting-&gt;ui.lineEdit-&gt;setText(hex);
+}
+void ColorWindow::mousePressEvent(QMouseEvent* ev)
+{
+    if (ev-&gt;pos().x() &lt;= label-&gt;x() + label-&gt;width() && ev-&gt;pos().y() &lt; label-&gt;y() + label-&gt;height())
+    {
+        R_edit-&gt;clearFocus();
+        G_edit-&gt;clearFocus();
+        B_edit-&gt;clearFocus();
+        A_edit-&gt;clearFocus();
+        H_edit-&gt;clearFocus();
+        S_edit-&gt;clearFocus();
+        V_edit-&gt;clearFocus();
+        lineEditHex-&gt;clearFocus();
+        slider-&gt;setFocus();
+        bPickColor = true;
+        RECT mainRect; //windef.h中被定义
+        mainRect.left = (LONG)label-&gt;mapToGlobal(QPoint(0,0)).x();
+        mainRect.right = (LONG)label-&gt;mapToGlobal(QPoint(0, 0)).x() + label-&gt;width();
+        mainRect.top = (LONG)label-&gt;mapToGlobal(QPoint(0, 0)).y();
+        mainRect.bottom = (LONG)label-&gt;mapToGlobal(QPoint(0, 0)).y() + label-&gt;height();
+        ClipCursor(&mainRect);
+        
+    }
+    if (bPickColor)
+    {
+        labelPos-&gt;setStyleSheet("background-color:transparent;border: 0px;");
+    }
+}
+void ColorWindow::mouseReleaseEvent(QMouseEvent* ev)
+{
+    if (bPickColor == true)
+    {
+        bPickColor = false;
+        PickColor();
+        QWidget::mouseReleaseEvent(ev);
+        ClipCursor(NULL);
+        QPoint p;
+        p = ev-&gt;pos() - QPoint(labelPos-&gt;width() / 2, labelPos-&gt;height() / 2);
+        labelPos-&gt;move(p);
+        //
+        QString style;
+        style = "background-color:rgb(";
+        style.append(QString::number(RGB.red()) + "," + QString::number(RGB.green()) + "," + QString::number(RGB.blue()) + ");");
+        QString borderColor;
+        borderColor = "rgb(";
+        borderColor.append(QString::number(255 - RGB.red()) + "," + QString::number(255 - RGB.green()) + "," + QString::number(255 - RGB.blue()) + ")");
+        labelPos-&gt;setStyleSheet(" background-color:transparent; border: 1px solid " + borderColor + ";border-radius:30px;");
+    }
+}
+void ColorWindow::mouseMoveEvent(QMouseEvent* ev)
+{
+}
+void ColorWindow::closeEvent(QCloseEvent* event)
+{
+    ok_Button-&gt;clearFocus();
+    cancel_Button-&gt;clearFocus();
+    bPickColor = false;
+    cancel = false;
+    UpdateLineEdit();
+}
+void ColorWindow::keyReleaseEvent(QKeyEvent* ev)
+{
+    //if (ev-&gt;key() == Qt::Key_Space || ev-&gt;key() == Qt::Key_Return || ev-&gt;key() == Qt::Key_Enter)
+    if (ev-&gt;key() == Qt::Key_Space || ev-&gt;key() == Qt::Key_Enter)
+    {
+        OKButton();
+    }
+    else if (ev-&gt;key() == Qt::Key_Escape)
+    {
+        CancelButton();
+    }
+}
+void ColorWindow::PickColor()
+{
+    //获取鼠标x，y坐标
+    int x = QCursor::pos().x();
+    int y = QCursor::pos().y();
+
+    //获取坐标像素点
+    //QPixmap pixmap = label-&gt;grab(QRect(QCursor::pos(), QSize(1, 1)));
+    //获取坐标像素点
+    QWindow window;
+    QPixmap pixmap = window.screen()-&gt;grabWindow(QApplication::desktop()-&gt;winId(), x, y, 1, 1);
+    //获取坐标像素点
+    //获取像素点RGB
+    int red = 0, green = 0, blue = 0;
+    if (!pixmap.isNull())
+    {
+        QImage image = pixmap.toImage();
+        if (!image.isNull())
+        {
+            QColor color = image.pixel(0, 0);
+            red = color.red();
+            green = color.green();
+            blue = color.blue();
+            RGB = QColor(red, green, blue, RGB.alpha());
+            //
+        }
+    }
+}
+ColorWindow::~ColorWindow()
+{
+
+}
+void ColorWindow::resizeEvent(QResizeEvent* event)
+{
+    UpdateColorMap();
+}
+void ColorWindow::paintEvent(QPaintEvent* p)//paintEvent函数由系统自动调用，用不着我们人为的去调用。
+{
+    if (slider-&gt;hasFocus()&& !R_edit-&gt;hasFocus() && !G_edit-&gt;hasFocus() && !B_edit-&gt;hasFocus() && !A_edit-&gt;hasFocus()
+        && !H_edit-&gt;hasFocus()&& !S_edit-&gt;hasFocus() &&!V_edit-&gt;hasFocus())
+    {
+        HUBChanged();
+        H_edit-&gt;setText(QString::number(slider-&gt;value()));
+    }
+    if (bPickColor)
+    {
+        PickColor();
+    }
+}
+void ColorWindow::UpdateColorMap()
+{
+    ColorSettting* colorSetting = reinterpret_cast&lt;ColorSettting*&gt;(parentWidget());
+    {
+        //获取像素点RGB
+        int red, green, blue;
+        QColor out = QColor(0, 0, 0, 255);
+        QColor col = QColor(RGB);
+        col.setHsv(RGB.hue(), 255, 255);
+        red = col.red();
+        green = col.green();
+        blue = col.blue();
+        //设置label标签的颜色显示
+        QPainter pt(&ColorMap);
+        int pre = ColorMapPrecision;
+        pre -= 1;
+        for (int i = 0; i &lt;= pre; ++i)
+        {
+            for (int j = 0; j &lt;= pre; ++j)
+            {
+                float _red = ((float)i / (float)pre) * ((float)j / (float)pre) * red / 255;
+                float _green = ((float)i / (float)pre) * ((float)j / (float)pre) * green / 255;
+                float _blue = ((float)i / (float)pre) * ((float)j / (float)pre) * blue / 255;
+                _red += ((float)i / (float)pre) * (1 - ((float)j / (float)pre));
+                _green += ((float)i / (float)pre) * (1 - ((float)j / (float)pre));
+                _blue += ((float)i / (float)pre) * (1 - ((float)j / (float)pre));
+
+                out.setRgb(_red * 255,
+                    _green * 255,
+                    _blue * 255
+                );
+                pt.setPen(out);
+                pt.drawPoint(j, pre - i);
+            }
+        }
+        label-&gt;setPixmap(ColorMap.scaled(label-&gt;width(), label-&gt;height(), Qt::KeepAspectRatio));
+        //输出16进制的颜色
+        //QString hRed = QString::number(RGB.red(),16).toUpper();
+        //QString hGreen = QString::number(RGB.green(), 16).toUpper();
+        //QString hBlue = QString::number(RGB.blue(), 16).toUpper();
+        //lineEditHex-&gt;setText(tr("#%1%2%3").arg(hRed).arg(hGreen).arg(hBlue));
+        QString hex = QString::number(RGB.rgb(), 16);
+        lineEditHex-&gt;setText(hex.remove(0, 2));//移除最前面的FF（不透明度）
+        colorSetting-&gt;ui.lineEdit-&gt;setText(hex);//移除最前面的FF（不透明度）
+    }
+    //更新外部按钮颜色
+    QString style;
+    colorSetting-&gt;RGB.setRgba(RGB.rgba());
+    QString borderCol = "rgb(";
+    borderCol.append(QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ", " + QString::number(255 - RGB.value()) + ")");
+    style = "background-color:rgb(";
+    style.append(QString::number(RGB.red()) + "," + QString::number(RGB.green()) + "," + QString::number(RGB.blue()) + ");border:3px solid " + borderCol + ";border-radius:6px;height:25;");
+    colorSetting-&gt;ui.pushButton-&gt;setStyleSheet(style);
+}
+</code></pre>.ui文件<br><pre class="line-numbers"><code class="language-cpp">/********************************************************************************
+** Form generated from reading UI file 'ColorSettting.ui'
+**
+** Created by: Qt User Interface Compiler version 5.14.2
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+#ifndef UI_COLORSETTTING_H
+#define UI_COLORSETTTING_H
+#include &lt;QtCore/QVariant&gt;
+#include &lt;QtWidgets/QApplication&gt;
+#include &lt;QtWidgets/QHBoxLayout&gt;
+#include &lt;QtWidgets/QLabel&gt;
+#include &lt;QtWidgets/QLineEdit&gt;
+#include &lt;QtWidgets/QPushButton&gt;
+#include &lt;QtWidgets/QSpacerItem&gt;
+#include &lt;QtWidgets/QWidget&gt;
+QT_BEGIN_NAMESPACE
+class Ui_ColorSettting
+{
+public:
+    QHBoxLayout *horizontalLayout;
+    QLabel *Name;
+    QSpacerItem *horizontalSpacer;
+    QLabel *label;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton;
+
+    void setupUi(QWidget *ColorSettting)
+    {
+        if (ColorSettting-&gt;objectName().isEmpty())
+            ColorSettting-&gt;setObjectName(QString::fromUtf8("ColorSettting"));
+        ColorSettting-&gt;resize(532, 300);
+        horizontalLayout = new QHBoxLayout(ColorSettting);
+        horizontalLayout-&gt;setSpacing(6);
+        horizontalLayout-&gt;setContentsMargins(11, 11, 11, 11);
+        horizontalLayout-&gt;setObjectName(QString::fromUtf8("horizontalLayout"));
+        Name = new QLabel(ColorSettting);
+        Name-&gt;setObjectName(QString::fromUtf8("Name"));
+        Name-&gt;setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout-&gt;addWidget(Name);
+
+        horizontalSpacer = new QSpacerItem(233, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout-&gt;addItem(horizontalSpacer);
+
+        label = new QLabel(ColorSettting);
+        label-&gt;setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayout-&gt;addWidget(label);
+
+        lineEdit = new QLineEdit(ColorSettting);
+        lineEdit-&gt;setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit-&gt;setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        horizontalLayout-&gt;addWidget(lineEdit);
+
+        pushButton = new QPushButton(ColorSettting);
+        pushButton-&gt;setObjectName(QString::fromUtf8("pushButton"));
+        pushButton-&gt;setMinimumSize(QSize(80, 0));
+
+        horizontalLayout-&gt;addWidget(pushButton);
+
+        horizontalLayout-&gt;setStretch(1, 5);
+        horizontalLayout-&gt;setStretch(3, 1);
+        horizontalLayout-&gt;setStretch(4, 1);
+
+        retranslateUi(ColorSettting);
+
+        QMetaObject::connectSlotsByName(ColorSettting);
+    } // setupUi
+
+    void retranslateUi(QWidget *ColorSettting)
+    {
+        ColorSettting-&gt;setWindowTitle(QCoreApplication::translate("ColorSettting", "ColorSettting", nullptr));
+        Name-&gt;setText(QCoreApplication::translate("ColorSettting", "TextLabel", nullptr));
+        label-&gt;setText(QCoreApplication::translate("ColorSettting", "#", nullptr));
+        pushButton-&gt;setText(QString());
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class ColorSettting: public Ui_ColorSettting {};
+} // namespace Ui
+QT_END_NAMESPACE
+#endif // UI_COLORSETTTING_H
+</code></pre><br>
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const OFFSET_HEIGHT = 100; // 文章调整的时候避开顶上的菜单栏
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+            const href = link.getAttribute('href');
+            const decodedHref = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(decodedHref);
+            console.log(decodedHref);
+            if (target) {
+                event.preventDefault();
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: targetPosition - OFFSET_HEIGHT, behavior: 'smooth' });
+            }
+
+            const toc_style = document.getElementById('toc-style');
+            const toc_button = document.getElementById('toc-button');  
+            toc_style.style.display = 'none';
+            toc_button.textContent = '显示目录';
+
+            });
+        });
+        });
+    </script>
+
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 坏包包
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;坏包包
+            <br/>
+            <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
+            <br/>
+            <a class="BilibliLink" href="/">返回主页</a>
+            <br/>
+            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
+            <br/>
+            本页面由Hexo生成，搭建在Github
+            <br/>
+            主题：Particlex(魔改)
+        </div>
+        
+    </div>
+    <script>
+        // 滚动事件监听器，用于显示/隐藏返回顶部按钮
+        // window.onscroll = function() {
+        //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        //     document.getElementById('backToTop').style.display = 'block';
+        //   } else {
+        //     document.getElementById('backToTop').style.display = 'none';
+        //   }
+        // };
+       
+        // 返回顶部的函数
+        function scrollToTop() {
+          document.body.scrollTop = 0; // 对Safari
+          document.documentElement.scrollTop = 0; // 对Chrome, Firefox, IE 和 Opera
+        }
+      </script>
+</footer>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" alt="" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="hbbwang/HbbHexoComment"
+    data-repo-id="R_kgDOMC9ptw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMC9pt84Cfv5q"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="noborder_dark"
+    data-lang="zh-CN"
+    
+    data-loading="lazy"
+    
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=n();function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t=t.concat(e)}function t(t){(a||t)&&(d=n());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,a,o,n=d[i];e=function(){d=d.filter(function(t){return n!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(n)},(t=n).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),t.removeAttribute("style"),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,100)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+</html>
