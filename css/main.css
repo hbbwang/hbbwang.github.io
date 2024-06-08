@@ -26,7 +26,7 @@
     /* 文章页面背景颜色 */
     --article_post-background-color: rgba(30, 30, 40, 0.5);
     /* 面板背景处理 */
-    --backdrop-filter:grayscale(0.2);
+    --backdrop-filter:grayscale(0.2) brightness(0.6);
     /* 桌面版菜单背景颜色 */
     --desktop_background:rgba(20, 20, 20, 0.85);
     /* 搜索框 */
@@ -168,8 +168,8 @@ h6 {
     width: 100%;
 }
 #home-card #card-div {
-    overflow: auto;
-    padding: 25px 0;
+    overflow: hidden;
+    margin: auto;
 }
 #home-card #card-div .avatar {
     border: #f1f1f1 solid 3px;
