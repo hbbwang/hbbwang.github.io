@@ -3,7 +3,7 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
 
 pre[class*=language-]
 {
-    border: 2px solid rgba(153, 157, 159, 0.3);
+    border: 1px solid rgba(153, 157, 159, 0.3);
 }
 
 code[class*=language-],
@@ -185,7 +185,7 @@ pre[class*=language-].line-numbers>code
 /*整体代码往右移一点*/
 code[class*=language-]
 {
-    left: 1em;
+    left: 0.3em;
 }
 /*行号就往左回来一些*/
 .line-numbers-rows>span

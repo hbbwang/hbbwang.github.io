@@ -56,10 +56,9 @@
         <transition name="fade">
             <div id="loading" v-show="loading">
                 <div id="loading-circle">
-                    <h2> LOADING </h2>
-                    <p>...加载中...</p>
                     <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
                     <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                    <h2> LOADING </h2>
                 </div>
             </div>
         </transition>
@@ -157,6 +156,7 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="main-background" data-images="/images/main_background.jpg"></div>
             <div id="archives">
     
     <div class="categories-tags">
@@ -164,7 +164,7 @@
         
         
         <span>
-            <a href="/tags/C/" style="background: #00a596">
+            <a href="/tags/C/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -186,7 +186,7 @@
         
         
         <span>
-            <a href="/tags/%E7%BA%B9%E7%90%86/" style="background: #03a9f4">
+            <a href="/tags/%E7%BA%B9%E7%90%86/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -197,7 +197,7 @@
         
         
         <span>
-            <a href="/tags/CubeMap/" style="background: #ffa2c4">
+            <a href="/tags/CubeMap/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -208,7 +208,7 @@
         
         
         <span>
-            <a href="/tags/DDS/" style="background: #ff7d73">
+            <a href="/tags/DDS/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -219,7 +219,7 @@
         
         
         <span>
-            <a href="/tags/HDR/" style="background: #00bcd4">
+            <a href="/tags/HDR/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -241,7 +241,7 @@
         
         
         <span>
-            <a href="/tags/GLFW/" style="background: #00a596">
+            <a href="/tags/GLFW/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -274,40 +274,7 @@
         
         
         <span>
-            <a href="/tags/C/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                C#
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/WPF/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                WPF
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/DLL/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                DLL
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/QT5/" style="background: #00a596">
+            <a href="/tags/QT5/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -318,7 +285,7 @@
         
         
         <span>
-            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="background: #ffa2c4">
+            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -329,7 +296,40 @@
         
         
         <span>
-            <a href="/tags/%E5%9B%BE%E5%83%8F/" style="background: #03a9f4">
+            <a href="/tags/C/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                C#
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/WPF/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                WPF
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/DLL/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                DLL
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E5%9B%BE%E5%83%8F/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -340,7 +340,7 @@
         
         
         <span>
-            <a href="/tags/%E5%AF%BC%E5%85%A5/" style="background: #00a596">
+            <a href="/tags/%E5%AF%BC%E5%85%A5/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -351,7 +351,7 @@
         
         
         <span>
-            <a href="/tags/%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96/" style="background: #03a9f4">
+            <a href="/tags/%E9%A2%9C%E8%89%B2%E5%90%B8%E5%8F%96/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -362,7 +362,7 @@
         
         
         <span>
-            <a href="/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/" style="background: #00bcd4">
+            <a href="/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -373,7 +373,7 @@
         
         
         <span>
-            <a href="/tags/TGA/" style="background: #00a596">
+            <a href="/tags/TGA/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -384,7 +384,7 @@
         
         
         <span>
-            <a href="/tags/%E5%AF%BC%E5%87%BA/" style="background: #00bcd4">
+            <a href="/tags/%E5%AF%BC%E5%87%BA/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -395,7 +395,7 @@
         
         
         <span>
-            <a href="/tags/Unity/" style="background: #ffa2c4">
+            <a href="/tags/Unity/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -417,7 +417,7 @@
         
         
         <span>
-            <a href="/tags/Unreal/" style="background: #03a9f4">
+            <a href="/tags/Unreal/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -439,6 +439,28 @@
         
         
         <span>
+            <a href="/tags/Compute-Shader/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                Compute Shader
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                计算着色器
+            </a>
+        </span>
+        
+        
+        
+        <span>
             <a href="/tags/%E5%AE%89%E5%8D%93/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
@@ -450,7 +472,7 @@
         
         
         <span>
-            <a href="/tags/%E6%89%93%E5%8C%85/" style="background: #03a9f4">
+            <a href="/tags/%E6%89%93%E5%8C%85/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -461,29 +483,7 @@
         
         
         <span>
-            <a href="/tags/Compute-Shader/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                Compute Shader
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E7%9D%80%E8%89%B2%E5%99%A8/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                计算着色器
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/UE5/" style="background: #03a9f4">
+            <a href="/tags/UE5/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -494,7 +494,7 @@
         
         
         <span>
-            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="background: #00a596">
+            <a href="/tags/%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%EF%BC%8C%E7%BC%96%E8%BE%91%E5%99%A8/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -505,7 +505,7 @@
         
         
         <span>
-            <a href="/tags/ShadingModel/" style="background: #ffa2c4">
+            <a href="/tags/ShadingModel/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -516,7 +516,7 @@
         
         
         <span>
-            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="background: #00bcd4">
+            <a href="/tags/%E6%89%8B%E6%B8%B8/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -527,7 +527,7 @@
         
         
         <span>
-            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="background: #ff7d73">
+            <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -538,7 +538,7 @@
         
         
         <span>
-            <a href="/tags/%E6%80%A7%E8%83%BD/" style="background: #ffa2c4">
+            <a href="/tags/%E6%80%A7%E8%83%BD/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -549,7 +549,7 @@
         
         
         <span>
-            <a href="/tags/Adreno/" style="background: #00a596">
+            <a href="/tags/Adreno/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -560,7 +560,7 @@
         
         
         <span>
-            <a href="/tags/Mali/" style="background: #ff7d73">
+            <a href="/tags/Mali/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -584,7 +584,7 @@
         
         
         <span>
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="background: #ff7d73">
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="background: #03a9f4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -595,7 +595,7 @@
         
         
         <span>
-            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="background: #ffa2c4">
+            <a href="/tags/%E9%98%B4%E5%BD%B1/" style="background: #00bcd4">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -606,7 +606,7 @@
         
         
         <span>
-            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="background: #00bcd4">
+            <a href="/tags/%E5%8A%A8%E6%80%81%E9%98%B4%E5%BD%B1/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -617,7 +617,7 @@
         
         
         <span>
-            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="background: #03a9f4">
+            <a href="/tags/%E8%A7%86%E5%B7%AE/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -639,7 +639,7 @@
         
         
         <span>
-            <a href="/tags/GitHub/" style="background: #00a596">
+            <a href="/tags/GitHub/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -650,7 +650,7 @@
         
         
         <span>
-            <a href="/tags/Hexo/" style="background: #ffa2c4">
+            <a href="/tags/Hexo/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
@@ -695,28 +695,28 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/UnrealEngine/" style="color: #ff7d73">
+                        <a href="/tags/UnrealEngine/" style="color: #00a596">
                             UnrealEngine
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #00a596">
+                        <a href="/tags/%E6%89%8B%E6%B8%B8/" style="color: #ff7d73">
                             手游
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="color: #03a9f4">
+                        <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0/" style="color: #ffa2c4">
                             移动平台
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #00a596">
+                        <a href="/tags/%E6%80%A7%E8%83%BD/" style="color: #03a9f4">
                             性能
                         </a>
                     </span>
@@ -730,14 +730,14 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/Mali/" style="color: #ff7d73">
+                        <a href="/tags/Mali/" style="color: #ffa2c4">
                             Mali
                         </a>
                     </span>
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #00bcd4">
+                        <a href="/tags/%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%AF%91%E5%99%A8/" style="color: #00a596">
                             离线编译器
                         </a>
                     </span>
@@ -763,9 +763,24 @@
             <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
             <a class="BilibliLink" href="/">返回主页</a>
-            <br/>
-            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
-            <br/>
+            <!-- <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a> -->
+            
+                <div class="custom-icon-links">
+                    
+                    <div class="custom-icon-link">
+                        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">
+                            <img class="custom-icon-link-image no-lazy" src="/images/icon_bilibili.png" >
+                        </a>
+                    </div>
+                    
+                    <div class="custom-icon-link">
+                        <a target="_blank" rel="noopener" href="https://github.com/hbbwang">
+                            <img class="custom-icon-link-image no-lazy" src="/images/icon_github.png" >
+                        </a>
+                    </div>
+                    
+                </div>
+            
             本页面由Hexo生成，搭建在Github
             <br/>
             主题：Particlex(魔改)

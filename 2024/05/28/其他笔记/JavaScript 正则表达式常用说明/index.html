@@ -60,10 +60,9 @@
         <transition name="fade">
             <div id="loading" v-show="loading">
                 <div id="loading-circle">
-                    <h2> LOADING </h2>
-                    <p>...加载中...</p>
                     <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
                     <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                    <h2> LOADING </h2>
                 </div>
             </div>
         </transition>
@@ -161,6 +160,7 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="main-background" data-images="/images/main_background.jpg"></div>
             <!-- 目录卡片 -->
 <script>
     
@@ -236,14 +236,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/GitHub/" style="color: #ffa2c4">
+                <a href="/tags/GitHub/" style="color: #ff7d73">
                     GitHub
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Hexo/" style="color: #ff7d73">
+                <a href="/tags/Hexo/" style="color: #00a596">
                     Hexo
                 </a>
             </span>
@@ -253,7 +253,7 @@
     </div>
     
     <div class="content" v-pre>
-        <p><br><h1 id="学习、验证正则表达式的推荐网站：" >学习、验证正则表达式的推荐网站：</h1><br><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a><br><br><h1 id="常用说明" >常用说明</h1><br><h2 id="a?" >a?</h2><br>代表出现没有或者1次。<br><h2 id="a*" >a*</h2><br>代表a出现0次,或者多次<br><h2 id="a+" >a+</h2><br>代表a出现1次以上<br><h2 id="." >.</h2><br>指任意字符，但是不包括换行符<br><h2 id="^a" >^a</h2><br>排除字符a<br><h2 id="a{b}" >a{b}</h2><br>代表a需要出现b次才能匹配<br><h2 id="a{b,c}" >a{b,c}</h2><br>代表a需要出现b-c次这个范围内，才能匹配<br><h2 id="a{b,}" >a{b,}</h2><br>代表a需要出现b次以上，才能匹配<br><h2 id="[ab]" >[ab]</h2><br>[]的作用是集合,用于匹配多个相同的类型，例如 &#x2F;[ab]+&#x2F; 就代表ab或者a或者b需要连续出现1次以上。<br><h2 id="(ab)" >(ab)</h2><br>ab为一个组(Group),在代码中可以对匹配的值(Match)和各个组(Group)进行拓展操作<br><h2 id="a (cat|dog)" >a (cat|dog)</h2><br>匹配 a cat a dog ,cat或者dog前面必须带一个a <br><h2 id="a cat|dog" >a cat|dog</h2><br>匹配 a cat 或者 dog<br><h2 id="[a-zA-Z0-9]" >[a-zA-Z0-9]</h2><br>匹配 a-z、A-Z的字符和0-9的数字<br><br><h1 id="元字符" >元字符</h1><br><h2 id="\d " >\d </h2><br>数字字符 \d+ 匹配一个以上的数字<br><h2 id="\D " >\D </h2><br>非数字字符<br><h2 id="\w " >\w </h2><br>单词字符 单词 数字 下划线即英文字符<br><h2 id="\W " >\W </h2><br>非单词字符<br><h2 id="\s " >\s </h2><br>空白符 包含空格和换行符<br><h2 id="\S " >\S </h2><br>非空白字符<br><h2 id="\b " >\b </h2><br>单词的边界 单词的开头或结尾 单词与符号之前的边界<br><h2 id="\B " >\B </h2><br>非单词的边界 符号与符号 单词与单词的边界<br><br><h1 id="特殊判断用法" >特殊判断用法</h1><br>注意:括号是固定格式,不能少<br><h2 id="(?=pattern)" >(?&#x3D;pattern)</h2><br>正向先行断言，表示匹配位置后面必须紧跟着满足 pattern 的字符串，但不包括这个字符串在匹配结果中。<br><h2 id="(?!pattern)" >(?!pattern)</h2><br>负向先行断言，表示匹配位置后面不能紧跟着满足 pattern 的字符串，也不包括这个字符串在匹配结果中。<br><h2 id="(?<=pattern)" >(?&lt;&#x3D;pattern)</h2><br>正向后行断言，表示匹配位置前面必须是满足 pattern 的字符串，但不包括这个字符串在匹配结果中。<br><h2 id="(?<!pattern)" >(?&lt;!pattern)</h2><br>负向后行断言，表示匹配位置前面不能是满足 pattern 的字符串，也不包括这个字符串在匹配结果中。<br><h2 id="(?:pattern)" >(?:pattern)</h2><br>非捕获型分组，表示将 pattern 包含在一个分组中，但不把这个分组的匹配结果保存到分组编号中。这个分组通常用于表示可选的或重复的子表达式，或者是限制量词的作用范围，而不需要把它们的匹配结果单独提取出来。<br><br><br></p>
+        <p><br><h1 id="学习、验证正则表达式的推荐网站：" >学习、验证正则表达式的推荐网站：</h1><br><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a><br><br><h1 id="常用说明" >常用说明</h1><br><h2 id="a?" >a?</h2><br>代表出现没有或者1次。<br><h2 id="a*" >a*</h2><br>代表a出现0次,或者多次<br><h2 id="a+" >a+</h2><br>代表a出现1次以上<br><h2 id="." >.</h2><br>指任意字符，但是不包括换行符<br><h2 id="^a" >^a</h2><br>排除字符a<br><h2 id="a{b}" >a{b}</h2><br>代表a需要出现b次才能匹配<br><h2 id="a{b,c}" >a{b,c}</h2><br>代表a需要出现b-c次这个范围内，才能匹配<br><h2 id="a{b,}" >a{b,}</h2><br>代表a需要出现b次以上，才能匹配<br><h2 id="[ab]" >[ab]</h2><br>[]的作用是集合,用于匹配多个相同的类型，例如 /[ab]+/ 就代表ab或者a或者b需要连续出现1次以上。<br><h2 id="(ab)" >(ab)</h2><br>ab为一个组(Group),在代码中可以对匹配的值(Match)和各个组(Group)进行拓展操作<br><h2 id="a (cat|dog)" >a (cat|dog)</h2><br>匹配 a cat a dog ,cat或者dog前面必须带一个a <br><h2 id="a cat|dog" >a cat|dog</h2><br>匹配 a cat 或者 dog<br><h2 id="[a-zA-Z0-9]" >[a-zA-Z0-9]</h2><br>匹配 a-z、A-Z的字符和0-9的数字<br><br><h1 id="元字符" >元字符</h1><br><h2 id="\d " >\d </h2><br>数字字符 \d+ 匹配一个以上的数字<br><h2 id="\D " >\D </h2><br>非数字字符<br><h2 id="\w " >\w </h2><br>单词字符 单词 数字 下划线即英文字符<br><h2 id="\W " >\W </h2><br>非单词字符<br><h2 id="\s " >\s </h2><br>空白符 包含空格和换行符<br><h2 id="\S " >\S </h2><br>非空白字符<br><h2 id="\b " >\b </h2><br>单词的边界 单词的开头或结尾 单词与符号之前的边界<br><h2 id="\B " >\B </h2><br>非单词的边界 符号与符号 单词与单词的边界<br><br><h1 id="特殊判断用法" >特殊判断用法</h1><br>注意:括号是固定格式,不能少<br><h2 id="(?=pattern)" >(?=pattern)</h2><br>正向先行断言，表示匹配位置后面必须紧跟着满足 pattern 的字符串，但不包括这个字符串在匹配结果中。<br><h2 id="(?!pattern)" >(?!pattern)</h2><br>负向先行断言，表示匹配位置后面不能紧跟着满足 pattern 的字符串，也不包括这个字符串在匹配结果中。<br><h2 id="(?<=pattern)" >(?&lt;=pattern)</h2><br>正向后行断言，表示匹配位置前面必须是满足 pattern 的字符串，但不包括这个字符串在匹配结果中。<br><h2 id="(?<!pattern)" >(?&lt;!pattern)</h2><br>负向后行断言，表示匹配位置前面不能是满足 pattern 的字符串，也不包括这个字符串在匹配结果中。<br><h2 id="(?:pattern)" >(?:pattern)</h2><br>非捕获型分组，表示将 pattern 包含在一个分组中，但不把这个分组的匹配结果保存到分组编号中。这个分组通常用于表示可选的或重复的子表达式，或者是限制量词的作用范围，而不需要把它们的匹配结果单独提取出来。<br><br><br></p>
 
     </div>
     
@@ -309,9 +309,24 @@
             <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
             <a class="BilibliLink" href="/">返回主页</a>
-            <br/>
-            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
-            <br/>
+            <!-- <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a> -->
+            
+                <div class="custom-icon-links">
+                    
+                    <div class="custom-icon-link">
+                        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">
+                            <img class="custom-icon-link-image no-lazy" src="/images/icon_bilibili.png" >
+                        </a>
+                    </div>
+                    
+                    <div class="custom-icon-link">
+                        <a target="_blank" rel="noopener" href="https://github.com/hbbwang">
+                            <img class="custom-icon-link-image no-lazy" src="/images/icon_github.png" >
+                        </a>
+                    </div>
+                    
+                </div>
+            
             本页面由Hexo生成，搭建在Github
             <br/>
             主题：Particlex(魔改)

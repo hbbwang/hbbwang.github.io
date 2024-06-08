@@ -60,10 +60,9 @@
         <transition name="fade">
             <div id="loading" v-show="loading">
                 <div id="loading-circle">
-                    <h2> LOADING </h2>
-                    <p>...加载中...</p>
                     <!-- <img src="/images/loading3.gif" data-original="/images/loading2.gif" style="filter:brightness(0.75) grayscale(0.65) blur(1px);"  /> -->
                     <div style="background-image:url(/images/loading2.gif);" class="loading-image" ></div>
+                    <h2> LOADING </h2>
                 </div>
             </div>
         </transition>
@@ -161,6 +160,7 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="main-background" data-images="/images/main_background.jpg"></div>
             <!-- 目录卡片 -->
 <script>
     
@@ -245,7 +245,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/QT5/" style="color: #ffa2c4">
+                <a href="/tags/QT5/" style="color: #03a9f4">
                     QT5
                 </a>
             </span>
@@ -259,7 +259,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/" style="color: #03a9f4">
+                <a href="/tags/%E5%AF%B9%E8%AF%9D%E6%A1%86/" style="color: #00a596">
                     对话框
                 </a>
             </span>
@@ -1034,9 +1034,24 @@ QT_END_NAMESPACE
             <a class="BilibliLink"  onclick="scrollToTop()">返回顶部</a>
             <br/>
             <a class="BilibliLink" href="/">返回主页</a>
-            <br/>
-            <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a>
-            <br/>
+            <!-- <a class="BilibliLink" target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">坏包包的 Bilibili 主页</a> -->
+            
+                <div class="custom-icon-links">
+                    
+                    <div class="custom-icon-link">
+                        <a target="_blank" rel="noopener" href="https://space.bilibili.com/3157352">
+                            <img class="custom-icon-link-image no-lazy" src="/images/icon_bilibili.png" >
+                        </a>
+                    </div>
+                    
+                    <div class="custom-icon-link">
+                        <a target="_blank" rel="noopener" href="https://github.com/hbbwang">
+                            <img class="custom-icon-link-image no-lazy" src="/images/icon_github.png" >
+                        </a>
+                    </div>
+                    
+                </div>
+            
             本页面由Hexo生成，搭建在Github
             <br/>
             主题：Particlex(魔改)
